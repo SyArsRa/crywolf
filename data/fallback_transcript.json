@@ -1,0 +1,43 @@
+{
+  "_note": "Lane B wrote this to have something to test the observer against. Lane A: overwrite freely, just keep the shape (backend/schema.py :: Transcript). P4 is the werewolf; the catchable tells are P4 announcing a vote for P2 then voting P1, later claiming to have voted P2, and P4 steering hard onto P3 after P3 starts tracking vote records.",
+  "setup": {
+    "players": ["P1", "P2", "P3", "P4", "P5"],
+    "premise": "Standard Werewolf, five players. Exactly one werewolf hides among four villagers. Each night the werewolf eliminates one player; each day the survivors argue and vote one player out. The werewolf knows who they are; nobody else does."
+  },
+  "ground_truth": {
+    "P1": "villager",
+    "P2": "villager",
+    "P3": "villager",
+    "P4": "werewolf",
+    "P5": "villager"
+  },
+  "events": [
+    { "round": 1, "phase": "night", "speaker": "MODERATOR", "statement": "Night falls. In the morning, P5 is found dead." },
+    { "round": 1, "phase": "day", "speaker": "P1", "statement": "Well. Five of us, now four. I have nothing to go on yet, so I'd rather hear people talk than guess." },
+    { "round": 1, "phase": "day", "speaker": "P4", "statement": "P5 wasn't going to be much help anyway, honestly. Let's not waste the day mourning." },
+    { "round": 1, "phase": "day", "speaker": "P2", "statement": "That's a cold thing to say about someone who never got to say a word." },
+    { "round": 1, "phase": "day", "speaker": "P3", "statement": "I'd rather focus. P2, you've barely said anything either. What's your read?" },
+    { "round": 1, "phase": "day", "speaker": "P2", "statement": "My read is that it's round one and anyone claiming certainty is performing. I'm a villager, for whatever nothing that's worth." },
+    { "round": 1, "phase": "day", "speaker": "P4", "statement": "See, that's exactly the kind of non-answer I'd expect. I'm voting P2." },
+    { "round": 1, "phase": "day", "speaker": "P1", "statement": "P4, you've been the loudest in a round where nobody has information. That's its own kind of tell." },
+    { "round": 1, "phase": "day", "speaker": "P4", "statement": "Or I'm just the only one willing to move. Somebody has to." },
+    { "round": 1, "phase": "vote", "speaker": "P1", "statement": "I vote P4." },
+    { "round": 1, "phase": "vote", "speaker": "P2", "statement": "I vote P4." },
+    { "round": 1, "phase": "vote", "speaker": "P3", "statement": "I vote P2. P4 is abrasive, but abrasive isn't guilty." },
+    { "round": 1, "phase": "vote", "speaker": "P4", "statement": "I vote P1." },
+    { "round": 1, "phase": "vote", "speaker": "MODERATOR", "statement": "Two votes P4, one vote P2, one vote P1. No majority. Nobody is eliminated." },
+    { "round": 2, "phase": "night", "speaker": "MODERATOR", "statement": "Night falls. In the morning, P1 is found dead." },
+    { "round": 2, "phase": "day", "speaker": "P3", "statement": "P1 died the same night P1 put a vote on P4. I don't love that timing." },
+    { "round": 2, "phase": "day", "speaker": "P4", "statement": "P2 voted for me too and P2 is still breathing. If I were the wolf that would be a strange choice." },
+    { "round": 2, "phase": "day", "speaker": "P2", "statement": "Unless you left me alive precisely so you could say that." },
+    { "round": 2, "phase": "day", "speaker": "P4", "statement": "Look, I voted P2 last round like I said I would, and P2 survived. I've been consistent from the start." },
+    { "round": 2, "phase": "day", "speaker": "P3", "statement": "You didn't vote P2. You said you would, and then you voted P1. I wrote it down." },
+    { "round": 2, "phase": "day", "speaker": "P4", "statement": "Then I misremembered under pressure, which is not a crime. What's interesting is that P3 is keeping written records on everyone. That's not villager behaviour." },
+    { "round": 2, "phase": "day", "speaker": "P2", "statement": "It's exactly villager behaviour. It's the only thing any of us can actually do." },
+    { "round": 2, "phase": "day", "speaker": "P3", "statement": "I'll say it plainly. P4 announced a vote, cast a different one, then claimed the announced one. And the person who caught P4 first is dead." },
+    { "round": 2, "phase": "vote", "speaker": "P2", "statement": "I vote P4." },
+    { "round": 2, "phase": "vote", "speaker": "P3", "statement": "I vote P4." },
+    { "round": 2, "phase": "vote", "speaker": "P4", "statement": "I vote P3, and I'd like the record to show I said so." },
+    { "round": 2, "phase": "vote", "speaker": "MODERATOR", "statement": "Two votes P4. P4 is eliminated." }
+  ]
+}
