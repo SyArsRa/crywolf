@@ -106,12 +106,13 @@ def main() -> int:
                   f"-- {start_at} events already observed, not re-spent.\n")
 
     total = len(transcript.events)
-    pace = float(os.environ.get("CRYWOLF_MIN_INTERVAL", 13.0))
+    pace = float(os.environ.get("CRYWOLF_MIN_INTERVAL", 0))
     print(f"Replaying {args.transcript} -- {total} events, "
           f"players {', '.join(transcript.setup.players)}")
+    print(f"Model: {os.environ.get('CRYWOLF_MODEL', 'claude-haiku-4-5')}")
     if pace:
-        print(f"Pacing at {pace:.0f}s/event to stay inside the free-tier quota "
-              f"-- about {total * pace / 60:.0f} minutes.\n")
+        print(f"Pacing at {pace:.0f}s/event -- about {total * pace / 60:.0f} minutes.")
+    print()
 
     completed = start_at
     try:

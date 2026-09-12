@@ -73,27 +73,33 @@ grades as wrong. See `scoring.verdict()`.
 ## Which model runs
 
 `llm.py` is the only file that knows. `observer.py` asks for a validated object
-and doesn't care who produced it.
+and doesn't care how it was produced.
 
 ```bash
 pip install -r requirements.txt
-export GEMINI_API_KEY=...          # free key: https://aistudio.google.com/apikey
+export ANTHROPIC_API_KEY=...
 ```
-
-Gemini is the default. `gemini-2.5-flash` rather than pro because one replay is
-27 calls and the free tier's pro quota won't survive a tuning session.
 
 | Variable | Default | |
 |---|---|---|
-| `CRYWOLF_PROVIDER` | `gemini` | or `anthropic`, if a key ever appears |
-| `CRYWOLF_MODEL` | per provider | e.g. `gemini-2.5-pro` |
-| `CRYWOLF_EFFORT` | `medium` | Anthropic only |
+| `CRYWOLF_MODEL` | `claude-haiku-4-5` | ladder: haiku → `claude-sonnet-5` → `claude-opus-5` |
+| `CRYWOLF_EFFORT` | `medium` | ignored on models that don't accept it |
+| `CRYWOLF_MIN_INTERVAL` | `0` | seconds between calls, if rate limits bite |
 
-Rate limits and transient 5xx are retried with backoff inside `llm.py` — free-tier
-Gemini will throttle a 27-call replay, and that's expected, not a failure.
+Start on Haiku: one replay is ~27 calls and tuning means many replays. Move up
+when reads look shallow, not before.
 
-To add a third provider, write a class with one `structured(system, user, schema)`
-method returning the validated model. Nothing else changes.
+Two model-specific things the code handles so you don't have to:
+
+- **`effort` is rejected by Haiku 4.5 and Sonnet 4.5** — sending it is a 400 on
+  every call, not a warning. `llm.py` omits it for those models.
+- The system prompt is identical every event, so it's cached: 26 cache reads per
+  run instead of 26 re-sends.
+
+Rate limits and 5xx retry with backoff, honoring the server's stated delay.
+
+To swap providers later, write a class with one `structured(system, user, schema)`
+method returning the validated model. Nothing outside `llm.py` changes.
 
 ## Tuning knobs
 
