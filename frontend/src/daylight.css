@@ -1,0 +1,348 @@
+/* ==================================================================
+   DAYLIGHT — a lit room, not a dark one.
+
+   Loaded after styles.css, and overriding it rather than editing it,
+   so the layout and geometry tuned there stay exactly as they are and
+   only the ground, the ink and the type change.
+
+   Why: the dark board looked the part but fought its own content.
+   Manila cards floated as bright slabs on near-black, and every accent
+   colour had to work against two very different grounds at once. It
+   did not — "EVIDENCE BOARD" and the earlier/now quote labels were
+   brass, a colour picked for dark chrome, printed onto pale paper
+   where it is effectively invisible.
+
+   So: one ground, light, with every foreground colour tuned against
+   it. The table keeps its felt, because a felt table is the thing
+   being shown; everything around it is desk and paper now.
+
+   Type is Inter throughout. The serif read as academic, which is not
+   the register a live game wants.
+   ================================================================== */
+
+:root {
+  --ui: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --display: var(--ui);
+  --typewriter: var(--ui);
+  --mono: var(--ui);
+
+  --desk: #d9cfbb;
+  --desk-2: #cabda3;
+  --paper: #fbf8f1;
+  --paper-2: #f1ebdd;
+  --paper-line: #cdc2a8;
+
+  /* Ink, all of it clear of 4.5:1 against --paper. */
+  --ink: #23201a;
+  --ink-muted: #5d5443;
+  --ink-dim: #736851;
+
+  --parchment: var(--paper);
+  --parchment-2: var(--paper-2);
+  --wood-line: var(--paper-line);
+
+  /* Accents darkened for a light ground. The old brass and amber were
+     chosen to glow against espresso and cannot be reused here. */
+  --brass: #9a6b12;
+  --brass-light: #7d560c;
+  --wax: #96271c;
+  --wax-bright: #b03124;
+  --good: #256b45;
+
+  --felt: #2f5f45;
+  --felt-2: #3a7052;
+
+  --shadow-sm: 0 1px 2px rgba(60, 50, 30, 0.18);
+  --shadow-md: 0 4px 12px rgba(60, 50, 30, 0.16);
+  --shadow-lg: 0 14px 32px rgba(60, 50, 30, 0.22);
+}
+
+body {
+  font-family: var(--ui);
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--desk);
+}
+
+.board-app {
+  background:
+    radial-gradient(120% 70% at 50% -10%, rgba(255, 252, 244, 0.9) 0%, transparent 60%),
+    linear-gradient(180deg, var(--desk) 0%, var(--desk-2) 100%);
+}
+
+/* ------------------------------------------------------------ chrome */
+
+.hud {
+  background: linear-gradient(180deg, #fdfbf6 0%, var(--paper-2) 100%);
+  border-bottom: 1px solid var(--paper-line);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 2px 10px rgba(60, 50, 30, 0.1);
+}
+.hud-brand {
+  font-family: var(--ui);
+  font-weight: 800;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  color: var(--ink);
+  text-shadow: none;
+}
+
+h2 {
+  font-family: var(--ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  color: var(--ink-muted);
+}
+/* These were brass for a dark ground; two of the three sit on paper. */
+.transcript-head h2,
+.evidence-head h2 { color: var(--ink-muted); }
+.stage h2 { color: #f4ecda; }
+.room-sub { color: rgba(246, 239, 226, 0.82); }
+
+.gauge-label { color: var(--ink-muted); font-weight: 600; }
+.gauge-total { color: var(--ink-dim); }
+.gauge-value { font-family: var(--ui); font-weight: 700; color: var(--ink); }
+.gauge-track { background: rgba(60, 50, 30, 0.12); border-color: rgba(60, 50, 30, 0.16); }
+.gauge-fill { background: linear-gradient(90deg, #c08a1c, #9a6b12); }
+.gauge-alive .gauge-fill { background: linear-gradient(90deg, #c2513f, var(--wax)); }
+.gauge-alive .gauge-value { color: var(--wax); }
+
+.token { font-family: var(--ui); font-weight: 700; letter-spacing: 0.09em; }
+.token-idle { background: rgba(60, 50, 30, 0.07); border-color: var(--paper-line); color: var(--ink-dim); }
+.token-playing { background: #c08a1c; color: #fffaf0; border-color: transparent; transform: none; }
+.token-failed { color: #6f6a5e !important; border-color: #6f6a5e; }
+.token-vote { color: var(--wax) !important; border-color: var(--wax); }
+.token-verdict { color: var(--good) !important; border-color: var(--good); }
+
+.controls select { color: var(--ink); background: #fff; border: 1px solid var(--paper-line); border-radius: 4px; }
+.btn { border-radius: 4px; }
+.btn.ghost { color: var(--ink); border-color: var(--paper-line); background: #fff; }
+
+/* -------------------------------------------------------- the stage */
+
+/* A lit desk, not a black void. The felt table sits on it. */
+.stage {
+  border: 10px solid;
+  border-image: linear-gradient(150deg, #b99d72, #8e714a 45%, #a88a5f) 1;
+  background: linear-gradient(170deg, #bda587 0%, #a98e6c 100%);
+  box-shadow: var(--shadow-lg), inset 0 0 90px rgba(90, 66, 36, 0.26);
+}
+.sky { background: none !important; }
+.sky::after {
+  background:
+    repeating-linear-gradient(45deg, rgba(120, 92, 54, 0.05) 0 1px, transparent 1px 3px),
+    radial-gradient(65% 55% at 50% 48%, transparent 40%, rgba(90, 66, 36, 0.2) 100%);
+}
+/* Phase reads as the light over the desk now, not a change of night. */
+.stage[data-phase="night"] .sky::after {
+  background: radial-gradient(72% 62% at 50% 45%, rgba(64, 84, 124, 0.14) 0%, rgba(44, 56, 86, 0.28) 100%);
+}
+.stage[data-phase="vote"] .sky::after {
+  background: radial-gradient(72% 62% at 50% 45%, rgba(150, 60, 40, 0.09) 0%, rgba(120, 45, 30, 0.24) 100%);
+}
+
+.table {
+  background:
+    repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.07) 0 1px, transparent 1px 3px),
+    radial-gradient(circle at 50% 34%, #3f785a 0%, var(--felt) 60%, #244b36 100%);
+  border: 8px solid #8e714a;
+  box-shadow:
+    0 0 0 1px rgba(255, 245, 220, 0.35),
+    inset 0 4px 22px rgba(0, 0, 0, 0.32),
+    0 14px 30px rgba(70, 52, 28, 0.28);
+}
+.stage[data-phase="night"] .table,
+.stage[data-phase="vote"] .table {
+  box-shadow:
+    0 0 0 1px rgba(255, 245, 220, 0.35),
+    inset 0 4px 22px rgba(0, 0, 0, 0.32),
+    0 14px 30px rgba(70, 52, 28, 0.28);
+}
+
+.round-label { color: #eadfc6; font-weight: 600; }
+.verdict { color: #f4ecda; }
+.seat .name {
+  font-family: var(--ui);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: #2a2620;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+.seat.speaking .name { color: #120f0b; }
+
+/* --------------------------------------------------------- the paper */
+
+.card {
+  background: linear-gradient(168deg, var(--paper) 0%, var(--paper-2) 100%);
+  border: 1px solid var(--paper-line);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 6px 16px rgba(60, 50, 30, 0.12);
+}
+.suspect-card::before {
+  background: linear-gradient(180deg, var(--paper), var(--paper-2));
+  border-color: var(--paper-line);
+}
+
+.log, .reasoning, .bubble, .contradictions { font-family: var(--ui); }
+.log { font-size: 14px; line-height: 1.6; }
+.reasoning { font-size: 14px; line-height: 1.62; }
+.log .who, .contradictions .who { font-family: var(--ui); font-weight: 700; letter-spacing: 0; }
+
+.bubble {
+  background: #fffdf7;
+  border: 1px solid var(--paper-line);
+  color: var(--ink);
+  font-family: var(--ui);
+  box-shadow: 0 6px 18px rgba(60, 50, 30, 0.22);
+}
+.bubble::after { background: #fffdf7; border-color: var(--paper-line); }
+
+/* The label that was brass on paper — the single worst offender. */
+.quote-label {
+  color: #fff;
+  background: var(--ink-muted);
+  border-radius: 2px;
+  padding: 1px 5px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+}
+.contradictions .quote { color: var(--ink-muted); }
+.contradictions li, .banner { background: var(--paper-2); border: 1px solid var(--paper-line); }
+
+.count-pin, .deep-badge, .phase-seg, .tag {
+  font-family: var(--ui);
+  font-weight: 600;
+  background: var(--paper-2);
+  border: 1px solid var(--paper-line);
+  color: var(--ink-muted);
+  box-shadow: none;
+}
+.phase-seg.current { background: #c08a1c; color: #fffaf0; border-color: transparent; }
+
+.score-cell { background: var(--paper); }
+.score-grid { background: var(--paper-line); border-color: var(--paper-line); }
+.score-cell dd { font-family: var(--ui); font-weight: 700; color: var(--ink); }
+.score-cell dt,
+.score-note,
+.score-sub,
+.belief-sub,
+.empty-hint,
+.transcript-count { color: var(--ink-muted); }
+.score-sealed { color: var(--ink-muted); border-color: var(--paper-line); }
+.score-stamp { font-family: var(--ui); font-weight: 800; }
+
+.belief-row .who { color: var(--ink); font-weight: 600; }
+.belief-row .bar { background: rgba(60, 50, 30, 0.1); border-color: rgba(60, 50, 30, 0.16); }
+.rule { stroke: rgba(90, 78, 50, 0.2); }
+.rule-mid { stroke: rgba(90, 78, 50, 0.36); }
+.rule-label { fill: var(--ink-muted); }
+.band-night { fill: rgba(39, 71, 107, 0.1); }
+.band-day { fill: rgba(0, 0, 0, 0.015); }
+.band-vote { fill: rgba(150, 39, 28, 0.08); }
+.end-label { font-family: var(--ui); font-weight: 600; }
+
+* { scrollbar-color: #a8967a #e6ded0; }
+::-webkit-scrollbar-track { background: #e6ded0; border-left: 1px solid var(--paper-line); }
+::-webkit-scrollbar-thumb { background: #a8967a; border: 1px solid #8e7c60; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #8e7c60; }
+
+/* ==================================================================
+   HAND-DEALT
+   The seats were placed on an exact circle at exact intervals, which
+   is the giveaway that nothing physical put them there. Real cards get
+   dealt: near their spot, not on it, and never quite square.
+
+   The jitter comes from the seat index in Table.jsx, so it is stable
+   for a given player — the card sits where it was dealt and stays
+   there, rather than twitching on every render.
+   ================================================================== */
+
+.seat {
+  transform: translate(-50%, -50%) translate(var(--dx, 0px), var(--dy, 0px));
+}
+.avatar {
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform 340ms cubic-bezier(0.2, 0.9, 0.3, 1.4), box-shadow 320ms ease;
+}
+.seat.speaking .avatar {
+  transform: rotate(var(--tilt, 0deg)) scale(1.09) translateY(-4px);
+}
+.seat.dead .avatar {
+  transform: rotate(calc(var(--tilt, 0deg) - 5deg)) scale(0.93);
+}
+
+/* The portraits carried a heavy sepia+darken that was tuned for the old
+   near-black board. On a lit desk it turned every card into a dark hole, so
+   the mount is light now and the filter only warms the drawing rather than
+   dimming it. */
+.portrait { filter: sepia(0.16) contrast(1.04) saturate(0.9) brightness(1.02); }
+.seat.speaking .portrait { filter: sepia(0.05) contrast(1.06) saturate(1); }
+.seat.dead .portrait { filter: grayscale(1) contrast(1.02) brightness(0.9); }
+.avatar { border: 4px solid #fdfaf2; box-shadow: 0 6px 14px rgba(70, 52, 28, 0.34); }
+.seat.speaking .avatar {
+  box-shadow: 0 0 0 3px #c08a1c, 0 10px 22px rgba(70, 52, 28, 0.4);
+}
+.seat.dead .avatar::before {
+  color: #a8241a;
+  border-color: #a8241a;
+  background: rgba(255, 252, 245, 0.82);
+  text-shadow: none;
+}
+
+/* ==================================================================
+   NOTHING COVERS THE SPEECH
+   The bubble is the thing being judged, so it outranks every overlay
+   on the stage. Before: bubbles sat at z-index 20 while the narrator
+   line (25), the phase sweep (30) and the deep-pass beat (32) all
+   painted straight over them.
+
+   The clipping half matters just as much. The stage is overflow:
+   hidden, and bottom-row seats now speak downward, so the stage needs
+   as much room below the table as the top padding already gives above
+   it -- otherwise the lower bubbles are simply cut off by the frame.
+   ================================================================== */
+
+.bubble { z-index: 60; }
+
+/* Seats are siblings, so without this a seat later in the DOM paints
+   over the speaking seat's bubble. Lifting the whole speaking seat
+   keeps its card and its bubble together, above the rest of the table. */
+.seat.speaking { z-index: 50; }
+.seat { z-index: 10; }
+
+/* Room below for downward bubbles, matching the headroom above. */
+.stage { padding-bottom: 150px; }
+
+/* The moderator line shares the bottom of the stage with those bubbles.
+   It keeps its place but yields the layer, so an overlap is readable
+   rather than a bubble disappearing behind it. */
+.narrator { z-index: 26; bottom: 14px; }
+
+/* These are full-stage announcements and should never sit under a card,
+   but they must still lose to a bubble. */
+.sweep { z-index: 30; }
+.rethink-beat,
+.commit-beat { z-index: 32; }
+
+/* Reserving a permanent 150px strip under the table so downward bubbles had
+   somewhere to go left a dead band on screen whenever nobody was speaking.
+   Letting the stage overflow instead costs nothing when there is no bubble and
+   gives the bubble the whole page when there is one.
+
+   The felt still has to stay inside the frame, so the clipping moves to .sky,
+   which is inset:0 and carries the weave and the vignette. Everything else
+   pinned to the stage (the sweep, the stars, the announcements) is also
+   inset:0, so nothing else notices the change. */
+.stage {
+  overflow: visible;
+  padding-bottom: 52px;
+}
+.sky {
+  overflow: hidden;
+  border-radius: inherit;
+}

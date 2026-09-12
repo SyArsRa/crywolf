@@ -10,15 +10,15 @@ export default function Evidence({ run }) {
       <div className="evidence-head">
         <h2>Evidence board</h2>
         <div className="evidence-counts">
-          <span className="count-pin">{contradictions.length} contradictions</span>
-          <span className="count-pin">{Object.keys(claims).length} claims tracked</span>
+          <span className="count-pin">{contradictions.length} times someone changed their story</span>
+          <span className="count-pin">{Object.keys(claims).length} statements remembered</span>
         </div>
       </div>
 
       {run.error && <p className="banner">Run stopped: {run.error}</p>}
 
       <ul className="contradictions">
-        {!contradictions.length && <li className="empty">none caught yet</li>}
+        {!contradictions.length && <li className="empty">nobody has changed their story yet</li>}
         {contradictions
           .slice()
           .reverse()

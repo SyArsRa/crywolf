@@ -59,11 +59,11 @@ export default function Scorecard({ run }) {
   return (
     <section className="card scorecard">
       <div className="score-head">
-        <h2>Report card</h2>
+        <h2>How well it is doing</h2>
         <span className="score-sub">
           {score
-            ? `graded against withheld truth · ${score.events_observed}/${score.events_expected}`
-            : "graded against withheld truth"}
+            ? `Scored against the real answer, which it never sees · ${score.events_observed} of ${score.events_expected} messages`
+            : "Scored against the real answer, which it never sees"}
         </span>
       </div>
 
@@ -73,36 +73,36 @@ export default function Scorecard({ run }) {
         <>
           <dl className="score-grid">
             <div className="score-cell">
-              <dt>Precision@N</dt>
+              <dt>Found the liar</dt>
               <dd>{pct(score.precision_at_n)}</dd>
-              <span className="score-note">right names in its top {score.actual?.length ?? 1}</span>
+              <span className="score-note">the real liar is in its top {score.actual?.length ?? 1} pick</span>
             </div>
             <div className="score-cell">
-              <dt>Consistency</dt>
+              <dt>Stayed consistent</dt>
               <dd>{pct(score.consistency)}</dd>
-              <span className="score-note">how steadily it held the read</span>
+              <span className="score-note">how rarely it flip-flopped</span>
             </div>
             <div className="score-cell">
-              <dt>Confidence</dt>
+              <dt>How sure it is</dt>
               <dd>{pct(score.final_confidence)}</dd>
-              <span className="score-note">weight on its leading suspect</span>
+              <span className="score-note">how strongly it backs its top pick</span>
             </div>
             <div className="score-cell">
-              <dt>Mind changed</dt>
+              <dt>Changed its mind</dt>
               <dd>{score.lead_changes ?? 0}×</dd>
-              <span className="score-note">times the lead suspect moved</span>
+              <span className="score-note">times it switched to a new suspect</span>
             </div>
           </dl>
 
           {finished ? (
             <div className={`score-stamp ${right ? "hit" : "miss"}`}>
-              {right ? "caught the wolf" : "missed the wolf"}
+              {right ? "It caught the wolf" : "It missed the wolf"}
               <span className="score-actual">
-                called {called} · answer {(score.actual ?? []).join(" · ")}
+                It said {called} · the wolf was {(score.actual ?? []).join(" and ")}
               </span>
             </div>
           ) : (
-            <p className="score-sealed">verdict sealed until the run ends</p>
+            <p className="score-sealed">The answer stays hidden until the game ends</p>
           )}
         </>
       )}

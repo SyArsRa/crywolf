@@ -14,7 +14,7 @@ export default function CaseFile({ run, colors }) {
   return (
     <section className="case-row">
       <div className="card suspect-card" style={{ "--seat-color": leader ? colors[leader] : undefined }}>
-        <h2>Leading suspect</h2>
+        <h2>Most suspected right now</h2>
         {leader ? (
           <>
             <div className="suspect-name">{leader}</div>
@@ -22,7 +22,7 @@ export default function CaseFile({ run, colors }) {
               {(leaderScore * 100).toFixed(0)}%
               {gap > 0 && <span className="suspect-gap">+{gap} over {entries[1][0]}</span>}
             </div>
-            <div className="suspect-caveat">a guess, not a fact</div>
+            <div className="suspect-caveat">still a guess, not proof</div>
           </>
         ) : (
           <p className="empty-hint">Waiting for the first read.</p>
@@ -31,9 +31,9 @@ export default function CaseFile({ run, colors }) {
 
       <div className="card reading-card">
         <div className="reading-head">
-          <h2>The reading</h2>
+          <h2>Why it thinks that</h2>
           {state?.deliberated && (
-            <span className="deep-badge">deep pass · re-read the round</span>
+            <span className="deep-badge">it just re-read the whole round</span>
           )}
         </div>
         <p

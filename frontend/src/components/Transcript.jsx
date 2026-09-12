@@ -1,6 +1,15 @@
 import { useEffect, useRef } from "react";
 import { isModerator } from "../live.js";
 
+
+/** "Night 1" rather than "R1 night" -- the round label is read by people who
+ *  have never seen this screen before, and an R-prefix is an abbreviation they
+ *  would have to be taught. */
+function phaseLabel(round, phase) {
+  const name = phase ? phase[0].toUpperCase() + phase.slice(1) : "";
+  return `${name} ${round}`;
+}
+
 export default function Transcript({ run, colors }) {
   const scroller = useRef(null);
 
@@ -33,7 +42,7 @@ export default function Transcript({ run, colors }) {
             >
               <span className="who">{event.speaker}</span>
               <span className="meta">
-                R{event.round} {event.phase}
+                {phaseLabel(event.round, event.phase)}
               </span>
               <span className="said">{event.statement}</span>
             </li>

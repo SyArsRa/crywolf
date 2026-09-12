@@ -26,7 +26,26 @@ function seatLayout(players) {
     // cards lands it on top of the round label in the middle of the table --
     // the two things you most need to read at once.
     const side = y > 55 ? "below" : "above";
-    return { player, index: i, x, y, side, align };
+    // Dealt, not plotted. A fixed circle at fixed intervals is the tell that
+    // no hand put these down, so each card gets a small offset and tilt --
+    // derived from the seat index rather than Math.random, so a player's card
+    // stays where it landed instead of twitching on every render.
+    const wobble = Math.sin((i + 1) * 12.9898) * 43758.5453;
+    const jitter = (seed, spread) => {
+      const frac = Math.abs((wobble * seed) % 1);
+      return (frac - 0.5) * 2 * spread;
+    };
+    return {
+      player,
+      index: i,
+      x,
+      y,
+      side,
+      align,
+      dx: jitter(1, 9),
+      dy: jitter(3, 7),
+      tilt: jitter(7, 4.5),
+    };
   });
 }
 
@@ -34,7 +53,14 @@ function Seat({ seat, color, dead, speaking, suspicion, bubble }) {
   return (
     <div
       className={`seat${dead ? " dead" : ""}${speaking ? " speaking" : ""}`}
-      style={{ left: `${seat.x}%`, top: `${seat.y}%`, "--seat-color": color }}
+      style={{
+        left: `${seat.x}%`,
+        top: `${seat.y}%`,
+        "--seat-color": color,
+        "--dx": `${seat.dx.toFixed(1)}px`,
+        "--dy": `${seat.dy.toFixed(1)}px`,
+        "--tilt": `${seat.tilt.toFixed(2)}deg`,
+      }}
     >
       <div
         className="avatar"
@@ -173,8 +199,8 @@ export default function Table({ run, colors }) {
       {rethink !== null && (
         <div className="rethink-beat" key={rethink}>
           <span className="rethink-kicker">a role was revealed</span>
-          <span className="rethink-title">re-reading the round</span>
-          <span className="rethink-sub">deep pass · belief rewritten against graded evidence</span>
+          <span className="rethink-title">Re-reading the whole round</span>
+          <span className="rethink-sub">Rethinking everyone now that a role is known</span>
         </div>
       )}
 

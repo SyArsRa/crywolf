@@ -1,5 +1,5 @@
 /**
- * A player's character card: a noir bust in a brass frame.
+ * A player's character card: a studio bust on a light mount.
  *
  * Drawn rather than loaded so there are no image assets to ship and every seat
  * gets a distinct face for free. Roles are secret in this game, so the card
@@ -40,8 +40,8 @@ export default function Portrait({ index = 0 }) {
 
   return (
     <svg className="portrait" viewBox="0 0 80 100" aria-hidden="true">
-      <rect x="0" y="0" width="80" height="100" rx="6" fill="#241a12" />
-      <ellipse cx="40" cy="50" rx="30" ry="34" fill="#3a2b1e" opacity="0.7" />
+      <rect x="0" y="0" width="80" height="100" rx="6" fill="#e9e1d0" />
+      <ellipse cx="40" cy="50" rx="30" ry="34" fill="#cfc3aa" opacity="0.55" />
 
       <rect x="35" y="54" width="10" height="15" fill={skin} />
       <path d="M6 100 C8 78 18 70 30 67 L50 67 C62 70 72 78 74 100 Z" fill={suit} />

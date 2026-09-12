@@ -1,5 +1,14 @@
 import { lastTurn, previousSuspicion } from "../live.js";
 
+
+/** "Night 1" rather than "R1 night" -- the round label is read by people who
+ *  have never seen this screen before, and an R-prefix is an abbreviation they
+ *  would have to be taught. */
+function phaseLabel(round, phase) {
+  const name = phase ? phase[0].toUpperCase() + phase.slice(1) : "";
+  return `${name} ${round}`;
+}
+
 const W = 1000;
 const H = 260;
 const PAD_L = 34;
@@ -9,7 +18,7 @@ const PAD_Y = 16;
 const x = (i, n) => PAD_L + (i / Math.max(1, n - 1)) * (W - PAD_L - PAD_R);
 const y = (v) => PAD_Y + (1 - v) * (H - PAD_Y * 2);
 
-/** One player's run of P(mafia), as a path plus wherever it ends.
+/** One player's run of suspicion, as a path plus wherever it ends.
  *
  *  A dead player's history simply stops -- that's information, not a gap to
  *  paper over -- so the line ends where they left the game and the label sits
@@ -61,11 +70,11 @@ export default function BeliefBoard({ run, colors }) {
   return (
     <section className={`belief-board card${state?.deliberated ? " lurching" : ""}`}>
       <div className="belief-head">
-        <h2>Belief over time</h2>
+        <h2>How suspicion changed</h2>
         <span className="belief-sub">
           {state?.deliberated
-            ? "rewritten wholesale — the deep pass re-read the round"
-            : "P(mafia) per player, rewritten after every message"}
+            ? "Rewritten from scratch — it just took a second, closer look"
+            : "Chance each player is lying, updated after every message"}
         </span>
       </div>
 
@@ -165,7 +174,7 @@ export default function BeliefBoard({ run, colors }) {
                 className={`phase-seg${i === segments.length - 1 ? " current" : ""}`}
                 style={{ flexGrow: seg.count }}
               >
-                R{seg.round} {seg.phase}
+                {phaseLabel(seg.round, seg.phase)}
               </span>
             ))}
           </div>

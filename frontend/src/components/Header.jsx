@@ -2,11 +2,11 @@ import { lastTurn } from "../live.js";
 import Controls from "./Controls.jsx";
 
 const STATE_LABEL = {
-  idle: "Idle",
-  playing: "Playing",
-  vote: "Vote",
-  verdict: "Verdict",
-  failed: "Failed",
+  idle: "Not started",
+  playing: "Watching",
+  vote: "Voting",
+  verdict: "Finished",
+  failed: "Stopped",
 };
 
 /** One word for where the game is right now. `playing` only covers games the
@@ -56,13 +56,13 @@ export default function Header({ run, playing, onChanged }) {
       {run.turns.length > 0 && (
         <div className="hud-stats">
           <Gauge
-            label="Testimony"
+            label="Messages heard"
             value={run.turns.length}
             total={run.expected || 0}
             fill={run.expected ? run.turns.length / run.expected : 0}
           />
           <Gauge
-            label="Still alive"
+            label="Players alive"
             value={alive}
             total={run.players.length}
             fill={run.players.length ? alive / run.players.length : 0}
