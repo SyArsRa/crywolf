@@ -25,23 +25,27 @@ from backend.scoring import grade
 BAR_WIDTH = 28
 
 
-def _bars(state, roster: list[str], wolf: str | None) -> str:
+def _bars(state, roster: list[str], liars: set[str]) -> str:
     """One row per player, always in roster order.
 
     Sorting by score made rows swap places between events, so you couldn't
     follow a single player down the screen -- which is exactly what you want to
     watch. Fixed rows turn the output into a chart you can read over time.
     """
+    # Real datasets have names like "Whitney" and "Kai", not P1..P5, so pad to
+    # the widest or the bars stop lining up and the chart becomes unreadable.
+    width = max((len(p) for p in roster), default=4)
     lines = []
     for player in roster:
-        mark = " <" if player == wolf else ""
+        mark = " <" if player in liars else ""
+        name = player.ljust(width)
         if player in state.eliminated:
-            lines.append(f"    {player}  {'-' * BAR_WIDTH}   dead{mark}")
+            lines.append(f"    {name}  {'-' * BAR_WIDTH}   out{mark}")
             continue
         score = state.suspicion.get(player, 0.0)
         filled = round(score * BAR_WIDTH)
         lines.append(
-            f"    {player}  {'#' * filled}{'.' * (BAR_WIDTH - filled)}  {score * 100:5.1f}%{mark}"
+            f"    {name}  {'#' * filled}{'.' * (BAR_WIDTH - filled)}  {score * 100:5.1f}%{mark}"
         )
     return "\n".join(lines)
 
@@ -85,13 +89,15 @@ def _write_run(path, transcript, observer, score, completed: int) -> None:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Replay a Werewolf transcript through the observer.")
+    parser = argparse.ArgumentParser(
+        description="Replay a Werewolf or Mafia transcript through the observer."
+    )
     parser.add_argument("transcript", nargs="?", default="data/fallback_transcript.json")
     parser.add_argument("--json", dest="out", help="Write the full run to this path.")
     parser.add_argument(
         "--spoil",
         action="store_true",
-        help="Mark the real werewolf in the printed bars. Never shown to the model.",
+        help="Mark the real liars in the printed bars. Never shown to the model.",
     )
     parser.add_argument(
         "--resume",
@@ -102,7 +108,7 @@ def main() -> int:
     args = parser.parse_args()
 
     transcript = Transcript.model_validate_json(Path(args.transcript).read_text(encoding="utf-8"))
-    wolf = transcript.werewolf()
+    liars = set(transcript.deceivers())
     observer = Observer(transcript.setup)
     start_at = 0
 
@@ -118,12 +124,13 @@ def main() -> int:
             if data.get("complete"):
                 print(f"{saved} is already a complete run. Delete it to start over.")
                 return 0
+            start_at = data["events_observed"]
             observer.restore(
                 BeliefState.model_validate(data["final_state"]),
                 data["history"],
                 [BeliefState.model_validate(t["state"]) for t in data.get("turns", [])],
+                transcript.events[:start_at],
             )
-            start_at = data["events_observed"]
             print(f"Resuming from {saved} at event {start_at + 1} "
                   f"-- {start_at} events already observed, not re-spent.\n")
 
@@ -147,7 +154,7 @@ def main() -> int:
                 _write_run(Path(args.out), transcript, observer, None, completed)
             print(f"[{i:>2}/{total}] R{event.round} {event.phase} "
                   f"{event.speaker}: {event.statement}")
-            print(_bars(state, transcript.setup.players, wolf if args.spoil else None))
+            print(_bars(state, transcript.setup.players, liars if args.spoil else set()))
             print(f"    -> {state.reasoning}")
             if state.contradictions_noticed:
                 latest = state.contradictions_noticed[-1]
@@ -165,9 +172,14 @@ def main() -> int:
     score = grade(observer.state, observer.history, transcript.events, transcript.ground_truth)
 
     print("=" * 60)
-    print(f"predicted werewolf : {score.predicted}  ({score.final_confidence * 100:.1f}% confident)")
-    print(f"actual werewolf    : {score.actual}")
-    print(f"accuracy           : {'HIT' if score.accuracy else 'MISS'}")
+    role = transcript.setup.deceiver_role
+    print(f"top suspect        : {score.predicted}  ({score.final_confidence * 100:.1f}% confident)")
+    print(f"actually {role:<10}: {', '.join(score.actual)}")
+    print(f"accuracy           : {'HIT' if score.accuracy else 'MISS'}"
+          f"   (is the top suspect one of them?)")
+    if len(score.actual) > 1:
+        print(f"precision@{len(score.actual)}        : {score.precision_at_n:.2f}"
+              f"   (of its top {len(score.actual)} living suspects, how many really are)")
     print(f"consistency        : {score.consistency:.2f} "
           f"({score.self_contradictions} unexplained reversals)")
     print(f"drift              : {score.lead_changes} lead changes, "

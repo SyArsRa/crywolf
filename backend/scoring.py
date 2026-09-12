@@ -17,6 +17,7 @@ is a feature, not a fault.
 
 from __future__ import annotations
 
+import re
 from typing import Dict, List
 
 from backend.observer import infer_elimination
@@ -24,6 +25,25 @@ from backend.schema import DECEIVER_ROLES, BeliefState, GameEvent, Score
 
 # A fall smaller than this is ordinary drift as probability mass shifts around.
 REVERSAL_THRESHOLD = 0.15
+
+
+def mentions(player: str, statement: str) -> bool:
+    """Does this line actually name that player?
+
+    A plain substring test is wrong and was quietly inflating consistency: with
+    real names, "Sage" hides inside "messages", "Lee" inside "feeling", "Ari"
+    inside "curious". Thirty-three such collisions across the 33 Mafia games,
+    each one excusing a suspicion drop as "explained" when nobody had said a word
+    about that player.
+
+    Letters either side are what disqualify a match, rather than \\b, so
+    possessives and chat punctuation still count as mentions: "rowans reasoning",
+    "#vote_for_winter", "@kai".
+    """
+    return re.search(
+        rf"(?<![a-z]){re.escape(player.lower())}(?:'s|’s|s)?(?![a-z])",
+        statement.lower(),
+    ) is not None
 
 
 def count_unexplained_reversals(
@@ -35,12 +55,11 @@ def count_unexplained_reversals(
     reversals = 0
     for i in range(1, min(len(history), len(events))):
         before, after, event = history[i - 1], history[i], events[i]
-        statement = event.statement.lower()
         for player, prev in before.items():
             drop = prev - after.get(player, prev)
             if drop <= threshold:
                 continue
-            if player == event.speaker or player.lower() in statement:
+            if player == event.speaker or mentions(player, event.statement):
                 continue  # something was actually said about them
             reversals += 1
     return reversals
@@ -71,6 +90,25 @@ def _verdict_snapshot(
         if infer_elimination(events[i]) is None and history[i]:
             return history[i]
     return {}
+
+
+def final_verdict(history: List[Dict[str, float]]) -> str | None:
+    """The observer's top suspect in its very last belief state.
+
+    Reported alongside `verdict()` because the two games end differently and
+    neither reading is right for both.
+
+    A Werewolf game that ends by voting the wolf out leaves the observer
+    answering about survivors only -- the player it spent the game accusing has
+    just left the room -- so `verdict()` looks back to the last event that
+    eliminated nobody. But a Mafia game where the mafia win ends with them still
+    at the table, and the closing eliminations announce roles the observer
+    legitimately uses: on game 0002 it moved to Ashton (mafia) at 53% on the
+    final line, and `verdict()` threw that away for a snapshot two events older.
+
+    Rather than pick whichever rule flatters the run, both are reported.
+    """
+    return max(history[-1], key=lambda p: history[-1][p]) if history and history[-1] else None
 
 
 def measure_drift(history: List[Dict[str, float]], final_verdict: str | None) -> tuple[int, int]:
@@ -108,13 +146,16 @@ def measure_drift(history: List[Dict[str, float]], final_verdict: str | None) ->
 def _confidence(
     history: List[Dict[str, float]], events: List[GameEvent], predicted: str | None
 ) -> float:
-    """How sure the observer was, read from the same snapshot as the verdict."""
+    """How sure the observer was, read from the same snapshot as the verdict.
+
+    Reads `_verdict_snapshot` rather than re-walking the history. It used to have
+    its own copy of that loop with one extra condition, which is the kind of
+    duplication that agrees on every run you test and disagrees on the one you
+    demo.
+    """
     if not predicted:
         return 0.0
-    for i in range(min(len(history), len(events)) - 1, -1, -1):
-        if infer_elimination(events[i]) is None and predicted in history[i]:
-            return history[i][predicted]
-    return 0.0
+    return _verdict_snapshot(history, events).get(predicted, 0.0)
 
 
 def precision_at_n(
@@ -160,8 +201,11 @@ def grade(
     # One reversal per event would be a total loss of the plot; scale against that.
     consistency = 1.0 - (reversals / len(history)) if history else 1.0
 
+    at_end = final_verdict(history)
     return Score(
         accuracy=predicted in actual,
+        final_verdict=at_end,
+        final_accuracy=at_end in actual if at_end else False,
         precision_at_n=round(precision_at_n(history, events, actual), 3),
         predicted=predicted,
         actual=actual,

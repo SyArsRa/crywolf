@@ -25,6 +25,7 @@ from typing import Dict, List, Optional
 
 from backend.llm import StructuredLLM, get_backend
 from backend.schema import (
+    NARRATORS,
     BeliefState,
     Contradiction,
     GameEvent,
@@ -59,9 +60,19 @@ _DEATH = re.compile(
 
 
 def infer_elimination(event: GameEvent) -> Optional[str]:
-    """The player this event announces the death of, if any."""
+    """The player this event announces the death of, if any.
+
+    Only the narrator can eliminate anyone. Players say "ashton is dead" and
+    "who is dead?" all the time -- in the real Mafia games they say it a lot --
+    and reading those as eliminations let any player remove a rival from the
+    suspicion distribution just by claiming they were gone. Seven such lines
+    across the 33 games, one of which would have "killed" the speaker's own
+    accuser mid-argument.
+    """
     if event.eliminated:
         return event.eliminated
+    if event.speaker.lower() not in NARRATORS:
+        return None
     match = _DEATH.search(event.statement)
     return match.group("who") if match else None
 
@@ -241,16 +252,58 @@ def _settle(
     return _normalize(current)
 
 
+def _normalize_quote(text: str) -> str:
+    return re.sub(r"[^a-z0-9 ]+", "", text.lower()).strip()
+
+
+def _said_by(quote: str, statements: List[str]) -> bool:
+    """Did this player actually say something like this?
+
+    Loose on purpose -- the model paraphrases lightly, trims, or merges two
+    sentences -- but it must be recognisably one of *their* lines, not someone
+    else's.
+    """
+    needle = _normalize_quote(quote)
+    if not needle:
+        return False
+    for said in statements:
+        hay = _normalize_quote(said)
+        if needle in hay or hay in needle:
+            return True
+        # A short prefix match covers trimmed quotes without matching everything.
+        if len(needle) >= 20 and needle[:20] in hay:
+            return True
+    return False
+
+
 def _merge_contradictions(
-    prior: List[Contradiction], fresh: List[Contradiction]
+    prior: List[Contradiction],
+    fresh: List[Contradiction],
+    said: Optional[Dict[str, List[str]]] = None,
 ) -> List[Contradiction]:
-    """Append-only. The model is told never to drop one; this enforces it."""
+    """Append-only, and only for quotes the accused player actually said.
+
+    Append-only because the model is told never to drop an entry and we enforce
+    it rather than trust it.
+
+    The attribution check exists because of a real failure: on a Mafia game the
+    model reported Sidney contradicting themselves, quoting Sidney's line as
+    `earlier` and *Whitney's* line as `now`. Two speakers, filed as one player
+    caught lying. That goes straight onto the screen as a quotation, so a
+    contradiction whose halves can't both be traced to the accused is dropped.
+    """
     seen = {(c.player, c.earlier, c.now) for c in prior}
     merged = list(prior)
     for c in fresh:
-        if (c.player, c.earlier, c.now) not in seen:
-            seen.add((c.player, c.earlier, c.now))
-            merged.append(c)
+        key = (c.player, c.earlier, c.now)
+        if key in seen:
+            continue
+        if said is not None:
+            statements = said.get(c.player, [])
+            if not (_said_by(c.earlier, statements) and _said_by(c.now, statements)):
+                continue  # misattributed -- someone else said one of these
+        seen.add(key)
+        merged.append(c)
     return merged
 
 
@@ -266,6 +319,9 @@ class Observer:
         # Every state, not just its numbers. `history` is enough to plot a chart;
         # replaying a run into the UI needs the reasoning and contradictions too.
         self.states: List[BeliefState] = []
+        # Everything each player has actually said, so a claimed
+        # contradiction can be checked against their own words.
+        self.said: Dict[str, List[str]] = {}
 
     @property
     def alive(self) -> List[str]:
@@ -278,14 +334,27 @@ class Observer:
         state: BeliefState,
         history: List[Dict[str, float]],
         states: Optional[List[BeliefState]] = None,
+        observed: Optional[List[GameEvent]] = None,
     ) -> None:
-        """Pick up where a previous run stopped. See `run_observer.py --resume`."""
+        """Pick up where a previous run stopped. See `run_observer.py --resume`.
+
+        `observed` is the events already processed. Without them the record of
+        who said what starts empty, and the contradiction attribution check then
+        rejects every quote from before the restart as misattributed -- a resumed
+        run would quietly stop catching lies told in round 1.
+        """
         self.state = state
         self.history = list(history)
         self.states = list(states) if states else []
+        self.said = {}
+        for event in observed or []:
+            if event.speaker in self.setup.players:
+                self.said.setdefault(event.speaker, []).append(event.statement)
 
     def observe(self, event: GameEvent) -> BeliefState:
         """Fold one event into the belief state and return the new one."""
+        if event.speaker in self.setup.players:
+            self.said.setdefault(event.speaker, []).append(event.statement)
         prior = self.state
         first = prior.event_index < 0
 
@@ -315,7 +384,7 @@ class Observer:
             suspicion=_settle(out.suspicion, prior.suspicion, alive_after, first),
             claims_tracked=claims,
             contradictions_noticed=_merge_contradictions(
-                prior.contradictions_noticed, out.contradictions_noticed
+                prior.contradictions_noticed, out.contradictions_noticed, self.said
             ),
             reasoning=out.reasoning,
         )

@@ -24,7 +24,14 @@ from backend.schema import (
     SuspicionEntry,
     Transcript,
 )
-from backend.scoring import count_unexplained_reversals, grade, measure_drift, verdict
+from backend.scoring import (
+    count_unexplained_reversals,
+    final_verdict,
+    grade,
+    measure_drift,
+    mentions,
+    verdict,
+)
 
 PLAYERS = ["P1", "P2", "P3", "P4"]
 UNIFORM = {p: 0.25 for p in PLAYERS}
@@ -156,8 +163,17 @@ def test_full_loop_with_stub_model() -> None:
             return ObserverOutput(
                 suspicion=[SuspicionEntry(player=p, score=s) for p, s in scores.items()],
                 claims_tracked=[ClaimEntry(player="P4", claim=f"tracked as of call {self.calls}")],
+                # Real lines from the transcript -- the attribution check drops
+                # quotes the accused player never actually said.
                 contradictions_noticed=(
-                    [Contradiction(player="P4", earlier="would vote P2", now="voted P1", round_noticed=2)]
+                    [
+                        Contradiction(
+                            player="P4",
+                            earlier="I'm voting P2.",
+                            now="I vote P1.",
+                            round_noticed=2,
+                        )
+                    ]
                     if self.calls > 18
                     else []
                 ),
@@ -228,8 +244,16 @@ def test_resume_continues_instead_of_restarting() -> None:
             return ObserverOutput(
                 suspicion=[SuspicionEntry(player=p, score=0.25) for p in transcript.setup.players],
                 claims_tracked=[ClaimEntry(player="P4", claim="noted early")],
+                # `earlier` is from before the restart and `now` from after, so
+                # this only survives if restore() rebuilt the record of who said
+                # what. Both are real P4 lines inside the first ten events.
                 contradictions_noticed=[
-                    Contradiction(player="P4", earlier="said A", now="said B", round_noticed=1)
+                    Contradiction(
+                        player="P4",
+                        earlier="P5 wasn't going to be much help anyway",
+                        now="I'm voting P2.",
+                        round_noticed=1,
+                    )
                 ],
                 reasoning="stub",
             )
@@ -241,7 +265,12 @@ def test_resume_continues_instead_of_restarting() -> None:
 
     second_llm = CountingLLM()
     second = Observer(transcript.setup, llm=second_llm)
-    second.restore(BeliefState.model_validate(saved_state.model_dump()), saved_history)
+    second.restore(
+        BeliefState.model_validate(saved_state.model_dump()),
+        saved_history,
+        first.states,
+        transcript.events[:6],
+    )
     for event in transcript.events[6:10]:
         second.observe(event)
 
@@ -269,17 +298,24 @@ def test_recording_round_trips_into_the_replay_shape() -> None:
             return ObserverOutput(
                 suspicion=[SuspicionEntry(player=p, score=0.25) for p in transcript.setup.players],
                 claims_tracked=[ClaimEntry(player="P4", claim="dismissed the victim")],
+                # Verbatim P4 lines; invented quotes are dropped by the
+                # attribution check, which is the point of that check.
                 contradictions_noticed=[
-                    Contradiction(player="P4", earlier="I'm voting P2", now="I vote P1", round_noticed=1)
+                    Contradiction(
+                        player="P4",
+                        earlier="P5 wasn't going to be much help anyway",
+                        now="I'm voting P2.",
+                        round_noticed=1,
+                    )
                 ],
                 reasoning="P4 moved without explaining why.",
             )
 
     observer = Observer(transcript.setup, llm=StubLLM())
-    for event in transcript.events[:5]:
+    for event in transcript.events[:8]:
         observer.observe(event)
 
-    check("a state is kept per turn", len(observer.states) == 5)
+    check("a state is kept per turn", len(observer.states) == 8)
 
     import json as _json
     import tempfile
@@ -288,12 +324,12 @@ def test_recording_round_trips_into_the_replay_shape() -> None:
 
     with tempfile.TemporaryDirectory() as tmp:
         path = Path(tmp) / "run.json"
-        _write_run(path, transcript, observer, None, 5)
+        _write_run(path, transcript, observer, None, 8)
         record = _json.loads(path.read_text(encoding="utf-8"))
 
     for key in ("setup", "ground_truth", "turns", "events_expected", "history"):
         check(f"recording carries '{key}'", key in record)
-    check("one turn per event", len(record["turns"]) == 5)
+    check("one turn per event", len(record["turns"]) == 8)
 
     turn = record["turns"][0]
     check("turns pair event with state", "event" in turn and "state" in turn)
@@ -383,6 +419,108 @@ def test_transcript_validation() -> None:
     check("accepts a player accusing someone (not a reveal)", True)
 
 
+def test_only_the_narrator_can_eliminate() -> None:
+    """Found on real Mafia chat: players say "ashton is dead" and "who is dead?"
+    constantly. Read as eliminations, any player could remove a rival from the
+    suspicion distribution -- including the person currently accusing them."""
+    print("elimination is narrator-only")
+    said_by_player = GameEvent(round=2, phase="day", speaker="Elliot", statement="ashton is dead")
+    check("a player cannot kill anyone", infer_elimination(said_by_player) is None)
+    check(
+        "nor by mimicking the moderator",
+        infer_elimination(
+            GameEvent(round=2, phase="day", speaker="Eden",
+                      statement="Noah was voted out. Their role was mafia")
+        ) is None,
+    )
+    check(
+        "the moderator still can",
+        infer_elimination(
+            GameEvent(round=2, phase="vote", speaker="Game-Manager",
+                      statement="Noah was voted out. Their role was bystander")
+        ) == "Noah",
+    )
+    check(
+        "an explicit field wins regardless of speaker",
+        infer_elimination(
+            GameEvent(round=1, phase="day", speaker="Eden", statement="hm", eliminated="Kai")
+        ) == "Kai",
+    )
+
+
+def test_mentions_needs_a_real_name_not_a_substring() -> None:
+    """33 collisions across the real games: "Sage" inside "messages", "Lee"
+    inside "feeling". Each one excused a suspicion drop as explained, quietly
+    inflating consistency."""
+    print("name mentions")
+    for name, text in [("Sage", "look at the previos messages"), ("Lee", "this feeling"),
+                       ("Ari", "im curious"), ("Adrian", "adriann sucks alot")]:
+        check(f"{name!r} not matched inside {text.split()[-1]!r}", not mentions(name, text))
+    for name, text in [("Rowan", "rowans reasoning"), ("Winter", "#vote_for_winter"),
+                       ("Kai", "@kai you there"), ("Sage", "sages question"),
+                       ("Kai", "Ronny, Kai, Ari")]:
+        check(f"{name!r} matched in {text!r}", mentions(name, text))
+
+
+def test_contradictions_must_be_the_accused_players_own_words() -> None:
+    """Real failure on a Mafia game: the model reported Sidney contradicting
+    themselves, quoting Sidney's line as `earlier` and Whitney's as `now`."""
+    print("contradiction attribution")
+    said = {
+        "Sidney": ["whitney the hat is burning on the theif's head", "i think it is whitney"],
+        "Whitney": ["I do not have a hat", "Let's vote out Rowan"],
+    }
+    misattributed = Contradiction(
+        player="Sidney",
+        earlier="whitney the hat is burning on the theif's head",
+        now="I do not have a hat",  # Whitney said this
+        round_noticed=1,
+    )
+    check("someone else's line is not a contradiction", not _merge_contradictions([], [misattributed], said))
+
+    genuine = Contradiction(
+        player="Whitney", earlier="Let's vote out Rowan", now="I do not have a hat", round_noticed=1
+    )
+    check("both halves theirs is kept", len(_merge_contradictions([], [genuine], said)) == 1)
+    check(
+        "with no record of who said what, nothing is filtered",
+        len(_merge_contradictions([], [misattributed], None)) == 1,
+    )
+
+
+def test_resume_keeps_the_attribution_record() -> None:
+    """Regression: `restore` used to clear `said`, so after a resume every quote
+    from before the restart looked misattributed and was dropped."""
+    print("resume keeps attribution")
+    transcript = Transcript.model_validate_json(
+        Path("data/fallback_transcript.json").read_text(encoding="utf-8")
+    )
+    quote = transcript.events[6].statement  # P4, round 1
+
+    class Stub:
+        def structured(self, system, user, schema):
+            return ObserverOutput(
+                suspicion=[SuspicionEntry(player=p, score=0.2) for p in transcript.setup.players],
+                claims_tracked=[],
+                contradictions_noticed=[
+                    Contradiction(player="P4", earlier=quote, now="I vote P1.", round_noticed=1)
+                ],
+                reasoning="x",
+            )
+
+    blind = Observer(transcript.setup, llm=Stub())
+    blind.restore(BeliefState(), [], [])
+    for event in transcript.events[13:16]:
+        blind.observe(event)
+    check("without the events the old quote is unverifiable", not blind.state.contradictions_noticed)
+
+    restored = Observer(transcript.setup, llm=Stub())
+    restored.restore(BeliefState(), [], [], transcript.events[:13])
+    for event in transcript.events[13:16]:
+        restored.observe(event)
+    check("with them the contradiction survives", len(restored.state.contradictions_noticed) == 1)
+
+
 def test_belief_state_defaults() -> None:
     print("BeliefState")
     check("empty state has no top suspect", BeliefState().top_suspect is None)
@@ -401,6 +539,10 @@ if __name__ == "__main__":
         test_recording_round_trips_into_the_replay_shape,
         test_drift_sees_what_consistency_misses,
         test_transcript_validation,
+        test_only_the_narrator_can_eliminate,
+        test_mentions_needs_a_real_name_not_a_substring,
+        test_contradictions_must_be_the_accused_players_own_words,
+        test_resume_keeps_the_attribution_record,
         test_belief_state_defaults,
     ]:
         fn()

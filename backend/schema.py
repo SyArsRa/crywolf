@@ -182,7 +182,7 @@ class Transcript(BaseModel):
         found = self.deceivers()
         if len(found) != 1:
             raise ValueError(
-                f"this game has {len(found)} {self.setup.deceiver_role}s; use deceivers()"
+                f"this game has {self.setup.deceivers_phrase()}; use deceivers() instead"
             )
         return found[0]
 
@@ -275,7 +275,19 @@ class Score(BaseModel):
     accuracy: bool = Field(
         ..., description="Is the observer's top suspect actually on the lying team?"
     )
-    predicted: Optional[str]
+    predicted: Optional[str] = Field(
+        None, description="Top suspect before the game resolved itself. See scoring.verdict."
+    )
+    final_verdict: Optional[str] = Field(
+        None, description="Top suspect in the very last belief state."
+    )
+    final_accuracy: bool = Field(
+        False,
+        description=(
+            "Was final_verdict a liar? Differs from accuracy when the closing "
+            "events changed the observer's mind -- report both, not the kinder one."
+        ),
+    )
     actual: List[str] = Field(..., description="Everyone who really was lying.")
     precision_at_n: float = Field(
         0.0,
