@@ -21,8 +21,26 @@ function currentState(run, playing) {
   return "idle";
 }
 
+
+/** A counter that reads as a dossier gauge rather than a fraction: a big
+ *  numeral, the total it is out of, and a bar that fills as the run proceeds.
+ *  "24/27" told you nothing at a glance from across a room; this does. */
+function Gauge({ label, value, total, fill, tone }) {
+  return (
+    <div className={`gauge${tone ? ` gauge-${tone}` : ""}`}>
+      <span className="gauge-label">{label}</span>
+      <span className="gauge-read">
+        <span className="gauge-value">{value}</span>
+        <span className="gauge-total">of {total}</span>
+      </span>
+      <span className="gauge-track">
+        <span className="gauge-fill" style={{ width: `${Math.min(1, Math.max(0, fill)) * 100}%` }} />
+      </span>
+    </div>
+  );
+}
+
 export default function Header({ run, playing, onChanged }) {
-  const event = lastTurn(run)?.event;
   const state = currentState(run, playing);
   const alive = run.players.length - run.eliminated.length;
 
@@ -37,17 +55,19 @@ export default function Header({ run, playing, onChanged }) {
 
       {run.turns.length > 0 && (
         <div className="hud-stats">
-          {event && (
-            <span className="stat">
-              R{event.round} · {event.phase}
-            </span>
-          )}
-          <span className="stat">
-            {run.turns.length}/{run.expected || 0}
-          </span>
-          <span className="stat">
-            {alive}/{run.players.length} alive
-          </span>
+          <Gauge
+            label="Testimony"
+            value={run.turns.length}
+            total={run.expected || 0}
+            fill={run.expected ? run.turns.length / run.expected : 0}
+          />
+          <Gauge
+            label="Still alive"
+            value={alive}
+            total={run.players.length}
+            fill={run.players.length ? alive / run.players.length : 0}
+            tone="alive"
+          />
         </div>
       )}
 
@@ -55,10 +75,7 @@ export default function Header({ run, playing, onChanged }) {
 
       <Controls playing={playing} onChanged={onChanged} />
 
-      <div className={`conn ${run.connected ? "live" : "down"}`}>
-        <span className="dot" />
-        {!run.connected && <span>reconnecting…</span>}
-      </div>
+      {!run.connected && <div className="conn down">reconnecting…</div>}
     </header>
   );
 }

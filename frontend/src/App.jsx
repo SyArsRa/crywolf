@@ -4,9 +4,9 @@ import Header from "./components/Header.jsx";
 import Table from "./components/Table.jsx";
 import CaseFile from "./components/CaseFile.jsx";
 import BeliefBoard from "./components/BeliefBoard.jsx";
-import Scoreboard from "./components/Scoreboard.jsx";
 import Transcript from "./components/Transcript.jsx";
 import Evidence from "./components/Evidence.jsx";
+import Scorecard from "./components/Scorecard.jsx";
 
 export default function App() {
   const run = useLiveRun();
@@ -36,9 +36,9 @@ export default function App() {
       <main className="board">
         <Table run={run} colors={colors} />
         <CaseFile run={run} colors={colors} />
-        <div className="belief-row">
+        <div className="chart-row">
           <BeliefBoard run={run} colors={colors} />
-          <Scoreboard run={run} />
+          <Scorecard run={run} />
         </div>
         <div className="ledger-row">
           <Transcript run={run} colors={colors} />
