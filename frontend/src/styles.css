@@ -1468,3 +1468,168 @@ h2 {
   .score-grid { grid-template-columns: 1fr 1fr; }
   .hud-stats { display: none; }
 }
+
+/* ==================================================================
+   LEGIBILITY PASS
+   Same desk, readable across a room and on a projector.
+
+   Cinzel and Special Elite were doing the theming at the cost of the
+   reading: Cinzel has no real lowercase and goes to mush under 14px,
+   and Special Elite's grunge eats thin strokes at label sizes. Libre
+   Baskerville carries the same period without either problem, and
+   Courier Prime does every typed thing. Two families, both already
+   needed, so the page also loads lighter.
+   ================================================================== */
+
+:root {
+  --display: "Libre Baskerville", Georgia, "Times New Roman", serif;
+  --typewriter: "Courier Prime", ui-monospace, Consolas, monospace;
+  --mono: "Courier Prime", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  /* Ink on manila. The old muted/dim pair sat at roughly 4:1 and 2.8:1
+     against the card -- fine on a laptop a foot away, invisible on a
+     projector. These clear 6:1 and 4.6:1 without going flat black. */
+  --ink: #1f1810;
+  --ink-muted: #574526;
+  --ink-dim: #6e5c3e;
+
+  /* Paper, a shade lighter so the ink above has room to separate. */
+  --parchment: #d8cbb0;
+  --parchment-2: #c9ba8e;
+
+  /* On the dark chrome, warm light greys -- the ink tokens above are for
+     paper and were never legible against espresso. */
+  --on-dark: #ddcdae;
+  --on-dark-dim: #a2906f;
+
+  /* Tungsten, pushed brighter: the old brass read as brown on a projector. */
+  --brass: #edb44a;
+  --brass-light: #f7d391;
+}
+:root { --on-dark-dim: #a2906f; }
+
+body { font-size: 15.5px; }
+
+/* Headers keep the serif but get real size and less letter-crush. */
+h2 {
+  font-size: 12.5px;
+  letter-spacing: 0.13em;
+}
+.hud-brand {
+  font-size: 20px;
+  letter-spacing: 0.08em;
+}
+
+/* ------------------------------------------------- chrome legibility */
+
+.gauge-label { color: var(--on-dark-dim); font-size: 10.5px; letter-spacing: 0.13em; }
+.gauge-total { color: var(--on-dark-dim); font-size: 11px; }
+.gauge-value { font-size: 22px; }
+.gauge { min-width: 138px; }
+
+.room-sub { color: var(--on-dark); font-size: 12.5px; opacity: 0.75; }
+.stage h2, .transcript-head h2, .evidence-head h2 { color: var(--brass-light); }
+
+.token {
+  font-size: 11.5px;
+  letter-spacing: 0.13em;
+}
+
+/* ---------------------------------------------------- paper legibility */
+
+.belief-sub,
+.score-sub,
+.transcript-count,
+.empty-hint { color: var(--ink-muted); }
+
+.score-note { color: var(--ink-muted); opacity: 1; font-size: 10px; }
+.score-cell dt { font-size: 9.5px; letter-spacing: 0.13em; color: var(--ink-muted); }
+.score-cell dd { font-size: 26px; }
+
+.log { font-size: 13.5px; line-height: 1.62; }
+.reasoning { font-size: 13.5px; line-height: 1.62; }
+.contradictions { font-size: 13px; }
+.contradictions .quote { color: var(--ink-muted); }
+.phase-seg { font-size: 10px; letter-spacing: 0.06em; }
+.rule-label { font-size: 11px; fill: var(--ink-muted); }
+.end-label { font-size: 12px; }
+.line.leader .end-label { font-size: 13.5px; font-weight: 700; }
+
+/* ==================================================================
+   BIGGER PLAYERS
+   This is a live game being watched, not a roster. The cards were
+   54x68 -- readable on a laptop, a row of postage stamps on a
+   projector. The seats sit at 41% radius on a square stage, which is
+   ~290px apart at five players and ~180px at eight, so there is room
+   for a card two-thirds larger before anything touches.
+   ================================================================== */
+
+.stage { min-height: 680px; padding-top: 128px; }
+.table-stage { height: min(100%, 680px); }
+
+.seat { width: 132px; gap: 9px; }
+
+.avatar {
+  width: 90px;
+  height: 113px;
+  border-width: 4px;
+}
+.avatar::after { inset: -6px; border-width: 3px; }
+
+.seat .name {
+  font-size: 15px;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+}
+.seat.speaking .name { font-size: 15.5px; }
+
+/* The stamp grows with the card it is pressed onto. */
+.seat.dead .avatar::before {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  padding: 3px 6px;
+  border-width: 3px;
+}
+
+/* Speech gets the same treatment -- it is the line being judged. */
+.bubble {
+  font-size: 14px;
+  line-height: 1.5;
+  max-width: 260px;
+  padding: 11px 14px;
+}
+
+.round-label { font-size: 13px; letter-spacing: 0.14em; }
+.verdict { font-size: 14.5px; max-width: 220px; }
+
+/* Eight-player games: the circle is tighter, so give a little back. */
+.stage[data-seats="6"] .avatar,
+.stage[data-seats="7"] .avatar,
+.stage[data-seats="8"] .avatar { width: 76px; height: 95px; }
+.stage[data-seats="6"] .seat,
+.stage[data-seats="7"] .seat,
+.stage[data-seats="8"] .seat { width: 112px; }
+
+@media (max-width: 900px) {
+  .stage { min-height: 520px; }
+  .table-stage { height: min(100%, 520px); }
+  .avatar { width: 68px; height: 85px; }
+  .seat { width: 104px; }
+}
+
+/* The elimination stamp has to survive the `dying` animation, which leaves the
+   card rotated and scaled to ~0.89 -- so the stamp is sized against that, not
+   against the card's nominal width, and gets a plate behind it so red ink on a
+   darkened sepia portrait still reads from the back of the room. */
+.seat.dead .avatar::before {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 4px 7px;
+  border-width: 3px;
+  color: #e35843;
+  border-color: #e35843;
+  background: rgba(12, 6, 5, 0.72);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}

@@ -21,7 +21,12 @@ function seatLayout(players) {
     // the right of the circle runs off the edge of the stage and gets clipped.
     // The tail still points at the seat.
     const align = x > 62 ? "right" : x < 38 ? "left" : "center";
-    return { player, index: i, x, y, side: "above", align };
+    // Speech points away from the table, never across it. Seats below the
+    // centre line used to put their bubble "above", which with the larger
+    // cards lands it on top of the round label in the middle of the table --
+    // the two things you most need to read at once.
+    const side = y > 55 ? "below" : "above";
+    return { player, index: i, x, y, side, align };
   });
 }
 
@@ -105,6 +110,7 @@ export default function Table({ run, colors }) {
     <section
       className={`stage${rethink !== null ? " rethinking" : ""}`}
       data-phase={phase ?? undefined}
+      data-seats={run.players.length || undefined}
     >
       <div className="room-label">
         <h2>The room</h2>
