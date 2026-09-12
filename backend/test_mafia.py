@@ -95,7 +95,7 @@ def test_two_suspects_can_both_be_high() -> None:
     -- raising one mathematically lowered the other."""
     print("suspicion sums to the number of liars")
     from backend.observer import Observer, _settle
-    from backend.schema import ObserverOutput, SuspicionEntry
+    from backend.schema import Deliberation, ObserverOutput, SuspicionEntry
 
     alive = ["A", "B", "C", "D"]
     out = _settle(
@@ -122,6 +122,18 @@ def test_two_suspects_can_both_be_high() -> None:
 
     class Stub:
         def structured(self, system, user, schema):
+            # Schema-aware: the observer makes a second, differently-shaped call
+            # on each role reveal, and a stub that ignores `schema` hands it an
+            # ObserverOutput for a Deliberation.
+            if schema is Deliberation:
+                return Deliberation(
+                    suspicion=[
+                        SuspicionEntry(player=p, score=0.5)
+                        for p in transcript.setup.players
+                    ],
+                    revised="",
+                    reasoning="x",
+                )
             return ObserverOutput(
                 suspicion=[SuspicionEntry(player=p, score=0.5) for p in transcript.setup.players],
                 claims_tracked=[], contradictions_noticed=[], reasoning="x",

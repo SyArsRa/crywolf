@@ -23,6 +23,7 @@ from __future__ import annotations
 import re
 from typing import Dict, List, Optional
 
+from backend.evidence import format_evidence, marginals
 from backend.llm import StructuredLLM, get_backend
 from backend.schema import (
     DECEIVER_ROLES,
@@ -30,6 +31,7 @@ from backend.schema import (
     BeliefState,
     Contradiction,
     GameEvent,
+    Deliberation,
     GameSetup,
     ObserverOutput,
 )
@@ -51,6 +53,45 @@ from backend.schema import (
 # reasoning being real. The wobble is reported instead, by
 # `scoring.measure_drift`.
 MAX_DELTA_PER_EVENT = 0.30
+
+# The cap that applies before any structural evidence exists -- that is, before
+# the first eliminated player's role has been announced.
+#
+# This is the fix for the observer's worst habit. The first reveal lands a median
+# 43% of the way through a transcript; until then the game contains no evidence
+# at all, only chat, much of it "Hi" and "hello all". The old loop spent that
+# entire stretch at full swing, committed hard to whoever talked loudest, and
+# then had to spend the rest of the game climbing back out -- and the symmetric
+# cap that lets it climb out is also what let it climb in.
+#
+# So movement is throttled, not frozen. A genuine contradiction still registers;
+# a confident tone no longer does. An observer that says "I do not know yet" for
+# the first 40% and then moves hard on real evidence beats one that has been
+# wrong since line three and is defending it.
+#
+# Note this is emphatically NOT the asymmetric cap rejected in the note above:
+# it is symmetric, and it is keyed to whether evidence exists rather than to
+# which direction the number is moving.
+PRE_EVIDENCE_MAX_DELTA = 0.06
+
+# And an absolute bound, as a multiple of each player's starting share, for as
+# long as no role has been announced.
+#
+# The per-event cap alone turned out not to be enough, which a live run showed
+# plainly: throttled to 0.06 a line, the observer still walked a bystander from
+# 0.25 to 0.60 over the twenty evidence-free events before the first reveal. A
+# per-event limit bounds the speed of a commitment, not its size, and it is the
+# size that ends up on screen and in the verdict.
+#
+# So during the opening no player may exceed twice their opening share -- 0.50
+# where eight players hold two liars between them. Expressed as a multiple
+# rather than a constant because the opening share depends on the roster: 0.25
+# each in that game, 0.20 in a five-player one-wolf game.
+#
+# It still leaves room to lean: twice the field is a clear accusation, and a
+# genuine round-one contradiction reads as one. What it forbids is arriving at
+# near-certainty on an evening of chat that contains no evidence.
+PRE_EVIDENCE_CEILING_MULTIPLE = 2.0
 
 # Who has died. Lane A can set `GameEvent.eliminated` explicitly; failing that we
 # read the moderator's announcement, which is the only place deaths are stated.
@@ -92,14 +133,22 @@ def infer_vote(event: GameEvent) -> Optional[tuple]:
 
 
 def format_votes(votes: Dict[int, Dict[str, str]], alive: List[str]) -> str:
-    """The vote record, laid out so the pair signal is visible at a glance.
+    """The vote record, laid out in full. It is the raw material the computed
+    evidence in `evidence.py` is derived from, so the model can check that
+    derivation against the votes themselves.
 
-    Measured across the 33 real Mafia games in this dataset: of 160 day-votes
-    cast by a mafia member, only 6 (3.8%) were aimed at their own partner.
-    Random voting would put that near 15-20%. So "these two have had every
-    opportunity to vote for each other and never have" is the strongest single
-    signal available -- and it is a fact about the whole game, not one line, so
-    the model should not have to reconstruct it from memory every turn.
+    The "never voted at each other" line below is reported but DEMOTED, and the
+    prompt now says so. It reads as the strongest signal here -- 3.8% of a
+    liar's votes land on their partner against 15-20% at random -- and that
+    framing was wrong. Scoring candidate pairs by it alone lands at 0.03 top-1
+    accuracy, *below* the 0.37 chance rate, and adding it to the reveal signal
+    drags that signal from 0.67 down to 0.48.
+
+    The reason is worth keeping so nobody reinstates it: almost no pair ever
+    votes internally, so the test barely separates one candidate pair from
+    another, and what it actually rewards is pairs who cast few votes. It is a
+    quiet-player detector wearing a coalition-detector's clothes. It stays on
+    screen as context; it is not evidence.
     """
     if not votes:
         return "(nobody has voted yet)"
@@ -126,6 +175,11 @@ def format_votes(votes: Dict[int, Dict[str, str]], alive: List[str]) -> str:
         lines.append("")
         lines.append(
             "  Both voted, never at each other: " + ", ".join(never)
+        )
+        lines.append(
+            "  (Context only, NOT evidence. There are usually a dozen or more such"
+            " pairs and the true pair is only sometimes among them, so it barely"
+            " narrows anything. Do not build a theory on this line.)"
         )
     return "\n".join(lines)
 
@@ -168,28 +222,45 @@ carry forward in it is gone.
 How to reason. These are ordered: the first is worth more than all the rest \
 together, and the last is a trap.
 
-1. THE VOTE RECORD IS YOUR BEST EVIDENCE. It is given to you exact, every turn, \
-so you never have to recall it. Teammates almost never vote for each other -- \
-measured across real games of this kind, under 4% of a liar's votes land on \
-their own partner, against 15-20% if they voted at random. So two players who \
-have both been voting, for rounds, and never once at each other, are the single \
-strongest pair you can find. Weigh who votes for whom far above anything anyone \
-says.
+1. THE COMPUTED EVIDENCE IS YOUR BEST EVIDENCE. Each turn you are handed a \
+block headed COMPUTED EVIDENCE holding a probability per player, worked out \
+from the vote record by arithmetic rather than by anyone's judgement. Here is \
+what it is: whenever a player is voted out their role is announced to the whole \
+table, and that tells you retroactively whether each vote cast that round was \
+aimed at a liar or at an innocent. Liars know who their teammates are and steer \
+away from them; innocents are guessing, and hit a liar far more often. Measured \
+over real games of this kind, a vote cast by a liar lands on a player later \
+revealed to be a liar 2% of the time, against 26% for a vote cast by an \
+innocent. Start from those numbers and move off them only for a specific reason \
+you can name.
 
-2. Watch what a vote costs the voter. Voting for a player nobody else suspects, \
+Two things it cannot do, which is where you earn your keep. It is silent until \
+the first role is announced, usually about halfway through the game -- when it \
+says it has nothing, the game genuinely holds no evidence yet, and you should \
+stay close to even rather than invent a suspect. And it is right roughly half \
+the time, not always, so a player it likes who is caught in a flat \
+contradiction is still caught.
+
+2. DO NOT reason from "these two have never voted for each other". You will see \
+such pairs listed; they are context, not evidence. There are usually more than \
+a dozen of them and the true pair is only sometimes among them, so the line \
+narrows almost nothing -- and an observer that leans on it measurably does \
+worse than one that ignores it.
+
+3. Watch what a vote costs the voter. Voting for a player nobody else suspects, \
 or switching targets the moment a partner comes under pressure, or piling onto \
 whoever is already losing -- these move suspicion. A vote is an action; talk is \
 free.
 
-3. The liars know who each other are. Watch for someone arguing from knowledge \
+4. The liars know who each other are. Watch for someone arguing from knowledge \
 they should not have, or being oddly incurious about a player they would \
 otherwise suspect.
 
-4. Time matters. Liars tend to say less early and more once the game has shape. \
+5. Time matters. Liars tend to say less early and more once the game has shape. \
 Someone who led the first round loudly and then went quiet is more often \
 innocent than guilty.
 
-5. DO NOT treat aggression, confidence or baseless accusation as guilt. This is \
+6. DO NOT treat aggression, confidence or baseless accusation as guilt. This is \
 the trap, and it is the most common way to get this wrong. Frightened villagers \
 accuse people constantly, loudly, and on no evidence -- in real games they do it \
 just as often as the liars do, and pointing at whoever is shouting is how an \
@@ -262,6 +333,7 @@ def render(
     setup: GameSetup,
     alive: Optional[List[str]] = None,
     votes: Optional[Dict[int, Dict[str, str]]] = None,
+    evidence: Optional[Dict[str, float]] = None,
 ) -> str:
     alive = alive if alive is not None else list(setup.players)
     dead = [p for p in setup.players if p not in alive]
@@ -278,6 +350,9 @@ def render(
 {setup.premise}
 There {'is' if count == 1 else 'are'} {who} among these players.
 Players still alive: {roster}
+
+COMPUTED EVIDENCE (arithmetic over the graded votes, not an opinion)
+{format_evidence(evidence or {}, setup.deceiver_role)}
 
 THE VOTE RECORD SO FAR (public, and exact -- you do not have to remember it)
 {format_votes(votes or {}, alive)}
@@ -320,11 +395,22 @@ def _settle(
     alive: List[str],
     first_event: bool,
     remaining_liars: float = 1.0,
+    cap: float = MAX_DELTA_PER_EVENT,
+    ceiling: Optional[float] = None,
 ) -> Dict[str, float]:
     """Turn the model's numbers into a distribution we can plot.
 
     Three jobs: fill in players the model forgot, hold per-event movement to
-    MAX_DELTA_PER_EVENT, and make the living players sum to 1.0.
+    `cap`, and make the living players sum to `remaining_liars`.
+
+    `cap` is MAX_DELTA_PER_EVENT once the game has produced structural evidence
+    and the much tighter PRE_EVIDENCE_MAX_DELTA before then -- see the comment on
+    that constant for why the evidence-free opening needs a different cap.
+
+    `ceiling`, when given, is an absolute bound no player may pass, applied on
+    top of the per-event cap. The opening uses it because a per-event limit
+    bounds how fast a commitment forms and not how large it gets, and twenty
+    small steps in one direction is still a commitment.
 
     The order matters and used to be wrong. Clamping before normalizing does not
     bound anything, because dividing by the total moves every value again -- an
@@ -342,11 +428,21 @@ def _settle(
     # falling to zero -- omission is not exoneration.
     current = _normalize({p: proposed.get(p, prior.get(p, uniform)) for p in alive}, target)
 
-    if first_event:
+    if first_event and ceiling is None:
         return current
 
-    floor = {p: max(0.0, prior.get(p, uniform) - MAX_DELTA_PER_EVENT) for p in alive}
-    ceiling = {p: min(1.0, prior.get(p, uniform) + MAX_DELTA_PER_EVENT) for p in alive}
+    hard = 1.0 if ceiling is None else max(uniform, min(1.0, ceiling))
+    if first_event:
+        # Nothing to move away from yet, so only the absolute bound applies.
+        # It still goes through the loop below rather than being clamped and
+        # renormalized in one shot: dividing by the total moves every value
+        # again, so a one-shot clamp does not actually bound anything. That is
+        # the same trap documented above for the per-event cap.
+        floor = {p: 0.0 for p in alive}
+        ceiling = {p: hard for p in alive}
+    else:
+        floor = {p: max(0.0, prior.get(p, uniform) - cap) for p in alive}
+        ceiling = {p: min(hard, prior.get(p, uniform) + cap) for p in alive}
 
     for _ in range(20):
         clamped = {p: max(floor[p], min(ceiling[p], v)) for p, v in current.items()}
@@ -425,12 +521,70 @@ def _merge_contradictions(
     return merged
 
 
+DELIBERATION_SYSTEM = """You are the same observer, but this is not a line-by-line update. A round has just ended and a player's role has been announced, which is the only moment in this game when genuinely new evidence arrives: every vote cast this round has just been graded. You are being given the whole round at once, verbatim, instead of one line at a time.
+
+Take the opportunity the per-line pass does not have. Read the round as a whole and ask what the graded votes mean about each living player.
+
+You are explicitly permitted -- expected, when warranted -- to revise wholesale. If you have been suspecting someone for several rounds and this round's evidence does not support it, say so plainly in `revised` and move the number. "I was wrong about Whitney; she voted for the player just revealed as mafia, which a mafia member almost never does" is exactly the kind of sentence this call exists to produce. The one thing you must not do is drop a suspicion silently: if a number falls a long way, `revised` has to say why.
+
+The COMPUTED EVIDENCE block is arithmetic over the graded votes and is your strongest input. Start from it. Depart from it only where you can name the specific thing that outweighs it.
+
+Do not treat volume, confidence or aggression as guilt. Frightened innocents accuse constantly and at random; measured over real games they do it as often as the liars do.
+
+Return a suspicion number for every living player. They should sum to roughly the number of liars still in the game, so each one reads as P(this player is lying) -- two players at 0.5 means "one of these two, and I cannot split them", which is a legitimate and useful thing to say."""
+
+
+def render_deliberation(
+    round_events: List[GameEvent],
+    state: BeliefState,
+    setup: GameSetup,
+    alive: List[str],
+    votes: Dict[int, Dict[str, str]],
+    evidence: Dict[str, float],
+    liars_remaining: int,
+) -> str:
+    """The whole round verbatim, plus everything computed about it."""
+    transcript = "\n".join(
+        f"  R{e.round} {e.phase} {e.speaker}: {e.statement}" for e in round_events
+    ) or "  (no lines recorded for this round)"
+
+    return f"""GAME
+{setup.premise}
+There are {setup.deceivers_phrase()} among these players.
+Players still alive: {', '.join(alive)}
+Still on the lying team, by public reveals alone: {liars_remaining}
+
+COMPUTED EVIDENCE (arithmetic over the graded votes, not an opinion)
+{format_evidence(evidence, setup.deceiver_role)}
+
+THE VOTE RECORD SO FAR (public, and exact)
+{format_votes(votes, alive)}
+
+THE ROUND THAT JUST ENDED, IN FULL
+{transcript}
+
+YOUR BELIEF STATE GOING INTO THIS
+{_fmt_state(state, alive)}
+
+A role has just been announced, so this round's votes are now graded. Reconsider
+the whole game in that light. Revise as far as the evidence takes you, and say in
+`revised` what you changed and why."""
+
+
 class Observer:
     """Stateful across one game. Construct once, feed events in order."""
 
-    def __init__(self, setup: GameSetup, llm: Optional[StructuredLLM] = None):
+    def __init__(
+        self,
+        setup: GameSetup,
+        llm: Optional[StructuredLLM] = None,
+        deliberate: bool = True,
+    ):
         self.setup = setup
         self.llm = llm or get_backend()
+        # The second tier. On by default; `run_observer --no-deliberate` turns it
+        # off so a run can be priced against the per-event loop alone.
+        self.deliberate = deliberate
         # Before anyone speaks, every player is equally likely, and the
         # numbers sum to the number of liars -- not to 1.
         uniform = setup.deceiver_count / len(setup.players)
@@ -447,6 +601,11 @@ class Observer:
         # Roles announced publicly when a player is eliminated. Public
         # knowledge -- every player at the table hears it.
         self.revealed: Dict[str, str] = {}
+        # Every line of the round in progress, kept verbatim so the deliberation
+        # call can read the round whole instead of through its own summary.
+        self.round_log: List[GameEvent] = []
+        # Deep calls made, for pricing a run against the per-event loop.
+        self.deliberations = 0
 
     def _liars_left(self, eliminated: List[str]) -> int:
         """Liars still in the game, given this list of the dead.
@@ -475,6 +634,14 @@ class Observer:
         """
         return self._liars_left(self.state.eliminated)
 
+    def evidence(self, eliminated: Optional[List[str]] = None) -> Dict[str, float]:
+        """P(liar) per living player from the vote record alone. `{}` if the game
+        has not graded a single vote yet -- which is not the same as "all clear",
+        and `format_evidence` says so in as many words."""
+        dead = self.state.eliminated if eliminated is None else eliminated
+        alive = [p for p in self.setup.players if p not in dead]
+        return marginals(self.votes, self.revealed, alive, self._liars_left(dead))
+
     @property
     def alive(self) -> List[str]:
         """Living players, in the roster's original order -- so the UI can keep
@@ -494,18 +661,33 @@ class Observer:
         who said what starts empty, and the contradiction attribution check then
         rejects every quote from before the restart as misattributed -- a resumed
         run would quietly stop catching lies told in round 1.
+
+        The announced roles are rebuilt here for the same reason and it matters
+        just as much: they are what grades the votes, so a resumed run that
+        dropped them would compute no evidence at all and fall back to reading
+        tone -- the exact failure the evidence exists to prevent, and invisible
+        on screen because the bars would still move.
         """
         self.state = state
         self.history = list(history)
         self.states = list(states) if states else []
         self.said = {}
         self.votes = {}
+        self.revealed = {}
+        self.round_log = []
         for event in observed or []:
             if event.speaker in self.setup.players:
                 self.said.setdefault(event.speaker, []).append(event.statement)
             vote = infer_vote(event)
             if vote and vote[0] in self.setup.players and vote[1] in self.setup.players:
                 self.votes.setdefault(event.round, {})[vote[0]] = vote[1]
+            gone = infer_elimination(event)
+            reveal = _ROLE_REVEAL.search(event.statement)
+            if gone in self.setup.players and reveal:
+                self.revealed[gone] = reveal.group("role")
+            if self.round_log and self.round_log[-1].round != event.round:
+                self.round_log = []
+            self.round_log.append(event)
 
     def observe(self, event: GameEvent) -> BeliefState:
         """Fold one event into the belief state and return the new one."""
@@ -516,14 +698,25 @@ class Observer:
             self.votes.setdefault(event.round, {})[vote[0]] = vote[1]
         gone = infer_elimination(event)
         reveal = _ROLE_REVEAL.search(event.statement)
-        if gone in self.setup.players and reveal:
+        # A reveal is the only moment new structural evidence enters the game,
+        # and it must be recorded before the evidence is computed for this event
+        # -- reading it a line later would grade this round's votes a turn late.
+        announced_role = bool(gone in self.setup.players and reveal)
+        if announced_role:
             self.revealed[gone] = reveal.group('role')
+
+        # A round boundary closes the buffer the deliberation call reads from.
+        if self.round_log and self.round_log[-1].round != event.round:
+            self.round_log = []
+        self.round_log.append(event)
+
         prior = self.state
         first = prior.event_index < 0
+        evidence = self.evidence()
 
         out: ObserverOutput = self.llm.structured(
             system=SYSTEM,
-            user=render(event, prior, self.setup, self.alive, self.votes),
+            user=render(event, prior, self.setup, self.alive, self.votes, evidence),
             schema=ObserverOutput,
         )
 
@@ -545,7 +738,20 @@ class Observer:
             event_index=prior.event_index + 1,
             eliminated=eliminated,
             suspicion=_settle(
-                out.suspicion, prior.suspicion, alive_after, first, self._liars_left(eliminated)
+                out.suspicion,
+                prior.suspicion,
+                alive_after,
+                first,
+                self._liars_left(eliminated),
+                # Before the game has graded a single vote there is nothing to
+                # be confident about, so the per-line pass is held on a short
+                # leash. See PRE_EVIDENCE_MAX_DELTA.
+                MAX_DELTA_PER_EVENT if evidence else PRE_EVIDENCE_MAX_DELTA,
+                None
+                if evidence
+                else PRE_EVIDENCE_CEILING_MULTIPLE
+                * self._liars_left(eliminated)
+                / max(1, len(alive_after)),
             ),
             claims_tracked=claims,
             contradictions_noticed=_merge_contradictions(
@@ -553,6 +759,73 @@ class Observer:
             ),
             reasoning=out.reasoning,
         )
+
+        # The deep pass, on the one event that justifies it.
+        if self.deliberate and announced_role:
+            self._deliberate(alive_after, eliminated)
+
         self.history.append(dict(self.state.suspicion))
         self.states.append(self.state)
         return self.state
+
+    def _deliberate(self, alive: List[str], eliminated: List[str]) -> None:
+        """Reconsider the whole round now that its votes have been graded.
+
+        Overwrites `self.state.suspicion` in place rather than appending: the
+        contract with Lane A and the scorer is one history entry per event, and
+        a deep call is not an event. It is the same moment in the game, read
+        better.
+
+        `MAX_DELTA_PER_EVENT` deliberately does not apply. The cap exists to stop
+        a single throwaway line swinging the chart; this call has just read an
+        entire round against graded evidence, which is precisely the situation
+        the observer should be allowed to change its mind wholesale in. Capping
+        it here would reintroduce the stickiness the two-tier design is meant to
+        cure.
+
+        A failure here is swallowed, and the whole body is inside the try for
+        that reason -- not just the network call. A backend that returns the
+        wrong shape is as much a failure as a timeout, and it used to crash the
+        run from outside the guard. The deep call is an improvement on top of a
+        belief state that is already valid; losing a game to an optional call is
+        a poor trade however the call went wrong.
+        """
+        if not alive:
+            return
+        try:
+            out = self.llm.structured(
+                system=DELIBERATION_SYSTEM,
+                user=render_deliberation(
+                    self.round_log,
+                    self.state,
+                    self.setup,
+                    alive,
+                    self.votes,
+                    self.evidence(eliminated),
+                    self._liars_left(eliminated),
+                ),
+                schema=Deliberation,
+            )
+            if not isinstance(out, Deliberation):
+                return
+            settled = _settle(
+                out.suspicion,
+                self.state.suspicion,
+                alive,
+                first_event=True,  # no cap: see the docstring
+                remaining_liars=self._liars_left(eliminated),
+            )
+            # `revised` is kept in the reasoning the UI shows, because an
+            # observer that abandons a read without saying so is the exact
+            # failure this tier was added to fix -- it belongs on screen, not
+            # only in a log.
+            note = out.reasoning
+            if out.revised.strip():
+                note = f"{out.revised.strip()} {out.reasoning}".strip()
+        except Exception:
+            return
+
+        self.deliberations += 1
+        self.state = self.state.model_copy(
+            update={"suspicion": settled, "reasoning": note[:400]}
+        )

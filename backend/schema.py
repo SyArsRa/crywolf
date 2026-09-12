@@ -241,6 +241,40 @@ class ObserverOutput(BaseModel):
     )
 
 
+class Deliberation(BaseModel):
+    """The deeper, less frequent call: a whole round reconsidered at once.
+
+    Fired only when an elimination announces a role, because that is the only
+    moment new structural evidence enters the game -- every vote cast that round
+    has just been graded. A 70-event game triggers about three of these, against
+    70 shallow per-event calls, so this is the cheap half of the loop as well as
+    the good half.
+
+    Unlike `ObserverOutput` this is explicitly allowed to throw out an earlier
+    read wholesale. `revised` is what makes that visible: an observer that
+    quietly stops suspecting someone is the failure mode the per-event loop kept
+    falling into, so here it has to say out loud what it abandoned and why.
+    """
+
+    suspicion: List[SuspicionEntry]
+    revised: str = Field(
+        ...,
+        description=(
+            "What you changed your mind about and what specifically changed it, or "
+            "the empty string if this round genuinely changed nothing. If you have "
+            "dropped a suspicion you held, name the player and say what resolved it."
+        ),
+    )
+    reasoning: str = Field(
+        ...,
+        description=(
+            "Your read of the game after this round, in at most two sentences and "
+            "under 200 characters. Shown in the same narrow panel as the per-event "
+            "note, so anything longer is cut off mid-word."
+        ),
+    )
+
+
 # --------------------------------------------------------------------------
 # Outbound: what the UI and the scorer consume
 # --------------------------------------------------------------------------

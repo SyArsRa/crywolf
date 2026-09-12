@@ -105,11 +105,17 @@ def main() -> int:
         help="Continue a partial run from --json instead of restarting. "
              "Free-tier quota runs out mid-game; this picks up where it stopped.",
     )
+    parser.add_argument(
+        "--no-deliberate",
+        action="store_true",
+        help="Skip the per-round deliberation call fired on each role reveal. "
+             "Only for pricing a run against the per-event loop alone.",
+    )
     args = parser.parse_args()
 
     transcript = Transcript.model_validate_json(Path(args.transcript).read_text(encoding="utf-8"))
     liars = set(transcript.deceivers())
-    observer = Observer(transcript.setup)
+    observer = Observer(transcript.setup, deliberate=not args.no_deliberate)
     start_at = 0
 
     if args.resume:
@@ -188,6 +194,7 @@ def main() -> int:
     print(f"drift              : {score.lead_changes} lead changes, "
           f"{score.events_off_verdict} events off the final verdict")
     print(f"contradictions caught among players: {score.contradictions_caught}")
+    print(f"deep calls (one per role reveal)   : {observer.deliberations}")
 
     if args.out:
         _write_run(Path(args.out), transcript, observer, score, len(transcript.events))
