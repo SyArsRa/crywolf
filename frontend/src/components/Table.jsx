@@ -4,6 +4,7 @@ import Portrait from "./Portrait.jsx";
 
 const BUBBLE_MS = 7000;
 const SWEEP_MS = 1600;
+const RETHINK_MS = 3200;
 
 /** Seats are placed round a circle, starting at the top and going clockwise. */
 function seatLayout(players) {
@@ -71,6 +72,18 @@ export default function Table({ run, colors }) {
     return () => clearTimeout(timer);
   }, [round, phase]);
 
+  /* The deep pass is the loop's self-correction step, and it is otherwise
+     invisible: a role reveal lets the observer re-read the whole round against
+     graded evidence and rewrite its belief wholesale. That deserves the same
+     theatre as a phase change, because it is the more interesting event. */
+  const [rethink, setRethink] = useState(null);
+  useEffect(() => {
+    if (!state?.deliberated || run.silent) return;
+    setRethink(turn.index);
+    const timer = setTimeout(() => setRethink(null), RETHINK_MS);
+    return () => clearTimeout(timer);
+  }, [turn?.index, state?.deliberated]);
+
   const stars = useMemo(
     () =>
       Array.from({ length: 70 }, (_, i) => ({
@@ -89,7 +102,10 @@ export default function Table({ run, colors }) {
   const alive = run.players.length - run.eliminated.length;
 
   return (
-    <section className="stage" data-phase={phase ?? undefined}>
+    <section
+      className={`stage${rethink !== null ? " rethinking" : ""}`}
+      data-phase={phase ?? undefined}
+    >
       <div className="room-label">
         <h2>The room</h2>
         <span className="room-sub">
@@ -145,6 +161,25 @@ export default function Table({ run, colors }) {
       {sweep && (
         <div className="sweep run" key={sweep.key}>
           <span>{sweep.label}</span>
+        </div>
+      )}
+
+      {rethink !== null && (
+        <div className="rethink-beat" key={rethink}>
+          <span className="rethink-kicker">a role was revealed</span>
+          <span className="rethink-title">re-reading the round</span>
+          <span className="rethink-sub">deep pass · belief rewritten against graded evidence</span>
+        </div>
+      )}
+
+      {run.committed && (
+        <div className="commit-beat">
+          <span className="commit-kicker">the observer stopped watching</span>
+          <span className="commit-title">{run.committed.players.join(" · ")}</span>
+          <span className="commit-sub">
+            called it at message {run.committed.events_observed} of {run.expected || "?"} ·{" "}
+            {(run.committed.confidence * 100).toFixed(0)}% confident
+          </span>
         </div>
       )}
     </section>

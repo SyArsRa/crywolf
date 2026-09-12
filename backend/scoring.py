@@ -18,8 +18,9 @@ is a feature, not a fault.
 from __future__ import annotations
 
 import re
-from typing import Dict, List
+from typing import Dict, List, Optional
 
+from backend.commit import Commitment
 from backend.observer import infer_elimination
 from backend.schema import DECEIVER_ROLES, BeliefState, GameEvent, Score
 
@@ -190,11 +191,19 @@ def grade(
     history: List[Dict[str, float]],
     events: List[GameEvent],
     ground_truth: Dict[str, str],
+    committed: Optional[Commitment] = None,
+    events_available: int = 0,
 ) -> Score:
     actual = [p for p, role in ground_truth.items() if role.lower() in DECEIVER_ROLES]
     if not actual:
         raise ValueError("ground_truth names nobody on the lying team")
-    predicted = verdict(history, events) or final.top_suspect
+    # A run that stopped itself is graded on what it stopped to say. Falling back
+    # to `verdict()` here would quietly re-derive an answer from the history and
+    # could grade the observer on something it never actually claimed.
+    if committed:
+        predicted = committed.players[0]
+    else:
+        predicted = verdict(history, events) or final.top_suspect
 
     reversals = count_unexplained_reversals(history, events)
     lead_changes, events_off = measure_drift(history, predicted)
@@ -216,5 +225,7 @@ def grade(
         events_off_verdict=events_off,
         contradictions_caught=len(final.contradictions_noticed),
         rounds_observed=final.round,
+        committed_at=committed.events_observed if committed else None,
+        events_available=events_available or len(events),
         suspicion_history=history,
     )

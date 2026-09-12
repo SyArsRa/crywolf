@@ -17,6 +17,7 @@ from typing import Dict, List, Optional
 
 from pydantic import BaseModel
 
+from backend.commit import Commitment, commitment
 from backend.schema import BeliefState, GameEvent, GameSetup, Transcript
 
 RUNS_DIR = Path("runs")
@@ -58,6 +59,7 @@ class Run:
         self._events_expected = events_expected
         self.turns: List[Turn] = []
         self.complete = False
+        self.committed: Optional[Commitment] = None
         self.error: Optional[str] = None
         self.started_at = datetime.now(timezone.utc)
 
@@ -115,9 +117,28 @@ class Run:
         self.turns.append(turn)
         return turn
 
+    def consider_commitment(self) -> Optional[Commitment]:
+        """Has the observer earned the right to stop? Records it if so.
+
+        Called by the run loop after every turn. A commitment is the loop's only
+        goal-shaped exit -- every other way a run ends (input exhausted, the
+        operator pressing stop, the observer failing) is something happening *to*
+        it rather than a decision it made.
+        """
+        if self.committed is not None:
+            return self.committed
+        self.committed = commitment(
+            self.history, deceiver_count=self.setup.deceiver_count
+        )
+        return self.committed
+
     def finish(self, error: Optional[str] = None) -> None:
         self.error = error
-        self.complete = error is None and len(self.turns) >= self.total_expected
+        # Stopping early on purpose is a finished run, not a truncated one: the
+        # loop reached its goal, which is the whole point of having one.
+        self.complete = error is None and (
+            self.committed is not None or len(self.turns) >= self.total_expected
+        )
 
     # -- disk -------------------------------------------------------------
 
@@ -132,6 +153,7 @@ class Run:
         """
         return {
             "complete": self.complete,
+            "committed": self.committed.model_dump() if self.committed else None,
             "live": self.live,
             "started_at": self.started_at.isoformat(),
             "events_observed": len(self.turns),
@@ -157,7 +179,12 @@ class Run:
         from backend.scoring import grade
 
         return grade(
-            self.final_state, self.history, self.events, self.transcript.ground_truth
+            self.final_state,
+            self.history,
+            self.events,
+            self.transcript.ground_truth,
+            committed=self.committed,
+            events_available=self.total_expected,
         ).model_dump()
 
     def write(self) -> Path:

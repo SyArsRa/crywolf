@@ -177,6 +177,10 @@ def feed_live(client: httpx.Client, transcript: Transcript, interval: float) -> 
             f"({state['suspicion'].get(top, 0) * 100:.0f}%)  {state['reasoning'][:70]}"
         )
 
+        if state.get("committed"):
+            print(f"\n[{i:>2}/{total}] observer committed -- stopping early")
+            break
+
         slept = _pace(turn_started, interval)
         durations.append(call + slept)
 
@@ -208,9 +212,14 @@ def feed_replay(
 
     for i, turn in enumerate(turns, 1):
         turn_started = time.perf_counter()
-        client.post("/turn", json=turn.model_dump(mode="json")).raise_for_status()
+        response = client.post("/turn", json=turn.model_dump(mode="json"))
+        response.raise_for_status()
         event = turn.event
         print(f"[{i:>2}/{total}] {event.speaker}: {event.statement[:60]}")
+        if response.json().get("committed"):
+            print(f"\n[{i:>2}/{total}] observer committed -- stopping early")
+            durations.append(time.perf_counter() - turn_started)
+            break
         _pace(turn_started, interval)
         durations.append(time.perf_counter() - turn_started)
 

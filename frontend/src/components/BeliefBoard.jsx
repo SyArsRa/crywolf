@@ -48,10 +48,14 @@ export default function BeliefBoard({ run, colors }) {
   const segments = phaseSegments(run);
 
   return (
-    <section className="belief-board card">
+    <section className={`belief-board card${state?.deliberated ? " lurching" : ""}`}>
       <div className="belief-head">
         <h2>Belief over time</h2>
-        <span className="belief-sub">P(mafia) per player, rewritten after every message</span>
+        <span className="belief-sub">
+          {state?.deliberated
+            ? "rewritten wholesale — the deep pass re-read the round"
+            : "P(mafia) per player, rewritten after every message"}
+        </span>
       </div>
 
       {!living.length && !dead.length && (

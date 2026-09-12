@@ -30,8 +30,16 @@ export default function CaseFile({ run, colors }) {
       </div>
 
       <div className="card reading-card">
-        <h2>The reading</h2>
-        <p className="reasoning" key={run.turns.length}>
+        <div className="reading-head">
+          <h2>The reading</h2>
+          {state?.deliberated && (
+            <span className="deep-badge">deep pass · re-read the round</span>
+          )}
+        </div>
+        <p
+          className={`reasoning${state?.deliberated ? " deep" : ""}`}
+          key={run.turns.length}
+        >
           {reasoning || "Nothing written yet."}
         </p>
       </div>

@@ -912,5 +912,5 @@ class Observer:
 
         self.deliberations += 1
         self.state = self.state.model_copy(
-            update={"suspicion": settled, "reasoning": note[:400]}
+            update={"suspicion": settled, "reasoning": note[:400], "deliberated": True}
         )

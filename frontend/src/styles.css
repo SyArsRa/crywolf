@@ -472,6 +472,109 @@ h2 {
   100% { opacity: 0; }
 }
 
+/* ------------------------------------------------- the loop, made visible */
+/* Two beats the observer's loop produces that are otherwise invisible: the
+   deep pass rewriting a round, and the loop deciding it has seen enough. */
+
+.stage.rethinking .table {
+  outline-color: #6fa8dc;
+  box-shadow: inset 0 2px 16px rgba(0, 0, 0, 0.5), 0 0 70px rgba(111, 168, 220, 0.45);
+}
+
+.rethink-beat,
+.commit-beat {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 32;
+  display: grid;
+  justify-items: center;
+  gap: 3px;
+  text-align: center;
+  padding: 12px 26px;
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  pointer-events: none;
+}
+
+.rethink-beat {
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(14, 32, 48, 0.92);
+  border: 1px solid #6fa8dc;
+  box-shadow: 0 0 50px rgba(111, 168, 220, 0.35);
+  animation: beat-in 3200ms ease both;
+}
+.rethink-kicker {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #9dc7ea;
+}
+.rethink-title {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #eaf3fb;
+}
+.rethink-sub { font-size: 11.5px; color: #9dc7ea; }
+
+@keyframes beat-in {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.94); }
+  12%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  82%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.98); }
+}
+
+/* The commit persists -- it is the run's result, not a passing animation. */
+.commit-beat {
+  bottom: 18px;
+  background: rgba(36, 22, 9, 0.93);
+  border: 1px solid var(--brass);
+  box-shadow: 0 0 46px rgba(201, 162, 39, 0.3);
+  animation: commit-in 700ms cubic-bezier(.2,.9,.3,1.3) both;
+}
+.commit-kicker {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--brass-light);
+}
+.commit-title {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: var(--parchment);
+}
+.commit-sub { font-size: 11.5px; color: var(--ink-dim); }
+
+@keyframes commit-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(14px) scale(0.96); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+.reading-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.deep-badge {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  color: #12354f;
+  background: #9dc7ea;
+  white-space: nowrap;
+}
+.reasoning.deep { border-left-color: #2f6fa8; animation: deep-flash 1200ms ease; }
+@keyframes deep-flash {
+  0%   { background: #bcd6ea; }
+  100% { background: var(--parchment-2); }
+}
+
+.belief-board.lurching { box-shadow: var(--shadow-md), 0 0 0 2px rgba(111, 168, 220, 0.55); }
+.belief-board.lurching .belief-sub { color: #2f6fa8; font-weight: 600; }
+
 /* --------------------------------------------------------------- case file */
 
 .case-row {

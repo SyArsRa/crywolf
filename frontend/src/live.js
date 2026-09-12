@@ -40,6 +40,8 @@ const EMPTY = {
   killed: [],
   eliminated: [],
   complete: false,
+  /** The observer's own decision to stop watching, once it makes one. */
+  committed: null,
   error: null,
   /** true when the most recent change came from a snapshot, so the UI can skip
    *  the theatre and land straight on the current state */
@@ -85,6 +87,7 @@ function reducer(run, message) {
         players: message.setup?.players ?? [],
         expected: message.events_expected ?? 0,
         complete: Boolean(message.complete),
+        committed: message.committed ?? null,
         error: message.error ?? null,
         silent: true,
       };
@@ -94,6 +97,10 @@ function reducer(run, message) {
 
     case "turn":
       return { ...applyTurn(run, message), silent: false };
+
+    // The loop stopped itself: it has seen enough and is naming its suspects.
+    case "committed":
+      return { ...run, committed: message, silent: false };
 
     case "game_end":
       return { ...run, complete: Boolean(message.complete), silent: false };

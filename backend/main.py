@@ -77,6 +77,7 @@ def _snapshot(run: Run) -> dict:
         "live": run.live,
         "events_expected": run.total_expected,
         "complete": run.complete,
+        "committed": run.committed.model_dump(mode="json") if run.committed else None,
         "error": run.error,
         "turns": [t.model_dump(mode="json") for t in run.turns],
     }
@@ -157,7 +158,10 @@ async def _observe_locked(run: Run, event: GameEvent) -> dict:
         event.speaker,
         event.statement[:60],
     )
-    return turn.state.model_dump(mode="json")
+    # `committed` rides on the response so a feeder driving this from outside
+    # learns the loop is done and can stop sending. Without it the stop condition
+    # would only work for games the server plays itself.
+    return {**turn.state.model_dump(mode="json"), "committed": await _committed(run)}
 
 
 @app.post("/turn")
@@ -174,7 +178,8 @@ async def ingest_turn(turn: Turn) -> dict:
     async with INGEST:
         stored = run.add_turn(turn.event, turn.state)
         await hub.broadcast({"type": "turn", **stored.model_dump(mode="json")})
-    return {"ok": True, "index": stored.index}
+        committed = await _committed(run)
+    return {"ok": True, "index": stored.index, "committed": committed}
 
 
 @app.get("/score")
@@ -308,6 +313,31 @@ def _playing() -> bool:
     return PLAYER is not None and not PLAYER.done()
 
 
+async def _committed(run: Run) -> bool:
+    """Stop condition: the observer has seen enough and says so.
+
+    Announced on its own message rather than folded into `game_end`, so the UI
+    can show the call landing at the moment it happens instead of after the run
+    has already torn down.
+
+    Idempotent, because both drivers reach it: the server's own play loop and
+    the feeder posting events from outside. Only the transition broadcasts.
+    """
+    already = run.committed is not None
+    call = run.consider_commitment()
+    if not call:
+        return False
+    if already:
+        return True
+    log.info(
+        "observer committed after %d/%d events: %s at %.0f%%",
+        call.events_observed, run.total_expected,
+        ", ".join(call.players), call.confidence * 100,
+    )
+    await hub.broadcast({"type": "committed", **call.model_dump(mode="json")})
+    return True
+
+
 async def _play_game(path: Path, mode: str, interval: float) -> None:
     """Run a whole game into the hub. Cancellable: stopping keeps the partial
     run on disk, exactly as a crashed live run does."""
@@ -321,6 +351,8 @@ async def _play_game(path: Path, mode: str, interval: float) -> None:
                 async with INGEST:
                     stored = RUN.add_turn(turn.event, turn.state)
                     await hub.broadcast({"type": "turn", **stored.model_dump(mode="json")})
+                    if await _committed(RUN):
+                        break
                 await asyncio.sleep(interval)
         else:
             transcript = load_transcript(path)
@@ -330,6 +362,8 @@ async def _play_game(path: Path, mode: str, interval: float) -> None:
                 started = time.perf_counter()
                 async with INGEST:
                     await _observe_locked(RUN, event)
+                    if await _committed(RUN):
+                        break
                 # The model sets the pace when it is slower than the interval.
                 await asyncio.sleep(max(0.0, interval - (time.perf_counter() - started)))
 

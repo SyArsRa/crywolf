@@ -295,6 +295,14 @@ class BeliefState(BaseModel):
     claims_tracked: Dict[str, str] = Field(default_factory=dict)
     contradictions_noticed: List[Contradiction] = Field(default_factory=list)
     reasoning: str = ""
+    deliberated: bool = Field(
+        False,
+        description=(
+            "This state was rewritten by the deep pass, not just the per-event one. "
+            "Set when a role reveal let the observer re-read a whole round against "
+            "graded evidence -- the moment it is allowed to change its mind wholesale."
+        ),
+    )
 
     @property
     def top_suspect(self) -> Optional[str]:
@@ -348,6 +356,17 @@ class Score(BaseModel):
     self_contradictions: int
     contradictions_caught: int
     rounds_observed: int
+    committed_at: Optional[int] = Field(
+        None,
+        description=(
+            "Events observed when the loop stopped itself, or None if it read to "
+            "the end. The point of the stop condition: how much of the game it "
+            "did not need to see."
+        ),
+    )
+    events_available: int = Field(
+        0, description="Events the game held, whether or not they were read."
+    )
     suspicion_history: List[Dict[str, float]] = Field(
         default_factory=list, description="Per-event snapshot, for the suspicion-over-time chart."
     )
