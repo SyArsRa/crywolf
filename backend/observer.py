@@ -35,6 +35,19 @@ from backend.schema import (
 # No single line of dialogue is worth more than this much suspicion. Tuned by
 # watching replays: below ~0.2 the observer looks catatonic, above ~0.4 the
 # chart turns into noise.
+#
+# Symmetric on purpose, and we considered changing that. In one run the observer
+# had the werewolf at 55%, then spent seven events down at 10% pointing at
+# someone else, then came back to 80% when the lie surfaced. An asymmetric cap
+# (suspicion easy to gain, hard to shed) would have kept the chart tidier.
+#
+# We decided against it. That swing was not forgetting -- the claims ledger held
+# throughout, which is exactly why it recovered the instant hard evidence
+# arrived. It had considered a theory that P3 was shielding the werewolf, and
+# dropped it when the evidence said otherwise. Rigging the arithmetic so the
+# observer cannot change its mind would buy a prettier demo at the cost of the
+# reasoning being real. The wobble is reported instead, by
+# `scoring.measure_drift`.
 MAX_DELTA_PER_EVENT = 0.30
 
 # Who has died. Lane A can set `GameEvent.eliminated` explicitly; failing that we
@@ -85,9 +98,17 @@ it, do not overwrite the history with only the latest thing they said.
 
 `contradictions_noticed` is cumulative too. Add a new entry only when a player \
 says something that genuinely conflicts with something they said earlier -- not \
-merely something you disagree with. Never drop an entry you have already made.
+merely something you disagree with. Never drop an entry you have already made. \
+Quote both sides in the player's own words: `earlier` and `now` are shown on \
+screen as quotations, so a paraphrase there puts words in a player's mouth.
 
-`reasoning` is at most two sentences, about what this line changed and why."""
+Two hard rules:
+
+- Never say or assume a player is dead unless they appear in the dead list you \
+are given. Players who are still speaking are alive.
+- `reasoning` is at most two sentences and under 200 characters. It sits in a \
+narrow panel beside the transcript. Say what changed and why; leave out the \
+recap of what everyone did."""
 
 
 def _fmt_state(state: BeliefState, alive: List[str]) -> str:
@@ -227,6 +248,9 @@ class Observer:
         uniform = 1.0 / len(setup.players)
         self.state = BeliefState(suspicion={p: uniform for p in setup.players})
         self.history: List[Dict[str, float]] = []
+        # Every state, not just its numbers. `history` is enough to plot a chart;
+        # replaying a run into the UI needs the reasoning and contradictions too.
+        self.states: List[BeliefState] = []
 
     @property
     def alive(self) -> List[str]:
@@ -234,10 +258,16 @@ class Observer:
         rows in a fixed position instead of resorting them every event."""
         return [p for p in self.setup.players if p not in self.state.eliminated]
 
-    def restore(self, state: BeliefState, history: List[Dict[str, float]]) -> None:
+    def restore(
+        self,
+        state: BeliefState,
+        history: List[Dict[str, float]],
+        states: Optional[List[BeliefState]] = None,
+    ) -> None:
         """Pick up where a previous run stopped. See `run_observer.py --resume`."""
         self.state = state
         self.history = list(history)
+        self.states = list(states) if states else []
 
     def observe(self, event: GameEvent) -> BeliefState:
         """Fold one event into the belief state and return the new one."""
@@ -275,4 +305,5 @@ class Observer:
             reasoning=out.reasoning,
         )
         self.history.append(dict(self.state.suspicion))
+        self.states.append(self.state)
         return self.state

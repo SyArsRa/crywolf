@@ -24,7 +24,7 @@ from backend.schema import (
     SuspicionEntry,
     Transcript,
 )
-from backend.scoring import count_unexplained_reversals, grade, verdict
+from backend.scoring import count_unexplained_reversals, grade, measure_drift, verdict
 
 PLAYERS = ["P1", "P2", "P3", "P4"]
 UNIFORM = {p: 0.25 for p in PLAYERS}
@@ -256,6 +256,133 @@ def test_resume_continues_instead_of_restarting() -> None:
     check("the dead stayed dead across the restart", "P5" in second.state.eliminated)
 
 
+def test_recording_round_trips_into_the_replay_shape() -> None:
+    """A saved run must carry each turn's whole state, not just its numbers --
+    otherwise `feeder.py --replay` drives the UI with blank reasoning panes."""
+    print("recording shape")
+    transcript = Transcript.model_validate_json(
+        Path("data/fallback_transcript.json").read_text(encoding="utf-8")
+    )
+
+    class StubLLM:
+        def structured(self, system: str, user: str, schema):
+            return ObserverOutput(
+                suspicion=[SuspicionEntry(player=p, score=0.25) for p in transcript.setup.players],
+                claims_tracked=[ClaimEntry(player="P4", claim="dismissed the victim")],
+                contradictions_noticed=[
+                    Contradiction(player="P4", earlier="I'm voting P2", now="I vote P1", round_noticed=1)
+                ],
+                reasoning="P4 moved without explaining why.",
+            )
+
+    observer = Observer(transcript.setup, llm=StubLLM())
+    for event in transcript.events[:5]:
+        observer.observe(event)
+
+    check("a state is kept per turn", len(observer.states) == 5)
+
+    import json as _json
+    import tempfile
+
+    from backend.run_observer import _write_run
+
+    with tempfile.TemporaryDirectory() as tmp:
+        path = Path(tmp) / "run.json"
+        _write_run(path, transcript, observer, None, 5)
+        record = _json.loads(path.read_text(encoding="utf-8"))
+
+    for key in ("setup", "ground_truth", "turns", "events_expected", "history"):
+        check(f"recording carries '{key}'", key in record)
+    check("one turn per event", len(record["turns"]) == 5)
+
+    turn = record["turns"][0]
+    check("turns pair event with state", "event" in turn and "state" in turn)
+    check("reasoning survives to disk", turn["state"]["reasoning"] != "")
+    check(
+        "contradictions survive to disk",
+        len(record["turns"][-1]["state"]["contradictions_noticed"]) == 1,
+    )
+
+    # The shape Lane A's feeder validates against.
+    from backend.state import Turn as StateTurn
+
+    check("turns validate as state.Turn", StateTurn.model_validate(turn).index == 0)
+
+
+def test_drift_sees_what_consistency_misses() -> None:
+    """The real run that motivated this: the observer led with P4, wandered to P3
+    for seven events, then came back -- and scored a perfect 1.00 consistency."""
+    print("drift")
+    wobble = (
+        [{"P4": 0.55, "P3": 0.20, "P2": 0.25}] * 3        # P4 leads
+        + [{"P4": 0.10, "P3": 0.65, "P2": 0.25}] * 7      # P3 leads for seven
+        + [{"P4": 0.80, "P3": 0.12, "P2": 0.08}] * 3      # P4 again
+    )
+    changes, off = measure_drift(wobble, "P4")
+    check("counts both handovers", changes == 2)
+    check("counts the seven events off verdict", off == 7)
+
+    steady = [{"P4": 0.4 + i * 0.02, "P3": 0.3, "P2": 0.3} for i in range(10)]
+    changes, off = measure_drift(steady, "P4")
+    check("a steady read drifts not at all", changes == 0 and off == 0)
+    check("empty history is survivable", measure_drift([], "P4") == (0, 0))
+    check("a verdict that never led reports no wobble", measure_drift(steady, "P9") == (0, 0))
+
+
+def test_transcript_validation() -> None:
+    """Real datasets are malformed in all of these ways. Catch them at load,
+    not twenty paid-for model calls into a run."""
+    print("transcript validation")
+    import copy
+
+    base = Transcript.model_validate_json(
+        Path("data/fallback_transcript.json").read_text(encoding="utf-8")
+    ).model_dump()
+
+    def rejects(label: str, mutate) -> None:
+        broken = copy.deepcopy(base)
+        mutate(broken)
+        try:
+            Transcript.model_validate(broken)
+        except Exception:
+            check(f"rejects {label}", True)
+        else:
+            check(f"rejects {label}", False)
+
+    rejects("no werewolf", lambda d: d["ground_truth"].update({"P4": "villager"}))
+    rejects("two werewolves", lambda d: d["ground_truth"].update({"P1": "werewolf"}))
+    rejects("a player with no role", lambda d: d["ground_truth"].pop("P3"))
+    rejects("a role for a non-player", lambda d: d["ground_truth"].update({"P9": "villager"}))
+    rejects("duplicate players", lambda d: d["setup"].update({"players": ["P1", "P1", "P2"]}))
+    rejects(
+        "a speaker who isn't in the game",
+        lambda d: d["events"].append(
+            {"round": 3, "phase": "day", "speaker": "P9", "statement": "hello"}
+        ),
+    )
+    rejects(
+        "an event that reveals the answer",
+        lambda d: d["events"].append(
+            {"round": 3, "phase": "day", "speaker": "MODERATOR", "statement": "P4 was the werewolf."}
+        ),
+    )
+
+    # ...without rejecting things that are fine.
+    ok = copy.deepcopy(base)
+    ok["events"].append(
+        {"round": 3, "phase": "day", "speaker": "NARRATOR", "statement": "The village sleeps."}
+    )
+    Transcript.model_validate(ok)
+    check("accepts a narrator who isn't a player", True)
+
+    ok2 = copy.deepcopy(base)
+    ok2["events"].append(
+        {"round": 3, "phase": "day", "speaker": "P2", "statement": "I think P4 is the werewolf."}
+    )
+    Transcript.model_validate(ok2)
+    check("accepts a player accusing someone (not a reveal)", True)
+
+
 def test_belief_state_defaults() -> None:
     print("BeliefState")
     check("empty state has no top suspect", BeliefState().top_suspect is None)
@@ -271,6 +398,9 @@ if __name__ == "__main__":
         test_full_loop_with_stub_model,
         test_verdict_survives_the_wolf_being_voted_out,
         test_resume_continues_instead_of_restarting,
+        test_recording_round_trips_into_the_replay_shape,
+        test_drift_sees_what_consistency_misses,
+        test_transcript_validation,
         test_belief_state_defaults,
     ]:
         fn()

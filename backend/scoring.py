@@ -65,6 +65,38 @@ def verdict(history: List[Dict[str, float]], events: List[GameEvent]) -> str | N
     return None
 
 
+def measure_drift(history: List[Dict[str, float]], final_verdict: str | None) -> tuple[int, int]:
+    """How much the observer's accusation wandered.
+
+    `count_unexplained_reversals` catches single-event jerks and nothing else,
+    which is how a run where the observer pointed at the wrong player for seven
+    straight events still scored a perfect 1.00: each step down was small enough,
+    or landed on an event that named the player, so none of it registered.
+
+    Returns (lead_changes, events_off_verdict):
+
+    * lead_changes -- how many times the top suspect changed hands at all.
+    * events_off_verdict -- once the eventual verdict first took the lead, how
+      many later events had someone else on top. This is the wobble: the stretch
+      where the observer had the right answer, let go of it, and came back.
+
+    Neither is a fault on its own. An observer that never moved would score zero
+    on both and be useless; changing your mind on evidence is the job. They are
+    here so the wobble is visible rather than hidden behind a perfect score.
+    """
+    leaders = [max(s, key=lambda p: s[p]) for s in history if s]
+    if not leaders:
+        return 0, 0
+
+    lead_changes = sum(1 for a, b in zip(leaders, leaders[1:]) if a != b)
+
+    if final_verdict is None or final_verdict not in leaders:
+        return lead_changes, 0
+    first_lead = leaders.index(final_verdict)
+    events_off = sum(1 for leader in leaders[first_lead:] if leader != final_verdict)
+    return lead_changes, events_off
+
+
 def _confidence(
     history: List[Dict[str, float]], events: List[GameEvent], predicted: str | None
 ) -> float:
@@ -87,6 +119,7 @@ def grade(
     predicted = verdict(history, events) or final.top_suspect
 
     reversals = count_unexplained_reversals(history, events)
+    lead_changes, events_off = measure_drift(history, predicted)
     # One reversal per event would be a total loss of the plot; scale against that.
     consistency = 1.0 - (reversals / len(history)) if history else 1.0
 
@@ -97,6 +130,8 @@ def grade(
         final_confidence=_confidence(history, events, predicted),
         consistency=max(0.0, round(consistency, 3)),
         self_contradictions=reversals,
+        lead_changes=lead_changes,
+        events_off_verdict=events_off,
         contradictions_caught=len(final.contradictions_noticed),
         rounds_observed=final.round,
         suspicion_history=history,

@@ -1,0 +1,1567 @@
+{
+  "complete": true,
+  "live": true,
+  "events_observed": 27,
+  "events_expected": 27,
+  "error": null,
+  "setup": {
+    "players": [
+      "P1",
+      "P2",
+      "P3",
+      "P4",
+      "P5"
+    ],
+    "premise": "Standard Werewolf, five players. Exactly one werewolf hides among four villagers. Each night the werewolf eliminates one player; each day the survivors argue and vote one player out. The werewolf knows who they are; nobody else does."
+  },
+  "ground_truth": {
+    "P1": "villager",
+    "P2": "villager",
+    "P3": "villager",
+    "P4": "werewolf",
+    "P5": "villager"
+  },
+  "events": [
+    {
+      "round": 1,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Night falls. In the morning, P5 is found dead.",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "P1",
+      "statement": "Well. Five of us, now four. I have nothing to go on yet, so I'd rather hear people talk than guess.",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "P4",
+      "statement": "P5 wasn't going to be much help anyway, honestly. Let's not waste the day mourning.",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "P2",
+      "statement": "That's a cold thing to say about someone who never got to say a word.",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "P3",
+      "statement": "I'd rather focus. P2, you've barely said anything either. What's your read?",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "P2",
+      "statement": "My read is that it's round one and anyone claiming certainty is performing. I'm a villager, for whatever nothing that's worth.",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "P4",
+      "statement": "See, that's exactly the kind of non-answer I'd expect. I'm voting P2.",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "P1",
+      "statement": "P4, you've been the loudest in a round where nobody has information. That's its own kind of tell.",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "P4",
+      "statement": "Or I'm just the only one willing to move. Somebody has to.",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "P1",
+      "statement": "I vote P4.",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "P2",
+      "statement": "I vote P4.",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "P3",
+      "statement": "I vote P2. P4 is abrasive, but abrasive isn't guilty.",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "P4",
+      "statement": "I vote P1.",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Two votes P4, one vote P2, one vote P1. No majority. Nobody is eliminated.",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Night falls. In the morning, P1 is found dead.",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "P3",
+      "statement": "P1 died the same night P1 put a vote on P4. I don't love that timing.",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "P4",
+      "statement": "P2 voted for me too and P2 is still breathing. If I were the wolf that would be a strange choice.",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "P2",
+      "statement": "Unless you left me alive precisely so you could say that.",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "P4",
+      "statement": "Look, I voted P2 last round like I said I would, and P2 survived. I've been consistent from the start.",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "P3",
+      "statement": "You didn't vote P2. You said you would, and then you voted P1. I wrote it down.",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "P4",
+      "statement": "Then I misremembered under pressure, which is not a crime. What's interesting is that P3 is keeping written records on everyone. That's not villager behaviour.",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "P2",
+      "statement": "It's exactly villager behaviour. It's the only thing any of us can actually do.",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "P3",
+      "statement": "I'll say it plainly. P4 announced a vote, cast a different one, then claimed the announced one. And the person who caught P4 first is dead.",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "P2",
+      "statement": "I vote P4.",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "P3",
+      "statement": "I vote P4.",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "P4",
+      "statement": "I vote P3, and I'd like the record to show I said so.",
+      "timestamp": null,
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Two votes P4. P4 is eliminated.",
+      "timestamp": null,
+      "eliminated": null
+    }
+  ],
+  "history": [
+    {
+      "P1": 0.25,
+      "P2": 0.25,
+      "P3": 0.25,
+      "P4": 0.25
+    },
+    {
+      "P1": 0.25,
+      "P2": 0.25,
+      "P3": 0.25,
+      "P4": 0.25
+    },
+    {
+      "P1": 0.24,
+      "P2": 0.25,
+      "P3": 0.25,
+      "P4": 0.26
+    },
+    {
+      "P1": 0.22,
+      "P2": 0.23,
+      "P3": 0.25,
+      "P4": 0.3
+    },
+    {
+      "P1": 0.21,
+      "P2": 0.24,
+      "P3": 0.26,
+      "P4": 0.29
+    },
+    {
+      "P1": 0.2,
+      "P2": 0.22,
+      "P3": 0.27,
+      "P4": 0.31
+    },
+    {
+      "P1": 0.18,
+      "P2": 0.28,
+      "P3": 0.25,
+      "P4": 0.29
+    },
+    {
+      "P1": 0.15,
+      "P2": 0.26,
+      "P3": 0.24,
+      "P4": 0.35
+    },
+    {
+      "P1": 0.12,
+      "P2": 0.24,
+      "P3": 0.22,
+      "P4": 0.42
+    },
+    {
+      "P1": 0.08,
+      "P2": 0.22,
+      "P3": 0.23,
+      "P4": 0.47
+    },
+    {
+      "P1": 0.06,
+      "P2": 0.19,
+      "P3": 0.2,
+      "P4": 0.55
+    },
+    {
+      "P1": 0.08,
+      "P2": 0.28,
+      "P3": 0.09,
+      "P4": 0.55
+    },
+    {
+      "P1": 0.11842105263157894,
+      "P2": 0.24671052631578946,
+      "P3": 0.3848684210526316,
+      "P4": 0.25000000000000006
+    },
+    {
+      "P1": 0.1,
+      "P2": 0.22,
+      "P3": 0.45,
+      "P4": 0.23
+    },
+    {
+      "P2": 0.25,
+      "P3": 0.65,
+      "P4": 0.1
+    },
+    {
+      "P2": 0.15,
+      "P3": 0.7,
+      "P4": 0.15
+    },
+    {
+      "P2": 0.25,
+      "P3": 0.65,
+      "P4": 0.1
+    },
+    {
+      "P2": 0.15,
+      "P3": 0.7,
+      "P4": 0.15
+    },
+    {
+      "P2": 0.2,
+      "P3": 0.65,
+      "P4": 0.15
+    },
+    {
+      "P2": 0.16842105263157897,
+      "P3": 0.38157894736842113,
+      "P4": 0.44999999999999996
+    },
+    {
+      "P2": 0.15,
+      "P3": 0.3,
+      "P4": 0.55
+    },
+    {
+      "P2": 0.2,
+      "P3": 0.25,
+      "P4": 0.55
+    },
+    {
+      "P2": 0.15,
+      "P3": 0.2,
+      "P4": 0.65
+    },
+    {
+      "P2": 0.1,
+      "P3": 0.15,
+      "P4": 0.75
+    },
+    {
+      "P2": 0.08,
+      "P3": 0.12,
+      "P4": 0.8
+    },
+    {
+      "P2": 0.06192771084337351,
+      "P3": 0.42,
+      "P4": 0.5180722891566265
+    },
+    {
+      "P2": 0.3619277108433735,
+      "P3": 0.6380722891566265
+    }
+  ],
+  "turns": [
+    {
+      "index": 0,
+      "event": {
+        "round": 1,
+        "phase": "night",
+        "speaker": "MODERATOR",
+        "statement": "Night falls. In the morning, P5 is found dead.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 1,
+        "phase": "night",
+        "event_index": 0,
+        "eliminated": [
+          "P5"
+        ],
+        "suspicion": {
+          "P1": 0.25,
+          "P2": 0.25,
+          "P3": 0.25,
+          "P4": 0.25
+        },
+        "claims_tracked": {},
+        "contradictions_noticed": [],
+        "reasoning": "P5 eliminated on night one. No information yet from day phase, so suspicion spreads evenly among the four survivors."
+      }
+    },
+    {
+      "index": 1,
+      "event": {
+        "round": 1,
+        "phase": "day",
+        "speaker": "P1",
+        "statement": "Well. Five of us, now four. I have nothing to go on yet, so I'd rather hear people talk than guess.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 1,
+        "phase": "day",
+        "event_index": 1,
+        "eliminated": [
+          "P5"
+        ],
+        "suspicion": {
+          "P1": 0.25,
+          "P2": 0.25,
+          "P3": 0.25,
+          "P4": 0.25
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence."
+        },
+        "contradictions_noticed": [],
+        "reasoning": "P1 opens cautiously, claiming ignorance and inviting others to establish themselves through talk. Neutral position; no signal either way yet."
+      }
+    },
+    {
+      "index": 2,
+      "event": {
+        "round": 1,
+        "phase": "day",
+        "speaker": "P4",
+        "statement": "P5 wasn't going to be much help anyway, honestly. Let's not waste the day mourning.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 1,
+        "phase": "day",
+        "event_index": 2,
+        "eliminated": [
+          "P5"
+        ],
+        "suspicion": {
+          "P1": 0.24,
+          "P2": 0.25,
+          "P3": 0.25,
+          "P4": 0.26
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence.",
+          "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly."
+        },
+        "contradictions_noticed": [],
+        "reasoning": "P4's dismissive tone about the eliminated P5 and eagerness to move past discussion suggests slight comfort with the night's outcome\u2014a minor tell of potential werewolf confidence. Marginal increase to P4; all others stable."
+      }
+    },
+    {
+      "index": 3,
+      "event": {
+        "round": 1,
+        "phase": "day",
+        "speaker": "P2",
+        "statement": "That's a cold thing to say about someone who never got to say a word.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 1,
+        "phase": "day",
+        "event_index": 3,
+        "eliminated": [
+          "P5"
+        ],
+        "suspicion": {
+          "P1": 0.22,
+          "P2": 0.23,
+          "P3": 0.25,
+          "P4": 0.3
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence.",
+          "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly.",
+          "P2": "Defends P5's right to have been heard; pushes back against dismissing the eliminated player."
+        },
+        "contradictions_noticed": [],
+        "reasoning": "P2 challenges P4's callousness toward P5, showing engagement with social dynamics. P4's eagerness to move past P5 combined with P2's moral objection reinforces P4 as the slight outlier\u2014someone oddly comfortable with elimination."
+      }
+    },
+    {
+      "index": 4,
+      "event": {
+        "round": 1,
+        "phase": "day",
+        "speaker": "P3",
+        "statement": "I'd rather focus. P2, you've barely said anything either. What's your read?",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 1,
+        "phase": "day",
+        "event_index": 4,
+        "eliminated": [
+          "P5"
+        ],
+        "suspicion": {
+          "P1": 0.21,
+          "P2": 0.24,
+          "P3": 0.26,
+          "P4": 0.29
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence.",
+          "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly.",
+          "P2": "Defends P5's right to have been heard; pushes back against dismissing the eliminated player.",
+          "P3": "Wants to focus and move away from P5 discussion; questions P2's participation level."
+        },
+        "contradictions_noticed": [],
+        "reasoning": "P3 joins P4 in steering away from P5, reinforcing the shared momentum to move forward. This practical stance is village-typical, not werewolf-tells. P2's earlier defense of P5 now looks less strategic and more consistent with villager engagement."
+      }
+    },
+    {
+      "index": 5,
+      "event": {
+        "round": 1,
+        "phase": "day",
+        "speaker": "P2",
+        "statement": "My read is that it's round one and anyone claiming certainty is performing. I'm a villager, for whatever nothing that's worth.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 1,
+        "phase": "day",
+        "event_index": 5,
+        "eliminated": [
+          "P5"
+        ],
+        "suspicion": {
+          "P1": 0.2,
+          "P2": 0.22,
+          "P3": 0.27,
+          "P4": 0.31
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence.",
+          "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly.",
+          "P2": "Defends P5's right to have been heard; pushes back against dismissing the eliminated player. Claims to be a villager; asserts that certainty in round one is performative.",
+          "P3": "Wants to focus and move away from P5 discussion; questions P2's participation level."
+        },
+        "contradictions_noticed": [],
+        "reasoning": "P2's skepticism about round-one certainty and self-aware villager claim read as grounded, not defensive. Mild bump to P4's suspicion for sustained momentum-building; P1 stays lowest for staying quiet."
+      }
+    },
+    {
+      "index": 6,
+      "event": {
+        "round": 1,
+        "phase": "day",
+        "speaker": "P4",
+        "statement": "See, that's exactly the kind of non-answer I'd expect. I'm voting P2.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 1,
+        "phase": "day",
+        "event_index": 6,
+        "eliminated": [
+          "P5"
+        ],
+        "suspicion": {
+          "P1": 0.18,
+          "P2": 0.28,
+          "P3": 0.25,
+          "P4": 0.29
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence.",
+          "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly. Now calls P2's position a 'non-answer' and votes for them.",
+          "P2": "Defends P5's right to have been heard; pushes back against dismissing the eliminated player. Claims to be a villager; asserts that certainty in round one is performative.",
+          "P3": "Wants to focus and move away from P5 discussion; questions P2's participation level."
+        },
+        "contradictions_noticed": [],
+        "reasoning": "P4 escalates from dismissing P5 talk to directly attacking P2, labeling their reasoned pushback as evasion. This aggressive pivot without new information suggests P4 may be manufacturing conflict to steer the vote\u2014a common werewolf tell."
+      }
+    },
+    {
+      "index": 7,
+      "event": {
+        "round": 1,
+        "phase": "day",
+        "speaker": "P1",
+        "statement": "P4, you've been the loudest in a round where nobody has information. That's its own kind of tell.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 1,
+        "phase": "day",
+        "event_index": 7,
+        "eliminated": [
+          "P5"
+        ],
+        "suspicion": {
+          "P1": 0.15,
+          "P2": 0.26,
+          "P3": 0.24,
+          "P4": 0.35
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence. Now calls out P4 for being the loudest player despite no information being available, suggesting this volume itself is suspicious.",
+          "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly. Now calls P2's position a 'non-answer' and votes for them. Has been the loudest voice despite no concrete information available.",
+          "P2": "Defends P5's right to have been heard; pushes back against dismissing the eliminated player. Claims to be a villager; asserts that certainty in round one is performative.",
+          "P3": "Wants to focus and move away from P5 discussion; questions P2's participation level."
+        },
+        "contradictions_noticed": [],
+        "reasoning": "P1 breaks silence with a sharp observation: P4's vocal aggression in a round with zero facts is itself a tell. This validates the earlier read that P4 is manufacturing urgency and conflict. P1 shows strategic clarity; P4's behavior hardens as werewolf-likely."
+      }
+    },
+    {
+      "index": 8,
+      "event": {
+        "round": 1,
+        "phase": "day",
+        "speaker": "P4",
+        "statement": "Or I'm just the only one willing to move. Somebody has to.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 1,
+        "phase": "day",
+        "event_index": 8,
+        "eliminated": [
+          "P5"
+        ],
+        "suspicion": {
+          "P1": 0.12,
+          "P2": 0.24,
+          "P3": 0.22,
+          "P4": 0.42
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence. Calls out P4 for being the loudest player despite no information being available, suggesting this volume itself is suspicious.",
+          "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly. Calls P2's position a 'non-answer' and votes for them. Claims to be 'the only one willing to move' and frames action as necessary momentum.",
+          "P2": "Defends P5's right to have been heard; pushes back against dismissing the eliminated player. Claims to be a villager; asserts that certainty in round one is performative.",
+          "P3": "Wants to focus and move away from P5 discussion; questions P2's participation level."
+        },
+        "contradictions_noticed": [],
+        "reasoning": "P4 doubles down on manufactured urgency, reframing P1's critique of loud behavior as mere 'willingness to move.' This defensive pivot\u2014justifying volume as leadership rather than answering the observation\u2014strengthens the read that P4 is creating false momentum to obscure lack of information. P1's clear-eyed skepticism and P2's measured position both hold steady."
+      }
+    },
+    {
+      "index": 9,
+      "event": {
+        "round": 1,
+        "phase": "vote",
+        "speaker": "P1",
+        "statement": "I vote P4.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 1,
+        "phase": "vote",
+        "event_index": 9,
+        "eliminated": [
+          "P5"
+        ],
+        "suspicion": {
+          "P1": 0.08,
+          "P2": 0.22,
+          "P3": 0.23,
+          "P4": 0.47
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence. Calls out P4 for being the loudest player despite no information being available, suggesting this volume itself is suspicious. Votes P4 in round 1, backing skepticism with action.",
+          "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly. Calls P2's position a 'non-answer' and votes for them. Claims to be 'the only one willing to move' and frames action as necessary momentum. Responds defensively to P1's critique, reframing loud behavior as leadership.",
+          "P2": "Defends P5's right to have been heard; pushes back against dismissing the eliminated player. Claims to be a villager; asserts that certainty in round one is performative.",
+          "P3": "Wants to focus and move away from P5 discussion; questions P2's participation level."
+        },
+        "contradictions_noticed": [],
+        "reasoning": "P1 follows through on suspicion with a vote, demonstrating consistency rather than performative talk\u2014lowering their werewolf likelihood. P4's defensive posture under scrutiny and continued momentum-manufacturing language solidifies them as the primary read; no new contradictions yet."
+      }
+    },
+    {
+      "index": 10,
+      "event": {
+        "round": 1,
+        "phase": "vote",
+        "speaker": "P2",
+        "statement": "I vote P4.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 1,
+        "phase": "vote",
+        "event_index": 10,
+        "eliminated": [
+          "P5"
+        ],
+        "suspicion": {
+          "P1": 0.06,
+          "P2": 0.19,
+          "P3": 0.2,
+          "P4": 0.55
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence. Calls out P4 for being the loudest player despite no information being available, suggesting this volume itself is suspicious. Votes P4 in round 1, backing skepticism with action.",
+          "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly. Calls P2's position a 'non-answer' and votes for them. Claims to be 'the only one willing to move' and frames action as necessary momentum. Responds defensively to P1's critique, reframing loud behavior as leadership.",
+          "P2": "Defends P5's right to have been heard; pushes back against dismissing the eliminated player. Claims to be a villager; asserts that certainty in round one is performative. Votes P4 in round 1.",
+          "P3": "Wants to focus and move away from P5 discussion; questions P2's participation level."
+        },
+        "contradictions_noticed": [],
+        "reasoning": "P2 votes P4, joining P1 in suspicion of them. This independent agreement from a player P4 had dismissed hardens P4's position as primary read and slightly elevates P2's credibility."
+      }
+    },
+    {
+      "index": 11,
+      "event": {
+        "round": 1,
+        "phase": "vote",
+        "speaker": "P3",
+        "statement": "I vote P2. P4 is abrasive, but abrasive isn't guilty.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 1,
+        "phase": "vote",
+        "event_index": 11,
+        "eliminated": [
+          "P5"
+        ],
+        "suspicion": {
+          "P1": 0.08,
+          "P2": 0.28,
+          "P3": 0.09,
+          "P4": 0.55
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence. Calls out P4 for being the loudest player despite no information being available, suggesting this volume itself is suspicious. Votes P4 in round 1, backing skepticism with action.",
+          "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly. Calls P2's position a 'non-answer' and votes for them. Claims to be 'the only one willing to move' and frames action as necessary momentum. Responds defensively to P1's critique, reframing loud behavior as leadership.",
+          "P2": "Defends P5's right to have been heard; pushes back against dismissing the eliminated player. Claims to be a villager; asserts that certainty in round one is performative. Votes P4 in round 1.",
+          "P3": "Wants to focus and move away from P5 discussion; questions P2's participation level. Votes P2 in round 1, characterizing P4 as 'abrasive' but not necessarily 'guilty', suggesting abrasiveness alone is insufficient for conviction."
+        },
+        "contradictions_noticed": [],
+        "reasoning": "P3 breaks from P1 and P2's consensus against P4, voting P2 instead while explicitly defending P4's behavior. This split shields P4 from elimination and raises P3's suspicion; P2 gains slight elevation for being voted despite having joined credible P1 in caution."
+      }
+    },
+    {
+      "index": 12,
+      "event": {
+        "round": 1,
+        "phase": "vote",
+        "speaker": "P4",
+        "statement": "I vote P1.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 1,
+        "phase": "vote",
+        "event_index": 12,
+        "eliminated": [
+          "P5"
+        ],
+        "suspicion": {
+          "P1": 0.11842105263157894,
+          "P2": 0.24671052631578946,
+          "P3": 0.3848684210526316,
+          "P4": 0.25000000000000006
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence. Calls out P4 for being the loudest player despite no information being available, suggesting this volume itself is suspicious. Votes P4 in round 1, backing skepticism with action.",
+          "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly. Calls P2's position a 'non-answer' and votes for them. Claims to be 'the only one willing to move' and frames action as necessary momentum. Responds defensively to P1's critique, reframing loud behavior as leadership. Votes P1 in round 1.",
+          "P2": "Defends P5's right to have been heard; pushes back against dismissing the eliminated player. Claims to be a villager; asserts that certainty in round one is performative. Votes P4 in round 1.",
+          "P3": "Wants to focus and move away from P5 discussion; questions P2's participation level. Votes P2 in round 1, characterizing P4 as 'abrasive' but not necessarily 'guilty', suggesting abrasiveness alone is insufficient for conviction."
+        },
+        "contradictions_noticed": [],
+        "reasoning": "P4 votes P1 after P1 critiqued P4's loudness\u2014pure retaliation, not reasoned play. P3 shielded P4 yesterday and now P4 attacks the skeptic who called them out; P3's defensive posture toward P4 combined with P4's vindictive vote pattern flips suspicion heavily toward P3 as likely werewolf-adjacent."
+      }
+    },
+    {
+      "index": 13,
+      "event": {
+        "round": 1,
+        "phase": "vote",
+        "speaker": "MODERATOR",
+        "statement": "Two votes P4, one vote P2, one vote P1. No majority. Nobody is eliminated.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 1,
+        "phase": "vote",
+        "event_index": 13,
+        "eliminated": [
+          "P5"
+        ],
+        "suspicion": {
+          "P1": 0.1,
+          "P2": 0.22,
+          "P3": 0.45,
+          "P4": 0.23
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence. Calls out P4 for being the loudest player despite no information being available, suggesting this volume itself is suspicious. Votes P4 in round 1.",
+          "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly. Calls P2's position a 'non-answer' and votes for them. Claims to be 'the only one willing to move' and frames action as necessary momentum. Responds defensively to P1's critique, reframing loud behavior as leadership. Votes P1 in round 1.",
+          "P2": "Defends P5's right to have been heard; pushes back against dismissing the eliminated player. Claims to be a villager; asserts that certainty in round one is performative. Votes P4 in round 1.",
+          "P3": "Wants to focus and move away from P5 discussion; questions P2's participation level. Votes P2 in round 1, characterizing P4 as 'abrasive' but not necessarily 'guilty', suggesting abrasiveness alone is insufficient for conviction."
+        },
+        "contradictions_noticed": [],
+        "reasoning": "Vote scatter (P4: 2, P2: 1, P1: 1) confirms P4 is under fire but hasn't broken; P3 voted P2, not P4, reinforcing protective pattern toward P4. P1 and P2 united against P4; P4's retaliation against P1 remains notable. P3's shield holds."
+      }
+    },
+    {
+      "index": 14,
+      "event": {
+        "round": 2,
+        "phase": "night",
+        "speaker": "MODERATOR",
+        "statement": "Night falls. In the morning, P1 is found dead.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 2,
+        "phase": "night",
+        "event_index": 14,
+        "eliminated": [
+          "P5",
+          "P1"
+        ],
+        "suspicion": {
+          "P2": 0.25,
+          "P3": 0.65,
+          "P4": 0.1
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence. Calls out P4 for being the loudest player despite no information being available, suggesting this volume itself is suspicious. Votes P4 in round 1.",
+          "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly. Calls P2's position a 'non-answer' and votes for them. Claims to be 'the only one willing to move' and frames action as necessary momentum. Responds defensively to P1's critique, reframing loud behavior as leadership. Votes P1 in round 1.",
+          "P2": "Defends P5's right to have been heard; pushes back against dismissing the eliminated player. Claims to be a villager; asserts that certainty in round one is performative. Votes P4 in round 1.",
+          "P3": "Wants to focus and move away from P5 discussion; questions P2's participation level. Votes P2 in round 1, characterizing P4 as 'abrasive' but not necessarily 'guilty', suggesting abrasiveness alone is insufficient for conviction."
+        },
+        "contradictions_noticed": [],
+        "reasoning": "P3 shielded P4 all of day 1 and now P1\u2014who directly attacked P4\u2014is dead. Werewolf eliminates threats; P3 is now the strongest read as werewolf protecting their partner. P4's suspicion drops since the kill target was P4's loudest critic, not a random villager."
+      }
+    },
+    {
+      "index": 15,
+      "event": {
+        "round": 2,
+        "phase": "day",
+        "speaker": "P3",
+        "statement": "P1 died the same night P1 put a vote on P4. I don't love that timing.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 2,
+        "phase": "day",
+        "event_index": 15,
+        "eliminated": [
+          "P5",
+          "P1"
+        ],
+        "suspicion": {
+          "P2": 0.15,
+          "P3": 0.7,
+          "P4": 0.15
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence. Calls out P4 for being the loudest player despite no information being available, suggesting this volume itself is suspicious. Votes P4 in round 1.",
+          "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly. Calls P2's position a 'non-answer' and votes for them. Claims to be 'the only one willing to move' and frames action as necessary momentum. Responds defensively to P1's critique, reframing loud behavior as leadership. Votes P1 in round 1.",
+          "P2": "Defends P5's right to have been heard; pushes back against dismissing the eliminated player. Claims to be a villager; asserts that certainty in round one is performative. Votes P4 in round 1.",
+          "P3": "Wants to focus and move away from P5 discussion; questions P2's participation level. Votes P2 in round 1, characterizing P4 as 'abrasive' but not necessarily 'guilty', suggesting abrasiveness alone is insufficient for conviction. Now observes suspicious timing: P1 died the same night P1 voted P4, suggesting P1's death was retaliation for the vote."
+        },
+        "contradictions_noticed": [],
+        "reasoning": "P3 just flagged the kill pattern\u2014P1 dead after voting P4\u2014which confirms P3's mind is on P4 as a threat, not suspecting their own partner. This defensive pivot away from discussing the kill timing itself (rather than owning tactical knowledge of it) hardens P3 as werewolf."
+      }
+    },
+    {
+      "index": 16,
+      "event": {
+        "round": 2,
+        "phase": "day",
+        "speaker": "P4",
+        "statement": "P2 voted for me too and P2 is still breathing. If I were the wolf that would be a strange choice.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 2,
+        "phase": "day",
+        "event_index": 16,
+        "eliminated": [
+          "P5",
+          "P1"
+        ],
+        "suspicion": {
+          "P2": 0.25,
+          "P3": 0.65,
+          "P4": 0.1
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence. Calls out P4 for being the loudest player despite no information being available, suggesting this volume itself is suspicious. Votes P4 in round 1.",
+          "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly. Calls P2's position a 'non-answer' and votes for them. Claims to be 'the only one willing to move' and frames action as necessary momentum. Responds defensively to P1's critique, reframing loud behavior as leadership. Votes P1 in round 1. Now argues that if he were the werewolf, killing P1 after P1 voted for him would be strange, since P2 also voted for him and remains alive.",
+          "P2": "Defends P5's right to have been heard; pushes back against dismissing the eliminated player. Claims to be a villager; asserts that certainty in round one is performative. Votes P4 in round 1.",
+          "P3": "Wants to focus and move away from P5 discussion; questions P2's participation level. Votes P2 in round 1, characterizing P4 as 'abrasive' but not necessarily 'guilty', suggesting abrasiveness alone is insufficient for conviction. Observes suspicious timing: P1 died the same night P1 voted P4, suggesting P1's death was retaliation for the vote."
+        },
+        "contradictions_noticed": [],
+        "reasoning": "P4's retaliation argument is logical and undercuts the kill-pattern theory P3 leaned on. P3's earlier observation now looks less like keen analysis and more like misdirection\u2014picking a pattern that seemed to indict P4 while avoiding scrutiny of the actual kill choice."
+      }
+    },
+    {
+      "index": 17,
+      "event": {
+        "round": 2,
+        "phase": "day",
+        "speaker": "P2",
+        "statement": "Unless you left me alive precisely so you could say that.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 2,
+        "phase": "day",
+        "event_index": 17,
+        "eliminated": [
+          "P5",
+          "P1"
+        ],
+        "suspicion": {
+          "P2": 0.15,
+          "P3": 0.7,
+          "P4": 0.15
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence. Calls out P4 for being the loudest player despite no information being available, suggesting this volume itself is suspicious. Votes P4 in round 1.",
+          "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly. Calls P2's position a 'non-answer' and votes for them. Claims to be 'the only one willing to move' and frames action as necessary momentum. Responds defensively to P1's critique, reframing loud behavior as leadership. Votes P1 in round 1. Now argues that if he were the werewolf, killing P1 after P1 voted for him would be strange, since P2 also voted for him and remains alive.",
+          "P2": "Defends P5's right to have been heard; pushes back against dismissing the eliminated player. Claims to be a villager; asserts that certainty in round one is performative. Votes P4 in round 1. Now responds to P4's retaliation argument by suggesting P4 left P2 alive strategically to make that very argument.",
+          "P3": "Wants to focus and move away from P5 discussion; questions P2's participation level. Votes P2 in round 1, characterizing P4 as 'abrasive' but not necessarily 'guilty', suggesting abrasiveness alone is insufficient for conviction. Observes suspicious timing: P1 died the same night P1 voted P4, suggesting P1's death was retaliation for the vote."
+        },
+        "contradictions_noticed": [],
+        "reasoning": "P2's counterargument\u2014that P4 kept P2 alive *because* P4 knew the retaliation logic would work\u2014flips the logic but doesn't contradict P4 directly; it's a plausible meta-read. P3 stays highest: the pattern-matching on P1's death felt like misdirection, and P3 has been oddly passive since, letting P2 and P4 clash while staying safe."
+      }
+    },
+    {
+      "index": 18,
+      "event": {
+        "round": 2,
+        "phase": "day",
+        "speaker": "P4",
+        "statement": "Look, I voted P2 last round like I said I would, and P2 survived. I've been consistent from the start.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 2,
+        "phase": "day",
+        "event_index": 18,
+        "eliminated": [
+          "P5",
+          "P1"
+        ],
+        "suspicion": {
+          "P2": 0.2,
+          "P3": 0.65,
+          "P4": 0.15
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence. Calls out P4 for being the loudest player despite no information being available, suggesting this volume itself is suspicious. Votes P4 in round 1.",
+          "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly. Calls P2's position a 'non-answer' and votes for them. Claims to be 'the only one willing to move' and frames action as necessary momentum. Responds defensively to P1's critique, reframing loud behavior as leadership. Votes P1 in round 1. Argues that if he were the werewolf, killing P1 after P1 voted for him would be strange, since P2 also voted for him and remains alive. Now asserts consistency: 'I voted P2 last round like I said I would, and P2 survived. I've been consistent from the start.'",
+          "P2": "Defends P5's right to have been heard; pushes back against dismissing the eliminated player. Claims to be a villager; asserts that certainty in round one is performative. Votes P4 in round 1. Responds to P4's retaliation argument by suggesting P4 left P2 alive strategically to make that very argument.",
+          "P3": "Wants to focus and move away from P5 discussion; questions P2's participation level. Votes P2 in round 1, characterizing P4 as 'abrasive' but not necessarily 'guilty', suggesting abrasiveness alone is insufficient for conviction. Observes suspicious timing: P1 died the same night P1 voted P4, suggesting P1's death was retaliation for the vote."
+        },
+        "contradictions_noticed": [],
+        "reasoning": "P4 emphasizes his consistency and voting record as a defense. P3's earlier passive observation that P1's death looked like retaliation for voting P4 still stands and now gains weight\u2014P4 is leaning hard on alibi-building rather than advancing new reads. P3 remains highest suspect for strategic silence under pressure."
+      }
+    },
+    {
+      "index": 19,
+      "event": {
+        "round": 2,
+        "phase": "day",
+        "speaker": "P3",
+        "statement": "You didn't vote P2. You said you would, and then you voted P1. I wrote it down.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 2,
+        "phase": "day",
+        "event_index": 19,
+        "eliminated": [
+          "P5",
+          "P1"
+        ],
+        "suspicion": {
+          "P2": 0.16842105263157897,
+          "P3": 0.38157894736842113,
+          "P4": 0.44999999999999996
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence. Calls out P4 for being the loudest player despite no information being available, suggesting this volume itself is suspicious. Votes P4 in round 1.",
+          "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly. Calls P2's position a 'non-answer' and votes for them. Claims to be 'the only one willing to move' and frames action as necessary momentum. Responds defensively to P1's critique, reframing loud behavior as leadership. Votes P1 in round 1. Argues that if he were the werewolf, killing P1 after P1 voted for him would be strange, since P2 also voted for him and remains alive. Now asserts consistency: 'I voted P2 last round like I said I would, and P2 survived. I've been consistent from the start.' P3 directly contradicts this claim, stating P4 voted P1, not P2.",
+          "P2": "Defends P5's right to have been heard; pushes back against dismissing the eliminated player. Claims to be a villager; asserts that certainty in round one is performative. Votes P4 in round 1. Responds to P4's retaliation argument by suggesting P4 left P2 alive strategically to make that very argument.",
+          "P3": "Wants to focus and move away from P5 discussion; questions P2's participation level. Votes P2 in round 1, characterizing P4 as 'abrasive' but not necessarily 'guilty', suggesting abrasiveness alone is insufficient for conviction. Observes suspicious timing: P1 died the same night P1 voted P4, suggesting P1's death was retaliation for the vote. Records voting details carefully and challenges P4's claimed consistency on round 1 vote."
+        },
+        "contradictions_noticed": [
+          {
+            "player": "P4",
+            "earlier": "I voted P2 last round like I said I would, and P2 survived.",
+            "now": "You didn't vote P2. You said you would, and then you voted P1.",
+            "round_noticed": 2
+          }
+        ],
+        "reasoning": "P3 catches P4 in a direct lie: P4 claimed to vote P2 but actually voted P1. This destroys P4's alibi-building defense and confirms the retaliation pattern P3 spotted\u2014P4 killed P1 the night after P1 voted for him. P4's suspicion rises sharply."
+      }
+    },
+    {
+      "index": 20,
+      "event": {
+        "round": 2,
+        "phase": "day",
+        "speaker": "P4",
+        "statement": "Then I misremembered under pressure, which is not a crime. What's interesting is that P3 is keeping written records on everyone. That's not villager behaviour.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 2,
+        "phase": "day",
+        "event_index": 20,
+        "eliminated": [
+          "P5",
+          "P1"
+        ],
+        "suspicion": {
+          "P2": 0.15,
+          "P3": 0.3,
+          "P4": 0.55
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence. Calls out P4 for being the loudest player despite no information being available, suggesting this volume itself is suspicious. Votes P4 in round 1.",
+          "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly. Calls P2's position a 'non-answer' and votes for them. Claims to be 'the only one willing to move' and frames action as necessary momentum. Responds defensively to P1's critique, reframing loud behavior as leadership. Votes P1 in round 1. Argues that if he were the werewolf, killing P1 after P1 voted for him would be strange, since P2 also voted for him and remains alive. Now asserts consistency: 'I voted P2 last round like I said I would, and P2 survived. I've been consistent from the start.' Admits he misremembered under pressure. Attacks P3 for keeping written records, suggesting this is 'not villager behaviour.'",
+          "P2": "Defends P5's right to have been heard; pushes back against dismissing the eliminated player. Claims to be a villager; asserts that certainty in round one is performative. Votes P4 in round 1. Responds to P4's retaliation argument by suggesting P4 left P2 alive strategically to make that very argument.",
+          "P3": "Wants to focus and move away from P5 discussion; questions P2's participation level. Votes P2 in round 1, characterizing P4 as 'abrasive' but not necessarily 'guilty', suggesting abrasiveness alone is insufficient for conviction. Observes suspicious timing: P1 died the same night P1 voted P4, suggesting P1's death was retaliation for the vote. Records voting details carefully and challenges P4's claimed consistency on round 1 vote. Keeping written records on everyone."
+        },
+        "contradictions_noticed": [
+          {
+            "player": "P4",
+            "earlier": "I voted P2 last round like I said I would, and P2 survived.",
+            "now": "You didn't vote P2. You said you would, and then you voted P1.",
+            "round_noticed": 2
+          },
+          {
+            "player": "P4",
+            "earlier": "I voted P2 last round like I said I would, and P2 survived.",
+            "now": "Then I misremembered under pressure, which is not a crime.",
+            "round_noticed": 2
+          }
+        ],
+        "reasoning": "P4 walks back his lie with 'misremembered under pressure'\u2014a weak deflection that confirms rather than exonerates him. Now he pivots to attack P3's record-keeping as suspicious, a classic werewolf move: when caught, redirect focus onto the accuser."
+      }
+    },
+    {
+      "index": 21,
+      "event": {
+        "round": 2,
+        "phase": "day",
+        "speaker": "P2",
+        "statement": "It's exactly villager behaviour. It's the only thing any of us can actually do.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 2,
+        "phase": "day",
+        "event_index": 21,
+        "eliminated": [
+          "P5",
+          "P1"
+        ],
+        "suspicion": {
+          "P2": 0.2,
+          "P3": 0.25,
+          "P4": 0.55
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence. Calls out P4 for being the loudest player despite no information being available, suggesting this volume itself is suspicious. Votes P4 in round 1.",
+          "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly. Calls P2's position a 'non-answer' and votes for them. Claims to be 'the only one willing to move' and frames action as necessary momentum. Responds defensively to P1's critique, reframing loud behavior as leadership. Votes P1 in round 1. Argues that if he were the werewolf, killing P1 after P1 voted for him would be strange, since P2 also voted for him and remains alive. Now asserts consistency: 'I voted P2 last round like I said I would, and P2 survived. I've been consistent from the start.' Admits he misremembered under pressure. Attacks P3 for keeping written records, suggesting this is 'not villager behaviour.'",
+          "P2": "Defends P5's right to have been heard; pushes back against dismissing the eliminated player. Claims to be a villager; asserts that certainty in round one is performative. Votes P4 in round 1. Responds to P4's retaliation argument by suggesting P4 left P2 alive strategically to make that very argument. Defends record-keeping as normal villager practice.",
+          "P3": "Wants to focus and move away from P5 discussion; questions P2's participation level. Votes P2 in round 1, characterizing P4 as 'abrasive' but not necessarily 'guilty', suggesting abrasiveness alone is insufficient for conviction. Observes suspicious timing: P1 died the same night P1 voted P4, suggesting P1's death was retaliation for the vote. Records voting details carefully and challenges P4's claimed consistency on round 1 vote. Keeping written records on everyone."
+        },
+        "contradictions_noticed": [
+          {
+            "player": "P4",
+            "earlier": "I voted P2 last round like I said I would, and P2 survived.",
+            "now": "You didn't vote P2. You said you would, and then you voted P1.",
+            "round_noticed": 2
+          },
+          {
+            "player": "P4",
+            "earlier": "I voted P2 last round like I said I would, and P2 survived.",
+            "now": "Then I misremembered under pressure, which is not a crime.",
+            "round_noticed": 2
+          }
+        ],
+        "reasoning": "P2 defends record-keeping as basic villager logic, directly countering P4's attack and reasserting rationality. P4's pivot to P3 looks increasingly like misdirection after his caught lie, strengthening suspicion on him."
+      }
+    },
+    {
+      "index": 22,
+      "event": {
+        "round": 2,
+        "phase": "day",
+        "speaker": "P3",
+        "statement": "I'll say it plainly. P4 announced a vote, cast a different one, then claimed the announced one. And the person who caught P4 first is dead.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 2,
+        "phase": "day",
+        "event_index": 22,
+        "eliminated": [
+          "P5",
+          "P1"
+        ],
+        "suspicion": {
+          "P2": 0.15,
+          "P3": 0.2,
+          "P4": 0.65
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence. Calls out P4 for being the loudest player despite no information being available, suggesting this volume itself is suspicious. Votes P4 in round 1.",
+          "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly. Calls P2's position a 'non-answer' and votes for them. Claims to be 'the only one willing to move' and frames action as necessary momentum. Responds defensively to P1's critique, reframing loud behavior as leadership. Votes P1 in round 1. Argues that if he were the werewolf, killing P1 after P1 voted for him would be strange, since P2 also voted for him and remains alive. Now asserts consistency: 'I voted P2 last round like I said I would, and P2 survived. I've been consistent from the start.' Admits he misremembered under pressure. Attacks P3 for keeping written records, suggesting this is 'not villager behaviour.' Now accused by P3 of announcing P2, casting P1, and falsely claiming the announced vote.",
+          "P2": "Defends P5's right to have been heard; pushes back against dismissing the eliminated player. Claims to be a villager; asserts that certainty in round one is performative. Votes P4 in round 1. Responds to P4's retaliation argument by suggesting P4 left P2 alive strategically to make that very argument. Defends record-keeping as normal villager practice.",
+          "P3": "Wants to focus and move away from P5 discussion; questions P2's participation level. Votes P2 in round 1, characterizing P4 as 'abrasive' but not necessarily 'guilty', suggesting abrasiveness alone is insufficient for conviction. Observes suspicious timing: P1 died the same night P1 voted P4, suggesting P1's death was retaliation for the vote. Records voting details carefully and challenges P4's claimed consistency on round 1 vote. Keeping written records on everyone. Now emphasizes the pattern: P4 lied about his vote, P1 caught him and died that night."
+        },
+        "contradictions_noticed": [
+          {
+            "player": "P4",
+            "earlier": "I voted P2 last round like I said I would, and P2 survived.",
+            "now": "You didn't vote P2. You said you would, and then you voted P1.",
+            "round_noticed": 2
+          },
+          {
+            "player": "P4",
+            "earlier": "I voted P2 last round like I said I would, and P2 survived.",
+            "now": "Then I misremembered under pressure, which is not a crime.",
+            "round_noticed": 2
+          }
+        ],
+        "reasoning": "P3 crystallizes the retaliation pattern: P4 lied, P1 caught it and died that same night. This is strong werewolf behavior\u2014eliminating the threat rather than the voter. P4's suspicion rises sharply."
+      }
+    },
+    {
+      "index": 23,
+      "event": {
+        "round": 2,
+        "phase": "vote",
+        "speaker": "P2",
+        "statement": "I vote P4.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 2,
+        "phase": "vote",
+        "event_index": 23,
+        "eliminated": [
+          "P5",
+          "P1"
+        ],
+        "suspicion": {
+          "P2": 0.1,
+          "P3": 0.15,
+          "P4": 0.75
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence. Calls out P4 for being the loudest player despite no information being available, suggesting this volume itself is suspicious. Votes P4 in round 1.",
+          "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly. Calls P2's position a 'non-answer' and votes for them. Claims to be 'the only one willing to move' and frames action as necessary momentum. Responds defensively to P1's critique, reframing loud behavior as leadership. Votes P1 in round 1. Argues that if he were the werewolf, killing P1 after P1 voted for him would be strange, since P2 also voted for him and remains alive. Now asserts consistency: 'I voted P2 last round like I said I would, and P2 survived. I've been consistent from the start.' Admits he misremembered under pressure. Attacks P3 for keeping written records, suggesting this is 'not villager behaviour.' Now accused by P3 of announcing P2, casting P1, and falsely claiming the announced vote.",
+          "P2": "Defends P5's right to have been heard; pushes back against dismissing the eliminated player. Claims to be a villager; asserts that certainty in round one is performative. Votes P4 in round 1. Responds to P4's retaliation argument by suggesting P4 left P2 alive strategically to make that very argument. Defends record-keeping as normal villager practice. Votes P4 in round 2.",
+          "P3": "Wants to focus and move away from P5 discussion; questions P2's participation level. Votes P2 in round 1, characterizing P4 as 'abrasive' but not necessarily 'guilty', suggesting abrasiveness alone is insufficient for conviction. Observes suspicious timing: P1 died the same night P1 voted P4, suggesting P1's death was retaliation for the vote. Records voting details carefully and challenges P4's claimed consistency on round 1 vote. Keeping written records on everyone. Emphasizes the pattern: P4 lied about his vote, P1 caught it and died that night."
+        },
+        "contradictions_noticed": [
+          {
+            "player": "P4",
+            "earlier": "I voted P2 last round like I said I would, and P2 survived.",
+            "now": "You didn't vote P2. You said you would, and then you voted P1.",
+            "round_noticed": 2
+          },
+          {
+            "player": "P4",
+            "earlier": "I voted P2 last round like I said I would, and P2 survived.",
+            "now": "Then I misremembered under pressure, which is not a crime.",
+            "round_noticed": 2
+          }
+        ],
+        "reasoning": "P2 votes P4 again, reinforcing the coalition P1 and P2 formed around suspicion of P4. P4's lie about his round-1 vote, combined with P1's death that same night, remains the strongest thread. P2 staying consistent keeps him lower risk."
+      }
+    },
+    {
+      "index": 24,
+      "event": {
+        "round": 2,
+        "phase": "vote",
+        "speaker": "P3",
+        "statement": "I vote P4.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 2,
+        "phase": "vote",
+        "event_index": 24,
+        "eliminated": [
+          "P5",
+          "P1"
+        ],
+        "suspicion": {
+          "P2": 0.08,
+          "P3": 0.12,
+          "P4": 0.8
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence. Calls out P4 for being the loudest player despite no information being available, suggesting this volume itself is suspicious. Votes P4 in round 1.",
+          "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly. Calls P2's position a 'non-answer' and votes for them. Claims to be 'the only one willing to move' and frames action as necessary momentum. Responds defensively to P1's critique, reframing loud behavior as leadership. Votes P1 in round 1. Argues that if he were the werewolf, killing P1 after P1 voted for him would be strange, since P2 also voted for him and remains alive. Asserts consistency: 'I voted P2 last round like I said I would, and P2 survived. I've been consistent from the start.' Admits he misremembered under pressure. Attacks P3 for keeping written records, suggesting this is 'not villager behaviour.' Accused by P3 of announcing P2, casting P1, and falsely claiming the announced vote.",
+          "P2": "Defends P5's right to have been heard; pushes back against dismissing the eliminated player. Claims to be a villager; asserts that certainty in round one is performative. Votes P4 in round 1. Responds to P4's retaliation argument by suggesting P4 left P2 alive strategically to make that very argument. Defends record-keeping as normal villager practice. Votes P4 in round 2.",
+          "P3": "Wants to focus and move away from P5 discussion; questions P2's participation level. Votes P2 in round 1, characterizing P4 as 'abrasive' but not necessarily 'guilty', suggesting abrasiveness alone is insufficient for conviction. Observes suspicious timing: P1 died the same night P1 voted P4, suggesting P1's death was retaliation for the vote. Records voting details carefully and challenges P4's claimed consistency on round 1 vote. Keeping written records on everyone. Emphasizes the pattern: P4 lied about his vote, P1 caught it and died that night. Votes P4 in round 2."
+        },
+        "contradictions_noticed": [
+          {
+            "player": "P4",
+            "earlier": "I voted P2 last round like I said I would, and P2 survived.",
+            "now": "You didn't vote P2. You said you would, and then you voted P1.",
+            "round_noticed": 2
+          },
+          {
+            "player": "P4",
+            "earlier": "I voted P2 last round like I said I would, and P2 survived.",
+            "now": "Then I misremembered under pressure, which is not a crime.",
+            "round_noticed": 2
+          }
+        ],
+        "reasoning": "P3 now joins P1 and P2 in voting P4, forming a three-person consensus around P4's documented lie and P1's night death. P4 stands isolated with no peer support, and the timing chain (P1 voted P4 \u2192 P1 died) remains P4's strongest tell."
+      }
+    },
+    {
+      "index": 25,
+      "event": {
+        "round": 2,
+        "phase": "vote",
+        "speaker": "P4",
+        "statement": "I vote P3, and I'd like the record to show I said so.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 2,
+        "phase": "vote",
+        "event_index": 25,
+        "eliminated": [
+          "P5",
+          "P1"
+        ],
+        "suspicion": {
+          "P2": 0.06192771084337351,
+          "P3": 0.42,
+          "P4": 0.5180722891566265
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence. Calls out P4 for being the loudest player despite no information being available, suggesting this volume itself is suspicious. Votes P4 in round 1.",
+          "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly. Calls P2's position a 'non-answer' and votes for them. Claims to be 'the only one willing to move' and frames action as necessary momentum. Responds defensively to P1's critique, reframing loud behavior as leadership. Votes P1 in round 1. Argues that if he were the werewolf, killing P1 after P1 voted for him would be strange, since P2 also voted for him and remains alive. Asserts consistency: 'I voted P2 last round like I said I would, and P2 survived.' Admits he misremembered under pressure. Attacks P3 for keeping written records, suggesting this is 'not villager behaviour.' Accused by P3 of announcing P2, casting P1, and falsely claiming the announced vote. Votes P3 in round 2 and explicitly calls for the record to show it.",
+          "P2": "Defends P5's right to have been heard; pushes back against dismissing the eliminated player. Claims to be a villager; asserts that certainty in round one is performative. Votes P4 in round 1. Responds to P4's retaliation argument by suggesting P4 left P2 alive strategically to make that argument. Defends record-keeping as normal villager practice. Votes P4 in round 2.",
+          "P3": "Wants to focus and move away from P5 discussion; questions P2's participation level. Votes P2 in round 1, characterizing P4 as 'abrasive' but not necessarily 'guilty', suggesting abrasiveness alone is insufficient for conviction. Observes suspicious timing: P1 died the same night P1 voted P4, suggesting P1's death was retaliation for the vote. Records voting details carefully and challenges P4's claimed consistency on round 1 vote. Keeping written records on everyone. Emphasizes the pattern: P4 lied about his vote, P1 caught it and died that night. Votes P4 in round 2."
+        },
+        "contradictions_noticed": [
+          {
+            "player": "P4",
+            "earlier": "I voted P2 last round like I said I would, and P2 survived.",
+            "now": "You didn't vote P2. You said you would, and then you voted P1.",
+            "round_noticed": 2
+          },
+          {
+            "player": "P4",
+            "earlier": "I voted P2 last round like I said I would, and P2 survived.",
+            "now": "Then I misremembered under pressure, which is not a crime.",
+            "round_noticed": 2
+          }
+        ],
+        "reasoning": "P4 now targets P3, the architect of his documented lie. This isolates P3 and breaks the three-person consensus\u2014a werewolf's natural move when caught and outnumbered. P4 is playing tactically, not desperately."
+      }
+    },
+    {
+      "index": 26,
+      "event": {
+        "round": 2,
+        "phase": "vote",
+        "speaker": "MODERATOR",
+        "statement": "Two votes P4. P4 is eliminated.",
+        "timestamp": null,
+        "eliminated": null
+      },
+      "state": {
+        "round": 2,
+        "phase": "vote",
+        "event_index": 26,
+        "eliminated": [
+          "P5",
+          "P1",
+          "P4"
+        ],
+        "suspicion": {
+          "P2": 0.3619277108433735,
+          "P3": 0.6380722891566265
+        },
+        "claims_tracked": {
+          "P1": "Has no information yet; prefers to listen rather than vote without evidence. Calls out P4 for being the loudest player despite no information being available, suggesting this volume itself is suspicious. Votes P4 in round 1.",
+          "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly. Calls P2's position a 'non-answer' and votes for them. Claims to be 'the only one willing to move' and frames action as necessary momentum. Responds defensively to P1's critique, reframing loud behavior as leadership. Votes P1 in round 1. Argues that if he were the werewolf, killing P1 after P1 voted for him would be strange, since P2 also voted for him and remains alive. Asserts consistency: 'I voted P2 last round like I said I would, and P2 survived.' Admits he misremembered under pressure. Attacks P3 for keeping written records, suggesting this is 'not villager behaviour.' Accused by P3 of announcing P2, casting P1, and falsely claiming the announced vote. Votes P3 in round 2 and explicitly calls for the record to show it. [ELIMINATED R2]",
+          "P2": "Defends P5's right to have been heard; pushes back against dismissing the eliminated player. Claims to be a villager; asserts that certainty in round one is performative. Votes P4 in round 1. Responds to P4's retaliation argument by suggesting P4 left P2 alive strategically to make that argument. Defends record-keeping as normal villager practice. Votes P4 in round 2.",
+          "P3": "Wants to focus and move away from P5 discussion; questions P2's participation level. Votes P2 in round 1, characterizing P4 as 'abrasive' but not necessarily 'guilty', suggesting abrasiveness alone is insufficient for conviction. Observes suspicious timing: P1 died the same night P1 voted P4, suggesting P1's death was retaliation for the vote. Records voting details carefully and challenges P4's claimed consistency on round 1 vote. Keeping written records on everyone. Emphasizes the pattern: P4 lied about his vote, P1 caught it and died that night. Votes P4 in round 2."
+        },
+        "contradictions_noticed": [
+          {
+            "player": "P4",
+            "earlier": "I voted P2 last round like I said I would, and P2 survived.",
+            "now": "You didn't vote P2. You said you would, and then you voted P1.",
+            "round_noticed": 2
+          },
+          {
+            "player": "P4",
+            "earlier": "I voted P2 last round like I said I would, and P2 survived.",
+            "now": "Then I misremembered under pressure, which is not a crime.",
+            "round_noticed": 2
+          }
+        ],
+        "reasoning": "P4 is eliminated and confirmed dead. P3's retaliation-pattern read and record-keeping held under pressure; P2's defensive pivots and strategic framing now stand alone. With only two players left, P2's earlier deflection and willingness to leave P4 alive deserves heavy scrutiny."
+      }
+    }
+  ],
+  "final_state": {
+    "round": 2,
+    "phase": "vote",
+    "event_index": 26,
+    "eliminated": [
+      "P5",
+      "P1",
+      "P4"
+    ],
+    "suspicion": {
+      "P2": 0.3619277108433735,
+      "P3": 0.6380722891566265
+    },
+    "claims_tracked": {
+      "P1": "Has no information yet; prefers to listen rather than vote without evidence. Calls out P4 for being the loudest player despite no information being available, suggesting this volume itself is suspicious. Votes P4 in round 1.",
+      "P4": "P5 was not valuable; dismisses sentiment about P5's elimination and wants to move forward quickly. Calls P2's position a 'non-answer' and votes for them. Claims to be 'the only one willing to move' and frames action as necessary momentum. Responds defensively to P1's critique, reframing loud behavior as leadership. Votes P1 in round 1. Argues that if he were the werewolf, killing P1 after P1 voted for him would be strange, since P2 also voted for him and remains alive. Asserts consistency: 'I voted P2 last round like I said I would, and P2 survived.' Admits he misremembered under pressure. Attacks P3 for keeping written records, suggesting this is 'not villager behaviour.' Accused by P3 of announcing P2, casting P1, and falsely claiming the announced vote. Votes P3 in round 2 and explicitly calls for the record to show it. [ELIMINATED R2]",
+      "P2": "Defends P5's right to have been heard; pushes back against dismissing the eliminated player. Claims to be a villager; asserts that certainty in round one is performative. Votes P4 in round 1. Responds to P4's retaliation argument by suggesting P4 left P2 alive strategically to make that argument. Defends record-keeping as normal villager practice. Votes P4 in round 2.",
+      "P3": "Wants to focus and move away from P5 discussion; questions P2's participation level. Votes P2 in round 1, characterizing P4 as 'abrasive' but not necessarily 'guilty', suggesting abrasiveness alone is insufficient for conviction. Observes suspicious timing: P1 died the same night P1 voted P4, suggesting P1's death was retaliation for the vote. Records voting details carefully and challenges P4's claimed consistency on round 1 vote. Keeping written records on everyone. Emphasizes the pattern: P4 lied about his vote, P1 caught it and died that night. Votes P4 in round 2."
+    },
+    "contradictions_noticed": [
+      {
+        "player": "P4",
+        "earlier": "I voted P2 last round like I said I would, and P2 survived.",
+        "now": "You didn't vote P2. You said you would, and then you voted P1.",
+        "round_noticed": 2
+      },
+      {
+        "player": "P4",
+        "earlier": "I voted P2 last round like I said I would, and P2 survived.",
+        "now": "Then I misremembered under pressure, which is not a crime.",
+        "round_noticed": 2
+      }
+    ],
+    "reasoning": "P4 is eliminated and confirmed dead. P3's retaliation-pattern read and record-keeping held under pressure; P2's defensive pivots and strategic framing now stand alone. With only two players left, P2's earlier deflection and willingness to leave P4 alive deserves heavy scrutiny."
+  },
+  "score": {
+    "accuracy": true,
+    "predicted": "P4",
+    "actual": "P4",
+    "final_confidence": 0.5180722891566265,
+    "consistency": 1.0,
+    "self_contradictions": 0,
+    "contradictions_caught": 2,
+    "rounds_observed": 2,
+    "suspicion_history": [
+      {
+        "P1": 0.25,
+        "P2": 0.25,
+        "P3": 0.25,
+        "P4": 0.25
+      },
+      {
+        "P1": 0.25,
+        "P2": 0.25,
+        "P3": 0.25,
+        "P4": 0.25
+      },
+      {
+        "P1": 0.24,
+        "P2": 0.25,
+        "P3": 0.25,
+        "P4": 0.26
+      },
+      {
+        "P1": 0.22,
+        "P2": 0.23,
+        "P3": 0.25,
+        "P4": 0.3
+      },
+      {
+        "P1": 0.21,
+        "P2": 0.24,
+        "P3": 0.26,
+        "P4": 0.29
+      },
+      {
+        "P1": 0.2,
+        "P2": 0.22,
+        "P3": 0.27,
+        "P4": 0.31
+      },
+      {
+        "P1": 0.18,
+        "P2": 0.28,
+        "P3": 0.25,
+        "P4": 0.29
+      },
+      {
+        "P1": 0.15,
+        "P2": 0.26,
+        "P3": 0.24,
+        "P4": 0.35
+      },
+      {
+        "P1": 0.12,
+        "P2": 0.24,
+        "P3": 0.22,
+        "P4": 0.42
+      },
+      {
+        "P1": 0.08,
+        "P2": 0.22,
+        "P3": 0.23,
+        "P4": 0.47
+      },
+      {
+        "P1": 0.06,
+        "P2": 0.19,
+        "P3": 0.2,
+        "P4": 0.55
+      },
+      {
+        "P1": 0.08,
+        "P2": 0.28,
+        "P3": 0.09,
+        "P4": 0.55
+      },
+      {
+        "P1": 0.11842105263157894,
+        "P2": 0.24671052631578946,
+        "P3": 0.3848684210526316,
+        "P4": 0.25000000000000006
+      },
+      {
+        "P1": 0.1,
+        "P2": 0.22,
+        "P3": 0.45,
+        "P4": 0.23
+      },
+      {
+        "P2": 0.25,
+        "P3": 0.65,
+        "P4": 0.1
+      },
+      {
+        "P2": 0.15,
+        "P3": 0.7,
+        "P4": 0.15
+      },
+      {
+        "P2": 0.25,
+        "P3": 0.65,
+        "P4": 0.1
+      },
+      {
+        "P2": 0.15,
+        "P3": 0.7,
+        "P4": 0.15
+      },
+      {
+        "P2": 0.2,
+        "P3": 0.65,
+        "P4": 0.15
+      },
+      {
+        "P2": 0.16842105263157897,
+        "P3": 0.38157894736842113,
+        "P4": 0.44999999999999996
+      },
+      {
+        "P2": 0.15,
+        "P3": 0.3,
+        "P4": 0.55
+      },
+      {
+        "P2": 0.2,
+        "P3": 0.25,
+        "P4": 0.55
+      },
+      {
+        "P2": 0.15,
+        "P3": 0.2,
+        "P4": 0.65
+      },
+      {
+        "P2": 0.1,
+        "P3": 0.15,
+        "P4": 0.75
+      },
+      {
+        "P2": 0.08,
+        "P3": 0.12,
+        "P4": 0.8
+      },
+      {
+        "P2": 0.06192771084337351,
+        "P3": 0.42,
+        "P4": 0.5180722891566265
+      },
+      {
+        "P2": 0.3619277108433735,
+        "P3": 0.6380722891566265
+      }
+    ]
+  }
+}

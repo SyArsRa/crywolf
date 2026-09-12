@@ -47,16 +47,34 @@ def _bars(state, roster: list[str], wolf: str | None) -> str:
 
 
 def _write_run(path, transcript, observer, score, completed: int) -> None:
-    """Dump a run to disk. `score` is None for a partial run that crashed or was
-    interrupted -- the UI can still replay whatever was reached."""
+    """Dump a run to disk in the same shape `state.Run.to_record` writes.
+
+    `score` is None for a partial run that crashed or was interrupted.
+
+    `turns` is the key that matters: pairing each event with the *whole* state it
+    produced -- reasoning and contradictions included, not just the suspicion
+    numbers -- is what lets `feeder.py --replay` drive the UI from this file with
+    no model calls. Without it a replay shows moving bars and blank reasoning,
+    which is not a demo.
+    """
+    events = transcript.events[:completed]
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
         json.dumps(
             {
                 "complete": score is not None,
+                "live": True,
                 "events_observed": completed,
-                "events": [e.model_dump() for e in transcript.events[:completed]],
+                "events_expected": len(transcript.events),
+                "error": None,
+                "setup": transcript.setup.model_dump(),
+                "ground_truth": transcript.ground_truth,
+                "events": [e.model_dump() for e in events],
                 "history": observer.history,
+                "turns": [
+                    {"index": i, "event": event.model_dump(), "state": state.model_dump()}
+                    for i, (event, state) in enumerate(zip(events, observer.states))
+                ],
                 "final_state": observer.state.model_dump(),
                 "score": score.model_dump() if score else None,
             },
@@ -100,7 +118,11 @@ def main() -> int:
             if data.get("complete"):
                 print(f"{saved} is already a complete run. Delete it to start over.")
                 return 0
-            observer.restore(BeliefState.model_validate(data["final_state"]), data["history"])
+            observer.restore(
+                BeliefState.model_validate(data["final_state"]),
+                data["history"],
+                [BeliefState.model_validate(t["state"]) for t in data.get("turns", [])],
+            )
             start_at = data["events_observed"]
             print(f"Resuming from {saved} at event {start_at + 1} "
                   f"-- {start_at} events already observed, not re-spent.\n")
@@ -148,6 +170,8 @@ def main() -> int:
     print(f"accuracy           : {'HIT' if score.accuracy else 'MISS'}")
     print(f"consistency        : {score.consistency:.2f} "
           f"({score.self_contradictions} unexplained reversals)")
+    print(f"drift              : {score.lead_changes} lead changes, "
+          f"{score.events_off_verdict} events off the final verdict")
     print(f"contradictions caught among players: {score.contradictions_caught}")
 
     if args.out:

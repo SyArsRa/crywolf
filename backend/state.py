@@ -143,8 +143,22 @@ class Run:
             "history": self.history,
             "turns": [t.model_dump() for t in self.turns],
             "final_state": self.final_state.model_dump(),
-            "score": None,  # GET /score is a separate item
+            "score": self.score(),
         }
+
+    def score(self) -> Optional[dict]:
+        """Grade against ground truth, or None if nothing has been observed.
+
+        Imported lazily: `scoring` reaches `observer` reaches `llm`, and a replay
+        run is supposed to stay clear of that chain.
+        """
+        if not self.turns:
+            return None
+        from backend.scoring import grade
+
+        return grade(
+            self.final_state, self.history, self.events, self.transcript.ground_truth
+        ).model_dump()
 
     def write(self) -> Path:
         """Mirror the run to disk. Called after every turn: quota and time are

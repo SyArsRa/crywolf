@@ -4,6 +4,7 @@
     POST /event        push one line of the game, get the new belief state back
     POST /turn         push a pre-computed turn (replay only, no model calls)
     POST /game/end     close the run
+    GET  /score        accuracy + consistency against ground truth
     WS   /live         snapshot on connect, then one message per turn
     GET  /health       liveness + what run is open
 
@@ -11,11 +12,13 @@ The seam that matters is POST /event: the feeder on one side is entirely
 replaceable -- a real game feed, speech-to-text, a second transcript source --
 and nothing downstream of this endpoint would know the difference.
 
-GET /score is a separate work item and is deliberately not implemented here.
+The scoring seam is `scoring.grade`, which reads only the belief states -- so
+`GET /score` works for a replayed run exactly as it does for a live one.
 """
 
 from __future__ import annotations
 
+import asyncio
 import logging
 from typing import Optional
 
@@ -25,6 +28,7 @@ from pydantic import BaseModel
 
 from backend.hub import Hub
 from backend.schema import GameEvent, Transcript
+from backend.scoring import grade
 from backend.state import Run, Turn
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s  %(message)s", datefmt="%H:%M:%S")
@@ -35,6 +39,15 @@ hub = Hub()
 
 # One game at a time. A second /game/start replaces the first.
 RUN: Optional[Run] = None
+
+# The observer folds each event into a belief state it carries forward, so two
+# events being processed at once would interleave inside it and corrupt the
+# state -- and because each call takes seconds, the window is wide open. The
+# feeder is strictly sequential so this cannot happen today; the lock is here so
+# it stays impossible when a second client, a retry, or an impatient hand on
+# curl shows up. Ordering matters as much as safety: turn N must reach the
+# websocket before turn N+1.
+INGEST = asyncio.Lock()
 
 
 class StartRequest(BaseModel):
@@ -111,6 +124,11 @@ async def ingest_event(event: GameEvent) -> dict:
     if run.observer is None:
         raise HTTPException(status_code=409, detail="this run is a replay -- POST /turn instead")
 
+    async with INGEST:
+        return await _observe_locked(run, event)
+
+
+async def _observe_locked(run: Run, event: GameEvent) -> dict:
     try:
         # observe() is synchronous and does network I/O. Off the event loop it
         # goes, or the websocket stops updating for the duration of every call.
@@ -146,9 +164,31 @@ async def ingest_turn(turn: Turn) -> dict:
     if run.observer is not None:
         raise HTTPException(status_code=409, detail="this run is live -- POST /event instead")
 
-    stored = run.add_turn(turn.event, turn.state)
-    await hub.broadcast({"type": "turn", **stored.model_dump(mode="json")})
+    async with INGEST:
+        stored = run.add_turn(turn.event, turn.state)
+        await hub.broadcast({"type": "turn", **stored.model_dump(mode="json")})
     return {"ok": True, "index": stored.index}
+
+
+@app.get("/score")
+async def score() -> dict:
+    """Grade the run against ground truth.
+
+    Answerable mid-game as well as at the end -- the numbers just describe fewer
+    events. `complete` says which you're looking at, so the UI can show a live
+    "currently accusing X" and a final verdict with the same call.
+    """
+    run = _require_run()
+    if not run.turns:
+        raise HTTPException(status_code=409, detail="nothing observed yet")
+
+    result = grade(run.final_state, run.history, run.events, run.transcript.ground_truth)
+    return {
+        **result.model_dump(),
+        "complete": run.complete,
+        "events_observed": len(run.turns),
+        "events_expected": run.total_expected,
+    }
 
 
 @app.post("/game/end")
