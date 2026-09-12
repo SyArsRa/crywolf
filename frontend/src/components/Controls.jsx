@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
  * The feeder is still the real ingestion path -- this just asks the server to
  * run the same loop itself, so the demo needs one window instead of two.
  */
-export default function Controls({ run, playing, onChanged }) {
+export default function Controls({ playing, onChanged }) {
   const [games, setGames] = useState([]);
   const [game, setGame] = useState("");
   const [mode, setMode] = useState("replay");
@@ -85,9 +85,6 @@ export default function Controls({ run, playing, onChanged }) {
   if (playing) {
     return (
       <div className="controls playing">
-        <span className="controls-status">
-          playing · {run.turns.length} / {run.expected || "?"}
-        </span>
         <button key="stop" className="btn ghost" onClick={stop} disabled={busy}>
           Stop
         </button>
@@ -100,8 +97,7 @@ export default function Controls({ run, playing, onChanged }) {
       <select value={game} onChange={(e) => setGame(e.target.value)} disabled={busy}>
         {games.map((g) => (
           <option key={g.id} value={g.id}>
-            {g.label} · {g.players}p · {g.events} events
-            {g.kind === "recording" ? " · recorded" : ` · ${g.deceiver_role}`}
+            {g.label} · {g.players}p
           </option>
         ))}
       </select>

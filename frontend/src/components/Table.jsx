@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { initials, isModerator, lastTurn, verdict } from "../live.js";
+import { isModerator, lastTurn, verdict } from "../live.js";
+import Portrait from "./Portrait.jsx";
 
 const BUBBLE_MS = 7000;
 const SWEEP_MS = 1600;
@@ -19,7 +20,7 @@ function seatLayout(players) {
     // the right of the circle runs off the edge of the stage and gets clipped.
     // The tail still points at the seat.
     const align = x > 62 ? "right" : x < 38 ? "left" : "center";
-    return { player, x, y, side: "above", align };
+    return { player, index: i, x, y, side: "above", align };
   });
 }
 
@@ -33,8 +34,7 @@ function Seat({ seat, color, dead, speaking, suspicion, bubble }) {
         className="avatar"
         style={{ "--suspicion": Math.min(1, (suspicion ?? 0) * 2.2).toFixed(2) }}
       >
-        {initials(seat.player)}
-        <div className="tomb">✕</div>
+        <Portrait index={seat.index} />
       </div>
       <div className="name">{seat.player}</div>
       {bubble && <div className={`bubble ${seat.side} align-${seat.align}`}>{bubble}</div>}
@@ -86,8 +86,17 @@ export default function Table({ run, colors }) {
   const call = run.complete || run.error ? verdict(run) : null;
   const narration = event && isModerator(event.speaker) ? event.statement : null;
 
+  const alive = run.players.length - run.eliminated.length;
+
   return (
     <section className="stage" data-phase={phase ?? undefined}>
+      <div className="room-label">
+        <h2>The room</h2>
+        <span className="room-sub">
+          {alive} of {run.players.length || 0} in play
+        </span>
+      </div>
+
       <div className="sky">
         <div className="stars">
           {stars.map((s) => (

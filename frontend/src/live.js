@@ -22,16 +22,6 @@ export const NARRATORS = new Set([
 export const isModerator = (speaker) =>
   NARRATORS.has(String(speaker ?? "").toLowerCase());
 
-/** Initials for the avatar. "P4" stays "P4"; "Bailey" becomes "Ba" -- a real
- *  name doesn't fit in a 56px circle, and the full name sits under it anyway. */
-export function initials(name) {
-  const text = String(name ?? "");
-  if (text.length <= 2) return text;
-  const parts = text.split(/[\s_-]+/).filter(Boolean);
-  if (parts.length > 1) return (parts[0][0] + parts[1][0]).toUpperCase();
-  return text.slice(0, 2);
-}
-
 /** Seat colours. Mid-dark rather than pastel: these sit on a light background
  *  and have to carry white text inside an avatar and read as a 1.5px chart
  *  line. */

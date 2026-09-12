@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { lastTurn, seatColors, useLiveRun } from "./live.js";
+import { seatColors, useLiveRun } from "./live.js";
+import Header from "./components/Header.jsx";
 import Table from "./components/Table.jsx";
-import Panel from "./components/Panel.jsx";
+import CaseFile from "./components/CaseFile.jsx";
+import BeliefBoard from "./components/BeliefBoard.jsx";
 import Transcript from "./components/Transcript.jsx";
-import Controls from "./components/Controls.jsx";
+import Evidence from "./components/Evidence.jsx";
 
 export default function App() {
   const run = useLiveRun();
@@ -26,34 +28,19 @@ export default function App() {
     return () => clearInterval(timer);
   }, [refresh]);
 
-  const event = lastTurn(run)?.event;
-  const phase = event?.phase;
-
   return (
-    <>
-      <header className="hud">
-        <div className="brand">
-          Cry Wolf <span>observer</span>
-        </div>
-        <div className={`chip${phase ? ` phase-${phase}` : ""}`}>
-          {event ? `round ${event.round} · ${phase}` : "no run"}
-        </div>
-        <div className="chip">
-          {run.turns.length} / {run.expected || 0}
-        </div>
-        <div className="spacer" />
-        <Controls run={run} playing={playing} onChanged={refresh} />
-        <div className={`conn ${run.connected ? "live" : "down"}`}>
-          <span className="dot" />
-          <span>{run.connected ? "live" : "reconnecting…"}</span>
-        </div>
-      </header>
+    <div className="board-app">
+      <Header run={run} playing={playing} onChanged={refresh} />
 
-      <main>
-        <Transcript run={run} colors={colors} />
+      <main className="board">
         <Table run={run} colors={colors} />
-        <Panel run={run} colors={colors} />
+        <CaseFile run={run} colors={colors} />
+        <BeliefBoard run={run} colors={colors} />
+        <div className="ledger-row">
+          <Transcript run={run} colors={colors} />
+          <Evidence run={run} />
+        </div>
       </main>
-    </>
+    </div>
   );
 }

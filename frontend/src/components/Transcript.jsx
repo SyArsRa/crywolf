@@ -11,8 +11,13 @@ export default function Transcript({ run, colors }) {
   }, [run.turns.length]);
 
   return (
-    <section className="col transcript-col" ref={scroller}>
-      <h2>Transcript</h2>
+    <section className="card transcript-col" ref={scroller}>
+      <div className="transcript-head">
+        <h2>Transcript</h2>
+        <span className="transcript-count">
+          {run.turns.length} / {run.expected || 0}
+        </span>
+      </div>
       {!run.turns.length && (
         <p className="empty-hint">Nothing yet — pick a game and press Start.</p>
       )}
