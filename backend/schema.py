@@ -355,6 +355,14 @@ class Score(BaseModel):
     )
     self_contradictions: int
     contradictions_caught: int
+    running_accuracy: float = Field(
+        0.0,
+        description=(
+            "Across every event so far, the fraction whose top suspect really was "
+            "a liar. Derived here rather than in the client so a live scoreboard "
+            "never has to be handed `actual` to compute it."
+        ),
+    )
     rounds_observed: int
     committed_at: Optional[int] = Field(
         None,
