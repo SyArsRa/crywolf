@@ -7,6 +7,7 @@
     GET  /score        accuracy + consistency against ground truth
     WS   /live         snapshot on connect, then one message per turn
     GET  /health       liveness + what run is open
+    GET  /            the frontend (mounted last, so it never shadows a route)
 
 The seam that matters is POST /event: the feeder on one side is entirely
 replaceable -- a real game feed, speech-to-text, a second transcript source --
@@ -19,13 +20,18 @@ The scoring seam is `scoring.grade`, which reads only the belief states -- so
 from __future__ import annotations
 
 import asyncio
+import json
 import logging
-from typing import Optional
+import time
+from pathlib import Path
+from typing import Literal, Optional
 
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.concurrency import run_in_threadpool
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
+from backend.feeder import load_recording, load_transcript
 from backend.hub import Hub
 from backend.schema import GameEvent, Transcript
 from backend.scoring import grade
@@ -86,6 +92,7 @@ async def health() -> dict:
         "expected": RUN.total_expected if RUN else 0,
         "complete": RUN.complete if RUN else False,
         "clients": len(hub),
+        "playing": _playing(),
     }
 
 
@@ -208,6 +215,194 @@ async def game_end() -> dict:
     return {"ok": True, "complete": run.complete, "turns": len(run.turns), "recording": str(path)}
 
 
+# ---------------------------------------------------------------------------
+# Playing a game from the UI.
+#
+# The feeder is still the real seam -- an outside process posting events is what
+# a live game feed would do. These endpoints are the convenience path: they run
+# the same loop inside the server so a button in the browser can start a game
+# with nobody at a terminal.
+# ---------------------------------------------------------------------------
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+GAME_ROOTS = ("data", "runs")
+
+
+class PlayRequest(BaseModel):
+    game: str
+    mode: Literal["live", "replay"] = "replay"
+    interval: float = 2.5
+
+
+def _resolve_game(relative: str) -> Path:
+    """Only files under data/ or runs/. The path comes from a browser, so it is
+    not allowed to wander off into the filesystem."""
+    candidate = (REPO_ROOT / relative).resolve()
+    roots = [(REPO_ROOT / r).resolve() for r in GAME_ROOTS]
+    if not any(candidate.is_relative_to(root) for root in roots):
+        raise HTTPException(status_code=400, detail="game must live under data/ or runs/")
+    if not candidate.is_file():
+        raise HTTPException(status_code=404, detail=f"no such game: {relative}")
+    return candidate
+
+
+def _describe(path: Path) -> Optional[dict]:
+    """Summarise a file for the picker, or None if it isn't a game."""
+    try:
+        blob = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+    if not isinstance(blob, dict) or "setup" not in blob:
+        return None
+
+    setup = blob.get("setup") or {}
+    recording = "turns" in blob or "history" in blob
+    count = len(blob.get("turns") or blob.get("events") or [])
+    return {
+        "id": str(path.relative_to(REPO_ROOT)),
+        "label": path.stem.replace("_", " "),
+        "kind": "recording" if recording else "transcript",
+        "players": len(setup.get("players") or []),
+        "events": count,
+        "deceiver_role": setup.get("deceiver_role", "werewolf"),
+        "deceiver_count": setup.get("deceiver_count", 1),
+        "complete": blob.get("complete") if recording else None,
+    }
+
+
+@app.get("/games")
+async def games() -> dict:
+    """Everything playable: transcripts to run live, recordings to replay."""
+    found = []
+
+    base = REPO_ROOT / "data"
+    if base.is_dir():
+        for path in sorted(base.rglob("*.json")):
+            described = _describe(path)
+            if described:
+                found.append(described)
+
+    # runs/ accumulates fast. Offer only the newest few real runs -- a replay of
+    # a replay is a copy of its source and adds nothing to the list.
+    runs = REPO_ROOT / "runs"
+    if runs.is_dir():
+        recent = sorted(
+            (p for p in runs.glob("*.json") if not p.stem.endswith("-replay")),
+            key=lambda p: p.stat().st_mtime,
+            reverse=True,
+        )[:5]
+        for path in recent:
+            described = _describe(path)
+            if described:
+                found.append(described)
+
+    # Recordings first: they need no key, so they're the safe default to offer.
+    found.sort(key=lambda g: (g["kind"] != "recording", g["id"]))
+    return {"games": found}
+
+
+PLAYER: Optional[asyncio.Task] = None
+
+
+def _playing() -> bool:
+    return PLAYER is not None and not PLAYER.done()
+
+
+async def _play_game(path: Path, mode: str, interval: float) -> None:
+    """Run a whole game into the hub. Cancellable: stopping keeps the partial
+    run on disk, exactly as a crashed live run does."""
+    global RUN
+    try:
+        if mode == "replay":
+            transcript, turns, expected = load_recording(path, REPO_ROOT / "data" / "fallback_transcript.json")
+            RUN = Run(transcript, live=False, events_expected=expected)
+            await hub.broadcast(_snapshot(RUN))
+            for turn in turns:
+                async with INGEST:
+                    stored = RUN.add_turn(turn.event, turn.state)
+                    await hub.broadcast({"type": "turn", **stored.model_dump(mode="json")})
+                await asyncio.sleep(interval)
+        else:
+            transcript = load_transcript(path)
+            RUN = Run(transcript, live=True)
+            await hub.broadcast(_snapshot(RUN))
+            for event in transcript.events:
+                started = time.perf_counter()
+                async with INGEST:
+                    await _observe_locked(RUN, event)
+                # The model sets the pace when it is slower than the interval.
+                await asyncio.sleep(max(0.0, interval - (time.perf_counter() - started)))
+
+        RUN.finish()
+        RUN.write()
+        await hub.broadcast(
+            {
+                "type": "game_end",
+                "complete": RUN.complete,
+                "turns": len(RUN.turns),
+                "expected": RUN.total_expected,
+            }
+        )
+        log.info("play finished: %d/%d turns", len(RUN.turns), RUN.total_expected)
+
+    except asyncio.CancelledError:
+        if RUN is not None:
+            RUN.finish(error="stopped")
+            RUN.write()
+            await hub.broadcast(
+                {"type": "game_end", "complete": False, "turns": len(RUN.turns),
+                 "expected": RUN.total_expected}
+            )
+        log.info("play stopped by request")
+        raise
+    except HTTPException:
+        # _observe_locked already recorded the failure and told the clients.
+        log.error("play aborted after an observer failure")
+    except Exception as exc:
+        detail = f"{type(exc).__name__}: {exc}"
+        log.error("play failed: %s", detail)
+        if RUN is not None:
+            RUN.finish(error=detail)
+            RUN.write()
+        await hub.broadcast({"type": "run_error", "detail": detail,
+                             "turns": len(RUN.turns) if RUN else 0})
+
+
+@app.post("/play")
+async def play(req: PlayRequest) -> dict:
+    """Start a game from the UI. One at a time."""
+    global PLAYER
+    if _playing():
+        raise HTTPException(status_code=409, detail="a game is already playing -- POST /stop first")
+
+    path = _resolve_game(req.game)
+    if req.mode == "live":
+        # Fail now, with a readable message, rather than on the first event.
+        try:
+            from backend.llm import get_backend
+
+            get_backend()
+        except Exception as exc:
+            raise HTTPException(status_code=503, detail=f"{type(exc).__name__}: {exc}")
+
+    PLAYER = asyncio.create_task(_play_game(path, req.mode, max(0.0, req.interval)))
+    log.info("play requested: %s (%s, %.1fs/turn)", req.game, req.mode, req.interval)
+    return {"ok": True, "game": req.game, "mode": req.mode, "interval": req.interval}
+
+
+@app.post("/stop")
+async def stop() -> dict:
+    global PLAYER
+    if not _playing():
+        return {"ok": True, "stopped": False}
+    PLAYER.cancel()
+    try:
+        await PLAYER
+    except asyncio.CancelledError:
+        pass
+    return {"ok": True, "stopped": True}
+
+
 @app.websocket("/live")
 async def live(ws: WebSocket) -> None:
     await hub.connect(ws)
@@ -223,3 +418,18 @@ async def live(ws: WebSocket) -> None:
         pass
     finally:
         hub.disconnect(ws)
+
+
+# Mounted last and on purpose: a mount at "/" swallows anything not already
+# matched above, so every API route has to be declared before this line. One
+# process then serves both the API and the page, which keeps the websocket
+# same-origin and sidesteps CORS entirely.
+FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend" / "dist"
+if FRONTEND_DIR.is_dir():
+    app.mount("/", StaticFiles(directory=FRONTEND_DIR, html=True), name="frontend")
+else:  # pragma: no cover - only before the first `npm run build`
+    log.warning(
+        "no built frontend at %s -- serving the API only. "
+        "Build it with: cd frontend && npm install && npm run build",
+        FRONTEND_DIR,
+    )

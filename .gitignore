@@ -223,3 +223,7 @@ out/
 
 # Raw dataset downloads (re-fetchable; see data/adapters/)
 data/raw/
+
+# Frontend build
+node_modules/
+frontend/dist/
