@@ -19,6 +19,7 @@ from __future__ import annotations
 
 from typing import Dict, List
 
+from backend.observer import infer_elimination
 from backend.schema import BeliefState, GameEvent, Score
 
 # A fall smaller than this is ordinary drift as probability mass shifts around.
@@ -45,6 +46,37 @@ def count_unexplained_reversals(
     return reversals
 
 
+def verdict(history: List[Dict[str, float]], events: List[GameEvent]) -> str | None:
+    """The observer's final call, taken before the game answers the question itself.
+
+    Games end by eliminating someone, and an eliminated player leaves the
+    distribution. Reading the top suspect from the very last state would
+    therefore ask "who do you suspect?" after the suspect has already been
+    removed -- an observer that named the werewolf correctly would score as
+    wrong, because its answer was voted out a line earlier.
+
+    So the verdict is the last snapshot produced by an event that killed nobody:
+    the observer's last opinion formed from argument rather than from the
+    village resolving it.
+    """
+    for i in range(min(len(history), len(events)) - 1, -1, -1):
+        if infer_elimination(events[i]) is None and history[i]:
+            return max(history[i], key=lambda p: history[i][p])
+    return None
+
+
+def _confidence(
+    history: List[Dict[str, float]], events: List[GameEvent], predicted: str | None
+) -> float:
+    """How sure the observer was, read from the same snapshot as the verdict."""
+    if not predicted:
+        return 0.0
+    for i in range(min(len(history), len(events)) - 1, -1, -1):
+        if infer_elimination(events[i]) is None and predicted in history[i]:
+            return history[i][predicted]
+    return 0.0
+
+
 def grade(
     final: BeliefState,
     history: List[Dict[str, float]],
@@ -52,7 +84,7 @@ def grade(
     ground_truth: Dict[str, str],
 ) -> Score:
     actual = next(p for p, role in ground_truth.items() if role.lower() == "werewolf")
-    predicted = final.top_suspect
+    predicted = verdict(history, events) or final.top_suspect
 
     reversals = count_unexplained_reversals(history, events)
     # One reversal per event would be a total loss of the plot; scale against that.
@@ -62,7 +94,7 @@ def grade(
         accuracy=predicted == actual,
         predicted=predicted,
         actual=actual,
-        final_confidence=final.suspicion.get(predicted, 0.0) if predicted else 0.0,
+        final_confidence=_confidence(history, events, predicted),
         consistency=max(0.0, round(consistency, 3)),
         self_contradictions=reversals,
         contradictions_caught=len(final.contradictions_noticed),

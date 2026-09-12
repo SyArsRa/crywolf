@@ -49,8 +49,26 @@ python -m backend.run_observer --spoil --json out/run1.json
 python -m backend.test_observer   # offline, no API key needed
 ```
 
-`--json` saves a full run so the UI can replay it — that's the stage fallback if
-a live run misbehaves.
+`--json` saves after **every** event, so a run stopped by quota keeps everything
+it paid for. Continue it with the same command plus `--resume`:
+
+```bash
+python -m backend.run_observer --spoil --json out/run1.json --resume
+```
+
+A finished run is marked `"complete": true` and won't be resumed over. The saved
+file is also the stage fallback — the UI can replay it without spending a call.
+
+## Deaths
+
+`BeliefState.eliminated` lists the dead; `suspicion` holds **living players only**
+and sums to 1.0 across them. Set `GameEvent.eliminated` if you know who died;
+otherwise the observer reads the moderator's wording ("P5 is found dead",
+"P4 is eliminated").
+
+Scoring reads the verdict from the last event that killed nobody — otherwise the
+final vote removes the werewolf from the distribution and a correct observer
+grades as wrong. See `scoring.verdict()`.
 
 ## Which model runs
 

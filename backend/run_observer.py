@@ -19,17 +19,27 @@ import sys
 from pathlib import Path
 
 from backend.observer import Observer
-from backend.schema import Transcript
+from backend.schema import BeliefState, Transcript
 from backend.scoring import grade
 
 BAR_WIDTH = 28
 
 
-def _bars(suspicion: dict, wolf: str | None) -> str:
+def _bars(state, roster: list[str], wolf: str | None) -> str:
+    """One row per player, always in roster order.
+
+    Sorting by score made rows swap places between events, so you couldn't
+    follow a single player down the screen -- which is exactly what you want to
+    watch. Fixed rows turn the output into a chart you can read over time.
+    """
     lines = []
-    for player, score in sorted(suspicion.items(), key=lambda kv: -kv[1]):
-        filled = round(score * BAR_WIDTH)
+    for player in roster:
         mark = " <" if player == wolf else ""
+        if player in state.eliminated:
+            lines.append(f"    {player}  {'-' * BAR_WIDTH}   dead{mark}")
+            continue
+        score = state.suspicion.get(player, 0.0)
+        filled = round(score * BAR_WIDTH)
         lines.append(
             f"    {player}  {'#' * filled}{'.' * (BAR_WIDTH - filled)}  {score * 100:5.1f}%{mark}"
         )
@@ -65,11 +75,35 @@ def main() -> int:
         action="store_true",
         help="Mark the real werewolf in the printed bars. Never shown to the model.",
     )
+    parser.add_argument(
+        "--resume",
+        action="store_true",
+        help="Continue a partial run from --json instead of restarting. "
+             "Free-tier quota runs out mid-game; this picks up where it stopped.",
+    )
     args = parser.parse_args()
 
     transcript = Transcript.model_validate_json(Path(args.transcript).read_text(encoding="utf-8"))
     wolf = transcript.werewolf()
     observer = Observer(transcript.setup)
+    start_at = 0
+
+    if args.resume:
+        if not args.out:
+            print("--resume needs --json to say which run to continue.")
+            return 2
+        saved = Path(args.out)
+        if not saved.exists():
+            print(f"No run at {saved} to resume; starting fresh.")
+        else:
+            data = json.loads(saved.read_text(encoding="utf-8"))
+            if data.get("complete"):
+                print(f"{saved} is already a complete run. Delete it to start over.")
+                return 0
+            observer.restore(BeliefState.model_validate(data["final_state"]), data["history"])
+            start_at = data["events_observed"]
+            print(f"Resuming from {saved} at event {start_at + 1} "
+                  f"-- {start_at} events already observed, not re-spent.\n")
 
     total = len(transcript.events)
     pace = float(os.environ.get("CRYWOLF_MIN_INTERVAL", 13.0))
@@ -79,14 +113,18 @@ def main() -> int:
         print(f"Pacing at {pace:.0f}s/event to stay inside the free-tier quota "
               f"-- about {total * pace / 60:.0f} minutes.\n")
 
-    completed = 0
+    completed = start_at
     try:
-        for i, event in enumerate(transcript.events, 1):
+        for i, event in enumerate(transcript.events[start_at:], start_at + 1):
             state = observer.observe(event)
             completed = i
+            # Save after every event, not just at the end. Quota can stop us at
+            # any point and each event costs a call we can't get back.
+            if args.out:
+                _write_run(Path(args.out), transcript, observer, None, completed)
             print(f"[{i:>2}/{total}] R{event.round} {event.phase} "
                   f"{event.speaker}: {event.statement}")
-            print(_bars(state.suspicion, wolf if args.spoil else None))
+            print(_bars(state, transcript.setup.players, wolf if args.spoil else None))
             print(f"    -> {state.reasoning}")
             if state.contradictions_noticed:
                 latest = state.contradictions_noticed[-1]
@@ -94,14 +132,11 @@ def main() -> int:
                       f"\"{latest.earlier}\" vs \"{latest.now}\"")
             print()
     except (Exception, KeyboardInterrupt) as exc:
-        # Quota is scarce. Never throw away events we already paid for.
+        print(f"\nStopped after {completed}/{total} events: "
+              f"{type(exc).__name__}: {str(exc)[:200]}")
         if args.out and completed:
-            _write_run(Path(args.out), transcript, observer, None, completed)
-            print(f"\nStopped after {completed}/{total} events: "
-                  f"{type(exc).__name__}: {str(exc)[:200]}")
-            print(f"Partial run saved to {args.out} -- the {completed} events so far are not lost.")
-        else:
-            print(f"\nStopped after {completed}/{total} events: {exc}")
+            # Already written after the last successful event; nothing is lost.
+            print(f"Progress is in {args.out}. Continue with the same command plus --resume.")
         return 2
 
     score = grade(observer.state, observer.history, transcript.events, transcript.ground_truth)

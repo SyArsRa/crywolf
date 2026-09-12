@@ -27,6 +27,13 @@ class GameEvent(BaseModel):
     speaker: str
     statement: str
     timestamp: Optional[str] = None
+    eliminated: Optional[str] = Field(
+        None,
+        description=(
+            "Player this event kills or votes out, if any. Optional -- the observer "
+            "falls back to reading the moderator's wording. Set it if you have it."
+        ),
+    )
 
 
 class GameSetup(BaseModel):
@@ -105,7 +112,12 @@ class BeliefState(BaseModel):
     round: int = 0
     phase: Phase = "day"
     event_index: int = -1
-    suspicion: Dict[str, float] = Field(default_factory=dict)
+    eliminated: List[str] = Field(
+        default_factory=list, description="Dead players, in the order they died."
+    )
+    suspicion: Dict[str, float] = Field(
+        default_factory=dict, description="Living players only, summing to 1.0."
+    )
     claims_tracked: Dict[str, str] = Field(default_factory=dict)
     contradictions_noticed: List[Contradiction] = Field(default_factory=list)
     reasoning: str = ""

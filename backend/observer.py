@@ -20,6 +20,7 @@ Design notes worth knowing before you change anything here:
 
 from __future__ import annotations
 
+import re
 from typing import Dict, List, Optional
 
 from backend.llm import StructuredLLM, get_backend
@@ -35,6 +36,21 @@ from backend.schema import (
 # watching replays: below ~0.2 the observer looks catatonic, above ~0.4 the
 # chart turns into noise.
 MAX_DELTA_PER_EVENT = 0.30
+
+# Who has died. Lane A can set `GameEvent.eliminated` explicitly; failing that we
+# read the moderator's announcement, which is the only place deaths are stated.
+_DEATH = re.compile(
+    r"\b(?P<who>[A-Z]\w*)\b\s+(?:is|was|has been)\s+(?:found\s+)?(?:dead|killed|eliminated|lynched|voted out)",
+    re.I,
+)
+
+
+def infer_elimination(event: GameEvent) -> Optional[str]:
+    """The player this event announces the death of, if any."""
+    if event.eliminated:
+        return event.eliminated
+    match = _DEATH.search(event.statement)
+    return match.group("who") if match else None
 
 SYSTEM = """\
 You are an observer of a live Werewolf game. You do not play. You do not speak \
@@ -74,12 +90,12 @@ merely something you disagree with. Never drop an entry you have already made.
 `reasoning` is at most two sentences, about what this line changed and why."""
 
 
-def _fmt_state(state: BeliefState, players: List[str]) -> str:
+def _fmt_state(state: BeliefState, alive: List[str]) -> str:
     if state.event_index < 0:
         return "(nothing yet -- this is the first line of the game)"
 
     lines = ["Suspicion:"]
-    for p in players:
+    for p in alive:
         lines.append(f"  {p}: {state.suspicion.get(p, 0.0):.2f}")
 
     lines.append("")
@@ -105,13 +121,21 @@ def _fmt_state(state: BeliefState, players: List[str]) -> str:
     return "\n".join(lines)
 
 
-def render(event: GameEvent, state: BeliefState, setup: GameSetup) -> str:
+def render(
+    event: GameEvent, state: BeliefState, setup: GameSetup, alive: Optional[List[str]] = None
+) -> str:
+    alive = alive if alive is not None else list(setup.players)
+    dead = [p for p in setup.players if p not in alive]
+    roster = ", ".join(alive)
+    if dead:
+        roster += f"   (dead, cannot be the werewolf: {', '.join(dead)})"
+
     return f"""GAME
 {setup.premise}
-Players: {", ".join(setup.players)}
+Players still alive: {roster}
 
 YOUR BELIEF STATE, BEFORE THIS LINE
-{_fmt_state(state, setup.players)}
+{_fmt_state(state, alive)}
 
 THE NEXT LINE
 Round {event.round}, {event.phase} -- {event.speaker}: "{event.statement}"
@@ -119,34 +143,66 @@ Round {event.round}, {event.phase} -- {event.speaker}: "{event.statement}"
 Update your belief state to account for this line. Carry forward everything that still holds."""
 
 
+def _normalize(values: Dict[str, float]) -> Dict[str, float]:
+    total = sum(values.values())
+    if total <= 0:
+        share = 1.0 / len(values) if values else 0.0
+        return {p: share for p in values}
+    return {p: v / total for p, v in values.items()}
+
+
 def _settle(
     raw: List,
     prior: Dict[str, float],
-    players: List[str],
+    alive: List[str],
     first_event: bool,
 ) -> Dict[str, float]:
     """Turn the model's numbers into a distribution we can plot.
 
-    Fills in players the model forgot, rate-limits per-event movement, then
-    normalizes to sum 1.0.
+    Three jobs: fill in players the model forgot, hold per-event movement to
+    MAX_DELTA_PER_EVENT, and make the living players sum to 1.0.
+
+    The order matters and used to be wrong. Clamping before normalizing does not
+    bound anything, because dividing by the total moves every value again -- an
+    early run clamped a player to 0.46 and printed 0.418, a 34-point drop under a
+    30-point cap. So: normalize first, then clamp, then hand the leftover
+    probability to players who still have room, and repeat until it settles.
     """
-    uniform = 1.0 / len(players)
-    proposed = {e.player: max(0.0, min(1.0, e.score)) for e in raw if e.player in players}
+    if not alive:
+        return {}
+    uniform = 1.0 / len(alive)
 
-    settled: Dict[str, float] = {}
-    for p in players:
-        before = prior.get(p, uniform)
-        # A player the model omitted keeps its previous value rather than
-        # silently falling to zero -- omission is not exoneration.
-        after = proposed.get(p, before)
-        if not first_event:
-            after = max(before - MAX_DELTA_PER_EVENT, min(before + MAX_DELTA_PER_EVENT, after))
-        settled[p] = after
+    proposed = {e.player: max(0.0, min(1.0, e.score)) for e in raw if e.player in alive}
+    # A player the model omitted keeps its previous value rather than silently
+    # falling to zero -- omission is not exoneration.
+    current = _normalize({p: proposed.get(p, prior.get(p, uniform)) for p in alive})
 
-    total = sum(settled.values())
-    if total <= 0:
-        return {p: uniform for p in players}
-    return {p: v / total for p, v in settled.items()}
+    if first_event:
+        return current
+
+    floor = {p: max(0.0, prior.get(p, uniform) - MAX_DELTA_PER_EVENT) for p in alive}
+    ceiling = {p: min(1.0, prior.get(p, uniform) + MAX_DELTA_PER_EVENT) for p in alive}
+
+    for _ in range(20):
+        clamped = {p: max(floor[p], min(ceiling[p], v)) for p, v in current.items()}
+        residual = 1.0 - sum(clamped.values())
+        if abs(residual) < 1e-9:
+            return clamped
+
+        # Push the leftover onto whoever is not already pinned at a bound.
+        room = {
+            p: (ceiling[p] - clamped[p]) if residual > 0 else (clamped[p] - floor[p])
+            for p in alive
+        }
+        available = sum(room.values())
+        if available < 1e-9:
+            # Every player is pinned. The bars have to total 100%, so the sum
+            # wins and the cap gives way. Only reachable if the model returns
+            # something wild on a very small roster.
+            return _normalize(clamped)
+        current = {p: clamped[p] + residual * (room[p] / available) for p in alive}
+
+    return _normalize(current)
 
 
 def _merge_contradictions(
@@ -172,6 +228,17 @@ class Observer:
         self.state = BeliefState(suspicion={p: uniform for p in setup.players})
         self.history: List[Dict[str, float]] = []
 
+    @property
+    def alive(self) -> List[str]:
+        """Living players, in the roster's original order -- so the UI can keep
+        rows in a fixed position instead of resorting them every event."""
+        return [p for p in self.setup.players if p not in self.state.eliminated]
+
+    def restore(self, state: BeliefState, history: List[Dict[str, float]]) -> None:
+        """Pick up where a previous run stopped. See `run_observer.py --resume`."""
+        self.state = state
+        self.history = list(history)
+
     def observe(self, event: GameEvent) -> BeliefState:
         """Fold one event into the belief state and return the new one."""
         prior = self.state
@@ -179,7 +246,7 @@ class Observer:
 
         out: ObserverOutput = self.llm.structured(
             system=SYSTEM,
-            user=render(event, prior, self.setup),
+            user=render(event, prior, self.setup, self.alive),
             schema=ObserverOutput,
         )
 
@@ -187,11 +254,20 @@ class Observer:
         for entry in out.claims_tracked:
             claims[entry.player] = entry.claim
 
+        # A death announced by this event takes effect immediately: the victim
+        # leaves the bars on the same line that kills them.
+        eliminated = list(prior.eliminated)
+        victim = infer_elimination(event)
+        if victim in self.setup.players and victim not in eliminated:
+            eliminated.append(victim)
+        alive_after = [p for p in self.setup.players if p not in eliminated]
+
         self.state = BeliefState(
             round=event.round,
             phase=event.phase,
             event_index=prior.event_index + 1,
-            suspicion=_settle(out.suspicion, prior.suspicion, self.setup.players, first),
+            eliminated=eliminated,
+            suspicion=_settle(out.suspicion, prior.suspicion, alive_after, first),
             claims_tracked=claims,
             contradictions_noticed=_merge_contradictions(
                 prior.contradictions_noticed, out.contradictions_noticed
