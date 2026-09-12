@@ -210,8 +210,15 @@ def grade(
     # One reversal per event would be a total loss of the plot; scale against that.
     consistency = 1.0 - (reversals / len(history)) if history else 1.0
 
+    # How often the observer has had a liar on top, over the whole run so far.
+    # This is the number a live scoreboard wants: one verdict is one bit, but
+    # every event is a graded prediction.
+    leaders = [max(s, key=lambda p: s[p]) for s in history if s]
+    running = sum(1 for leader in leaders if leader in actual) / len(leaders) if leaders else 0.0
+
     at_end = final_verdict(history)
     return Score(
+        running_accuracy=round(running, 3),
         accuracy=predicted in actual,
         final_verdict=at_end,
         final_accuracy=at_end in actual if at_end else False,

@@ -194,7 +194,18 @@ async def score() -> dict:
     if not run.turns:
         raise HTTPException(status_code=409, detail="nothing observed yet")
 
-    result = grade(run.final_state, run.history, run.events, run.transcript.ground_truth)
+    result = grade(
+        run.final_state,
+        run.history,
+        run.events,
+        run.transcript.ground_truth,
+        committed=run.committed,
+        events_available=run.total_expected,
+    )
+    # `actual` names the real liars. It stays in this payload because the scorer
+    # and the tests need it, but nothing on screen reads it -- the live scoreboard
+    # is driven by `running_accuracy` and `final_accuracy`, which are already
+    # reduced to numbers.
     return {
         **result.model_dump(),
         "complete": run.complete,
