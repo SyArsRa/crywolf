@@ -1,0 +1,18 @@
+# Fly needs a globally unique app name -- change this if it is taken.
+app = "cryw0lf"
+primary_region = "ams"
+
+[build]
+
+[http_service]
+  internal_port = 7860
+  force_https = true
+  auto_stop_machines = false
+  # The whole point: never cold-start. A judge opening the link at 3am gets
+  # the app, not a 30-second boot.
+  auto_start_machines = true
+  min_machines_running = 1
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"

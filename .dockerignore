@@ -1,0 +1,11 @@
+.venv
+__pycache__
+**/__pycache__
+frontend/node_modules
+frontend/dist
+node_modules
+runs
+out
+.env
+.git
+tunnel.log
