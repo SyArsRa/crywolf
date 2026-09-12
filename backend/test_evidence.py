@@ -217,7 +217,7 @@ def test_deliberation_fires_only_on_a_role_reveal() -> None:
     ]
 
     llm = TwoTierLLM()
-    observer = Observer(setup, llm=llm, deliberate=True)
+    observer = Observer(setup, llm=llm, deliberate=True, skip_trivial=False)
     for event in events:
         observer.observe(event)
 
@@ -236,7 +236,7 @@ def test_deliberation_fires_only_on_a_role_reveal() -> None:
     )
 
     quiet = TwoTierLLM()
-    off = Observer(setup, llm=quiet, deliberate=False)
+    off = Observer(setup, llm=quiet, deliberate=False, skip_trivial=False)
     for event in events:
         off.observe(event)
     check("--no-deliberate spends nothing extra", quiet.deep == 0)
@@ -310,6 +310,64 @@ def test_a_wrong_shaped_deliberation_is_survivable_too() -> None:
     check("the run survived", observer.state.reasoning == "shallow only")
     check("the bad response was not counted", observer.deliberations == 0)
     check("the state is still coherent", abs(sum(observer.state.suspicion.values()) - 1.0) < 1e-6)
+
+
+def test_skipping_cheap_lines_keeps_the_downstream_contract() -> None:
+    """55% of events are not worth a model call. Skipping them must be invisible
+    to everything downstream except the bill: still one history entry and one
+    state per event, still the right dead list, still the vote record."""
+    print("skipping cheap lines")
+
+    transcript = Transcript.model_validate_json(
+        Path("data/mafia/llmafia-0002.json").read_text(encoding="utf-8")
+    )
+
+    class Counter:
+        def __init__(self) -> None:
+            self.shallow = 0
+
+        def structured(self, system: str, user: str, schema):
+            if schema is Deliberation:
+                return Deliberation(
+                    suspicion=[SuspicionEntry(player="Sidney", score=1.0)],
+                    revised="",
+                    reasoning="deep",
+                )
+            self.shallow += 1
+            return ObserverOutput(
+                suspicion=[
+                    SuspicionEntry(player=p, score=0.25) for p in transcript.setup.players
+                ],
+                claims_tracked=[],
+                contradictions_noticed=[],
+                reasoning="shallow",
+            )
+
+    lean_llm = Counter()
+    lean = Observer(transcript.setup, llm=lean_llm, deliberate=False, skip_trivial=True)
+    for event in transcript.events:
+        lean.observe(event)
+
+    full_llm = Counter()
+    full = Observer(transcript.setup, llm=full_llm, deliberate=False, skip_trivial=False)
+    for event in transcript.events:
+        full.observe(event)
+
+    n = len(transcript.events)
+    check("the full loop pays for every event", full_llm.shallow == n)
+    check("the lean loop pays for fewer", lean_llm.shallow < full_llm.shallow)
+    check("and it is a big saving, not a rounding error", lean_llm.shallow < 0.7 * n)
+    check("the observer reports what it actually spent", lean.calls == lean_llm.shallow)
+
+    check("still one history entry per event", len(lean.history) == n)
+    check("still one state per event", len(lean.states) == n)
+    check("the dead list is unaffected", lean.state.eliminated == full.state.eliminated)
+    check("the vote record is unaffected", lean.votes == full.votes)
+    check("the announced roles are unaffected", lean.revealed == full.revealed)
+    check(
+        "suspicion still sums to the liars remaining",
+        abs(sum(lean.state.suspicion.values()) - lean.liars_remaining) < 1e-6,
+    )
 
 
 def test_evidence_reaches_the_prompt_on_a_real_game() -> None:
@@ -412,6 +470,7 @@ if __name__ == "__main__":
         test_deliberation_fires_only_on_a_role_reveal,
         test_a_failed_deliberation_does_not_lose_the_run,
         test_a_wrong_shaped_deliberation_is_survivable_too,
+        test_skipping_cheap_lines_keeps_the_downstream_contract,
         test_evidence_reaches_the_prompt_on_a_real_game,
         test_resume_rebuilds_the_announced_roles,
     ]:

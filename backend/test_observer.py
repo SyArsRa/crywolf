@@ -183,7 +183,9 @@ def test_full_loop_with_stub_model() -> None:
             )
 
     stub = StubLLM()
-    observer = Observer(transcript.setup, llm=stub)
+    # skip_trivial off: this test is about the loop's bookkeeping, and it
+    # counts calls, so it wants the one-call-per-event shape on purpose.
+    observer = Observer(transcript.setup, llm=stub, skip_trivial=False)
     for event in transcript.events:
         observer.observe(event)
 
@@ -260,13 +262,13 @@ def test_resume_continues_instead_of_restarting() -> None:
                 reasoning="stub",
             )
 
-    first = Observer(transcript.setup, llm=CountingLLM())
+    first = Observer(transcript.setup, llm=CountingLLM(), skip_trivial=False)
     for event in transcript.events[:6]:
         first.observe(event)
     saved_state, saved_history = first.state, first.history
 
     second_llm = CountingLLM()
-    second = Observer(transcript.setup, llm=second_llm)
+    second = Observer(transcript.setup, llm=second_llm, skip_trivial=False)
     second.restore(
         BeliefState.model_validate(saved_state.model_dump()),
         saved_history,

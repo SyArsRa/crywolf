@@ -106,6 +106,12 @@ def main() -> int:
              "Free-tier quota runs out mid-game; this picks up where it stopped.",
     )
     parser.add_argument(
+        "--all-events",
+        action="store_true",
+        help="Pay for a model call on every line, including vote announcements "
+             "and three-word greetings. Slower and dearer; for comparison only.",
+    )
+    parser.add_argument(
         "--no-deliberate",
         action="store_true",
         help="Skip the per-round deliberation call fired on each role reveal. "
@@ -115,7 +121,11 @@ def main() -> int:
 
     transcript = Transcript.model_validate_json(Path(args.transcript).read_text(encoding="utf-8"))
     liars = set(transcript.deceivers())
-    observer = Observer(transcript.setup, deliberate=not args.no_deliberate)
+    observer = Observer(
+        transcript.setup,
+        deliberate=not args.no_deliberate,
+        skip_trivial=not args.all_events,
+    )
     start_at = 0
 
     if args.resume:
@@ -182,19 +192,48 @@ def main() -> int:
 
     print("=" * 60)
     role = transcript.setup.deceiver_role
-    print(f"top suspect        : {score.predicted}  ({score.final_confidence * 100:.1f}% confident)")
+    # BOTH verdicts, always. They disagree more often than is comfortable and
+    # the disagreement is informative: `predicted` is read from the last event
+    # that eliminated nobody, so a game whose closing votes resolve everything
+    # can leave it quoting a snapshot taken mid-pile-on. On llmafia-0002 that
+    # reported a MISS at precision@2 = 0.00 while the observer's actual closing
+    # state had both mafia on top. Printing only one of these -- whichever one
+    # -- is how you mislead yourself about whether a change worked.
     print(f"actually {role:<10}: {', '.join(score.actual)}")
-    print(f"accuracy           : {'HIT' if score.accuracy else 'MISS'}"
-          f"   (is the top suspect one of them?)")
+    print()
+    print(f"  [before the game resolved itself]")
+    print(f"  top suspect      : {score.predicted}  ({score.final_confidence * 100:.1f}% confident)")
+    print(f"  accuracy         : {'HIT' if score.accuracy else 'MISS'}")
     if len(score.actual) > 1:
-        print(f"precision@{len(score.actual)}        : {score.precision_at_n:.2f}"
+        print(f"  precision@{len(score.actual)}      : {score.precision_at_n:.2f}"
               f"   (of its top {len(score.actual)} living suspects, how many really are)")
+
+    final = observer.state.suspicion
+    ranked = sorted(final, key=lambda p: final[p], reverse=True)
+    live = [p for p in score.actual if p in final]
+    print()
+    print(f"  [the closing belief state]")
+    print(f"  top suspect      : {score.final_verdict}")
+    print(f"  accuracy         : {'HIT' if score.final_accuracy else 'MISS'}")
+    if live:
+        hit = sum(1 for p in ranked[: len(live)] if p in live) / len(live)
+        print(f"  precision@{len(live)}      : {hit:.2f}")
+        print(f"  final ranking    : "
+              + ", ".join(
+                  f"{p} {final[p] * 100:.0f}%{'*' if p in score.actual else ''}"
+                  for p in ranked
+              )
+              + "   (* = actually " + role + ")")
+    print()
     print(f"consistency        : {score.consistency:.2f} "
           f"({score.self_contradictions} unexplained reversals)")
     print(f"drift              : {score.lead_changes} lead changes, "
           f"{score.events_off_verdict} events off the final verdict")
     print(f"contradictions caught among players: {score.contradictions_caught}")
     print(f"deep calls (one per role reveal)   : {observer.deliberations}")
+    spent = observer.calls + observer.deliberations
+    print(f"model calls spent                  : {spent} over {len(transcript.events)} events"
+          f"  ({len(transcript.events) + observer.deliberations - spent} skipped as unreadable)")
 
     if args.out:
         _write_run(Path(args.out), transcript, observer, score, len(transcript.events))

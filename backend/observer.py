@@ -184,6 +184,39 @@ def format_votes(votes: Dict[int, Dict[str, str]], alive: List[str]) -> str:
     return "\n".join(lines)
 
 
+# A player line this short carries no reasoning to read: "Hi", "why", "yes",
+# "I agree". Measured across the 33 games, these are 37% of all events.
+TRIVIAL_WORD_COUNT = 3
+
+_WORD = re.compile(r"[a-z0-9']+")
+
+
+def needs_model(event: GameEvent) -> bool:
+    """Is this line worth a model call?
+
+    Measured over the 33 games, 55% of events are not:
+
+      * 18% are the narrator announcing a vote. `infer_vote` already parses
+        those exactly, and they reach the model anyway inside the vote table and
+        the computed evidence on the next line that does get a call. Paying a
+        model to read "Kai voted for Sutton" buys a restatement of something we
+        parsed perfectly.
+      * 37% are player lines of three words or fewer.
+
+    What is deliberately NOT skipped: any other narrator line. Deaths, phase
+    changes and role announcements all change the shape of the game, and a role
+    announcement is what triggers the deliberation call.
+
+    Skipping is not the same as ignoring. A skipped event still updates the vote
+    record, the claims ledger, the dead list and the evidence, and still emits
+    its own belief state -- one history entry per event, exactly as before, so
+    nothing downstream can tell the difference except the bill.
+    """
+    if event.speaker.lower() in NARRATORS:
+        return infer_vote(event) is None
+    return len(_WORD.findall(event.statement.lower())) > TRIVIAL_WORD_COUNT
+
+
 def infer_elimination(event: GameEvent) -> Optional[str]:
     """The player this event announces the death of, if any.
 
@@ -579,12 +612,19 @@ class Observer:
         setup: GameSetup,
         llm: Optional[StructuredLLM] = None,
         deliberate: bool = True,
+        skip_trivial: bool = True,
     ):
         self.setup = setup
         self.llm = llm or get_backend()
         # The second tier. On by default; `run_observer --no-deliberate` turns it
         # off so a run can be priced against the per-event loop alone.
         self.deliberate = deliberate
+        # Skip the model on lines that carry nothing to read. See `needs_model`.
+        # `--all-events` turns it off to compare like for like.
+        self.skip_trivial = skip_trivial
+        # Model calls actually made, against len(history), so a run can report
+        # what it cost rather than what it would have cost.
+        self.calls = 0
         # Before anyone speaks, every player is equally likely, and the
         # numbers sum to the number of liars -- not to 1.
         uniform = setup.deceiver_count / len(setup.players)
@@ -714,6 +754,14 @@ class Observer:
         first = prior.event_index < 0
         evidence = self.evidence()
 
+        # A skipped line still moves the game forward -- the vote record, the
+        # dead list and the evidence above have all been updated already. What
+        # it does not do is pay a model to have no opinion about "Hi".
+        if self.skip_trivial and not needs_model(event):
+            self._carry_forward(event, prior, announced_role)
+            return self.state
+
+        self.calls += 1
         out: ObserverOutput = self.llm.structured(
             system=SYSTEM,
             user=render(event, prior, self.setup, self.alive, self.votes, evidence),
@@ -767,6 +815,43 @@ class Observer:
         self.history.append(dict(self.state.suspicion))
         self.states.append(self.state)
         return self.state
+
+    def _carry_forward(self, event: GameEvent, prior: BeliefState, announced_role: bool) -> None:
+        """Advance the state over an event we did not pay to read.
+
+        Suspicion is unchanged, which is the honest answer: nothing was said.
+        Everything else -- the round, the phase, the event index, the dead --
+        moves exactly as it would have, so `history` and `states` stay one entry
+        per event and Lane A's replay is byte-identical in shape.
+
+        A role announcement is never skipped, but this stays correct if one ever
+        were: the deep call still fires.
+        """
+        eliminated = list(prior.eliminated)
+        victim = infer_elimination(event)
+        if victim in self.setup.players and victim not in eliminated:
+            eliminated.append(victim)
+        alive_after = [p for p in self.setup.players if p not in eliminated]
+
+        self.state = BeliefState(
+            round=event.round,
+            phase=event.phase,
+            event_index=prior.event_index + 1,
+            eliminated=eliminated,
+            # Renormalised only because a death may have left the distribution;
+            # the living players keep their relative standing.
+            suspicion=_normalize(
+                {p: prior.suspicion.get(p, 0.0) for p in alive_after},
+                self._liars_left(eliminated),
+            ),
+            claims_tracked=dict(prior.claims_tracked),
+            contradictions_noticed=list(prior.contradictions_noticed),
+            reasoning=prior.reasoning,
+        )
+        if self.deliberate and announced_role:
+            self._deliberate(alive_after, eliminated)
+        self.history.append(dict(self.state.suspicion))
+        self.states.append(self.state)
 
     def _deliberate(self, alive: List[str], eliminated: List[str]) -> None:
         """Reconsider the whole round now that its votes have been graded.
