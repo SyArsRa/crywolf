@@ -22,12 +22,17 @@ export const NARRATORS = new Set([
 export const isModerator = (speaker) =>
   NARRATORS.has(String(speaker ?? "").toLowerCase());
 
-/** Seat colours. Mid-dark rather than pastel: these sit on a light background
- *  and have to carry white text inside an avatar and read as a 1.5px chart
- *  line. */
+/** Seat colours: the inks a case file would actually be written in --
+ *  fountain blue, crimson, lamp black, oxblood, sepia, iron gall, forest,
+ *  violet copying-pencil. Mid-dark rather than pastel, because these sit on
+ *  manila and have to read as a 1.5px chart line as well as a name.
+ *
+ *  The previous set was a generic categorical palette (indigo/violet/teal);
+ *  it separated the series fine but looked like a charting library's default
+ *  on a board that is meant to look hand-kept. */
 export const PALETTE = [
-  "#d2691e", "#2f6fd0", "#8b5cf6", "#1f9d63",
-  "#c08a00", "#d4426e", "#0f9b8e", "#7c3aed",
+  "#27476b", "#8c2119", "#1d1a17", "#5c3a1e",
+  "#3f5d3a", "#6b3560", "#7a5c1f", "#2f5d63",
 ];
 
 const EMPTY = {
