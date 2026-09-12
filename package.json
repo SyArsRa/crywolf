@@ -1,0 +1,19 @@
+{
+  "name": "crywolf",
+  "private": true,
+  "version": "0.1.0",
+  "description": "An observer that watches a Werewolf game and tracks, in real time, who it thinks is lying.",
+  "scripts": {
+    "setup": "uv venv && uv pip install -r requirements.txt && npm --prefix frontend install && cp -n .env.example .env || true",
+    "dev": "bash scripts/dev.sh",
+    "demo": "bash scripts/demo.sh",
+    "replay": "bash scripts/demo.sh --replay data/demo_run.json --interval 2.5",
+    "build": "npm --prefix frontend run build",
+    "backend": ".venv/bin/uvicorn backend.main:app --reload --host 127.0.0.1 --port 8000",
+    "frontend": "npm --prefix frontend run dev",
+    "feed": ".venv/bin/python -m backend.feeder --transcript data/fallback_transcript.json --interval 3.0",
+    "feed:replay": ".venv/bin/python -m backend.feeder --replay data/demo_run.json --interval 2.5",
+    "feed:mafia": ".venv/bin/python -m backend.feeder --transcript data/mafia/llmafia-0001.json --interval 1.0",
+    "test": ".venv/bin/python -m backend.test_observer"
+  }
+}

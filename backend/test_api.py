@@ -18,7 +18,7 @@ import backend.main as api
 from backend.schema import BeliefState, GameEvent, Transcript
 
 TRANSCRIPT = Path("data/fallback_transcript.json")
-RECORDED = Path("out/run1.json")
+RECORDED = Path("data/demo_run.json")
 
 
 def check(label: str, cond: bool) -> None:
