@@ -25,6 +25,7 @@ from typing import Dict, List, Optional
 
 from backend.llm import StructuredLLM, get_backend
 from backend.schema import (
+    DECEIVER_ROLES,
     NARRATORS,
     BeliefState,
     Contradiction,
@@ -53,6 +54,8 @@ MAX_DELTA_PER_EVENT = 0.30
 
 # Who has died. Lane A can set `GameEvent.eliminated` explicitly; failing that we
 # read the moderator's announcement, which is the only place deaths are stated.
+_ROLE_REVEAL = re.compile(r"their role was (?P<role>\w+)", re.I)
+
 _DEATH = re.compile(
     r"\b(?P<who>[A-Z]\w*)\b\s+(?:is|was|has been)\s+(?:found\s+)?(?:dead|killed|eliminated|lynched|voted out)",
     re.I,
@@ -288,12 +291,27 @@ Round {event.round}, {event.phase} -- {event.speaker}: "{event.statement}"
 Update your belief state to account for this line. Carry forward everything that still holds."""
 
 
-def _normalize(values: Dict[str, float]) -> Dict[str, float]:
+def _normalize(values: Dict[str, float], target: float = 1.0) -> Dict[str, float]:
+    """Scale so the values sum to `target`.
+
+    `target` is the number of liars still in the game, not 1.0, and that
+    distinction turned out to matter enormously. With two mafia and a total of
+    1.0, the two guilty players are forced to compete for one pool of suspicion:
+    raising one mathematically requires lowering the other, so the observer can
+    never say "it's these two" however strongly it believes it. It picks one and
+    suppresses its partner. That is a property of the arithmetic, not of the
+    reasoning.
+
+    Summing to the number of remaining liars makes each value an honest
+    P(this player is lying): two players at 0.5 each means "one of these two,
+    probably, and I can't split them", which is exactly the thing we want it to
+    be able to say.
+    """
     total = sum(values.values())
     if total <= 0:
-        share = 1.0 / len(values) if values else 0.0
+        share = target / len(values) if values else 0.0
         return {p: share for p in values}
-    return {p: v / total for p, v in values.items()}
+    return {p: v * target / total for p, v in values.items()}
 
 
 def _settle(
@@ -301,6 +319,7 @@ def _settle(
     prior: Dict[str, float],
     alive: List[str],
     first_event: bool,
+    remaining_liars: float = 1.0,
 ) -> Dict[str, float]:
     """Turn the model's numbers into a distribution we can plot.
 
@@ -315,12 +334,13 @@ def _settle(
     """
     if not alive:
         return {}
-    uniform = 1.0 / len(alive)
+    target = max(0.0, min(float(remaining_liars), float(len(alive))))
+    uniform = target / len(alive)
 
     proposed = {e.player: max(0.0, min(1.0, e.score)) for e in raw if e.player in alive}
     # A player the model omitted keeps its previous value rather than silently
     # falling to zero -- omission is not exoneration.
-    current = _normalize({p: proposed.get(p, prior.get(p, uniform)) for p in alive})
+    current = _normalize({p: proposed.get(p, prior.get(p, uniform)) for p in alive}, target)
 
     if first_event:
         return current
@@ -330,7 +350,7 @@ def _settle(
 
     for _ in range(20):
         clamped = {p: max(floor[p], min(ceiling[p], v)) for p, v in current.items()}
-        residual = 1.0 - sum(clamped.values())
+        residual = target - sum(clamped.values())
         if abs(residual) < 1e-9:
             return clamped
 
@@ -344,10 +364,10 @@ def _settle(
             # Every player is pinned. The bars have to total 100%, so the sum
             # wins and the cap gives way. Only reachable if the model returns
             # something wild on a very small roster.
-            return _normalize(clamped)
+            return _normalize(clamped, target)
         current = {p: clamped[p] + residual * (room[p] / available) for p in alive}
 
-    return _normalize(current)
+    return _normalize(current, target)
 
 
 def _normalize_quote(text: str) -> str:
@@ -411,7 +431,9 @@ class Observer:
     def __init__(self, setup: GameSetup, llm: Optional[StructuredLLM] = None):
         self.setup = setup
         self.llm = llm or get_backend()
-        uniform = 1.0 / len(setup.players)
+        # Before anyone speaks, every player is equally likely, and the
+        # numbers sum to the number of liars -- not to 1.
+        uniform = setup.deceiver_count / len(setup.players)
         self.state = BeliefState(suspicion={p: uniform for p in setup.players})
         self.history: List[Dict[str, float]] = []
         # Every state, not just its numbers. `history` is enough to plot a chart;
@@ -422,6 +444,36 @@ class Observer:
         self.said: Dict[str, List[str]] = {}
         # round -> {voter: target}, from the narrator's announcements only.
         self.votes: Dict[int, Dict[str, str]] = {}
+        # Roles announced publicly when a player is eliminated. Public
+        # knowledge -- every player at the table hears it.
+        self.revealed: Dict[str, str] = {}
+
+    def _liars_left(self, eliminated: List[str]) -> int:
+        """Liars still in the game, given this list of the dead.
+
+        Takes the eliminated list explicitly because the event that reveals a
+        liar must count that reveal immediately -- reading it off the state
+        would use the previous turn's dead list and be one event stale.
+
+        Floors at 1: if every liar has been caught the game is already over
+        and the numbers mean nothing, but a target of 0 would blank the chart.
+        """
+        caught = sum(
+            1
+            for player, role in self.revealed.items()
+            if role.lower() in DECEIVER_ROLES and player in eliminated
+        )
+        return max(1, self.setup.deceiver_count - caught)
+
+    @property
+    def liars_remaining(self) -> int:
+        """How many of the lying team are still in the game.
+
+        Derived only from what the table knows: the announced total, minus
+        any eliminated player whose revealed role was a liar. Never from
+        ground truth.
+        """
+        return self._liars_left(self.state.eliminated)
 
     @property
     def alive(self) -> List[str]:
@@ -462,6 +514,10 @@ class Observer:
         vote = infer_vote(event)
         if vote and vote[0] in self.setup.players and vote[1] in self.setup.players:
             self.votes.setdefault(event.round, {})[vote[0]] = vote[1]
+        gone = infer_elimination(event)
+        reveal = _ROLE_REVEAL.search(event.statement)
+        if gone in self.setup.players and reveal:
+            self.revealed[gone] = reveal.group('role')
         prior = self.state
         first = prior.event_index < 0
 
@@ -488,7 +544,9 @@ class Observer:
             phase=event.phase,
             event_index=prior.event_index + 1,
             eliminated=eliminated,
-            suspicion=_settle(out.suspicion, prior.suspicion, alive_after, first),
+            suspicion=_settle(
+                out.suspicion, prior.suspicion, alive_after, first, self._liars_left(eliminated)
+            ),
             claims_tracked=claims,
             contradictions_noticed=_merge_contradictions(
                 prior.contradictions_noticed, out.contradictions_noticed, self.said

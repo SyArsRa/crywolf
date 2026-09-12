@@ -89,6 +89,55 @@ def test_precision_at_n() -> None:
     check("precision tells the fuller story", score.precision_at_n == 0.5)
 
 
+def test_two_suspects_can_both_be_high() -> None:
+    """The bug behind "it only ever picks one suspect": suspicion was normalised
+    to sum to 1.0, so with two mafia the guilty pair had to compete for one pool
+    -- raising one mathematically lowered the other."""
+    print("suspicion sums to the number of liars")
+    from backend.observer import Observer, _settle
+    from backend.schema import ObserverOutput, SuspicionEntry
+
+    alive = ["A", "B", "C", "D"]
+    out = _settle(
+        [SuspicionEntry(player=p, score=s) for p, s in zip(alive, [0.9, 0.85, 0.2, 0.1])],
+        {p: 0.5 for p in alive}, alive, first_event=False, remaining_liars=2,
+    )
+    check("two suspects stay high together", out["A"] > 0.6 and out["B"] > 0.6)
+    check("they sum to the liar count, not 1.0", abs(sum(out.values()) - 2.0) < 1e-6)
+
+    single = _settle(
+        [SuspicionEntry(player="A", score=0.9)],
+        {p: 0.25 for p in alive}, alive, first_event=True, remaining_liars=1,
+    )
+    check("one-liar games are unchanged", abs(sum(single.values()) - 1.0) < 1e-6)
+
+    # And the observer derives the count from public reveals, never ground truth.
+    transcript = _mafia_transcript(
+        events=[
+            GameEvent(round=1, phase="day", speaker="A", statement="morning"),
+            GameEvent(round=1, phase="vote", speaker="MODERATOR",
+                      statement="C was voted out. Their role was mafia", eliminated="C"),
+        ]
+    )
+
+    class Stub:
+        def structured(self, system, user, schema):
+            return ObserverOutput(
+                suspicion=[SuspicionEntry(player=p, score=0.5) for p in transcript.setup.players],
+                claims_tracked=[], contradictions_noticed=[], reasoning="x",
+            )
+
+    observer = Observer(transcript.setup, llm=Stub())
+    check("starts expecting both liars", observer.liars_remaining == 2)
+    for event in transcript.events:
+        observer.observe(event)
+    check("a revealed mafia reduces the count", observer.liars_remaining == 1)
+    check(
+        "and the living suspicion re-targets that",
+        abs(sum(observer.state.suspicion.values()) - 1.0) < 1e-6,
+    )
+
+
 def test_adapter_withholds_the_mafia_only_channel() -> None:
     """The one that matters. Nighttime chat is mafia-only in this dataset -- every
     nighttime speaker is mafia in all 26 games that have any. If a single one of
@@ -193,6 +242,7 @@ if __name__ == "__main__":
     for fn in [
         test_multiple_deceivers_are_allowed,
         test_precision_at_n,
+        test_two_suspects_can_both_be_high,
         test_adapter_withholds_the_mafia_only_channel,
         test_converted_games_are_sane,
     ]:

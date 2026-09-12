@@ -154,6 +154,9 @@ def main() -> int:
                 _write_run(Path(args.out), transcript, observer, None, completed)
             print(f"[{i:>2}/{total}] R{event.round} {event.phase} "
                   f"{event.speaker}: {event.statement}")
+            remaining = observer.liars_remaining
+            label = transcript.setup.deceiver_role
+            print(f"    (each bar is P({label}); {remaining} still in the game)")
             print(_bars(state, transcript.setup.players, liars if args.spoil else set()))
             print(f"    -> {state.reasoning}")
             if state.contradictions_noticed:
