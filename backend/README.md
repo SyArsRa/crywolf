@@ -52,9 +52,32 @@ python -m backend.test_observer   # offline, no API key needed
 `--json` saves a full run so the UI can replay it — that's the stage fallback if
 a live run misbehaves.
 
+## Which model runs
+
+`llm.py` is the only file that knows. `observer.py` asks for a validated object
+and doesn't care who produced it.
+
+```bash
+pip install -r requirements.txt
+export GEMINI_API_KEY=...          # free key: https://aistudio.google.com/apikey
+```
+
+Gemini is the default. `gemini-2.5-flash` rather than pro because one replay is
+27 calls and the free tier's pro quota won't survive a tuning session.
+
+| Variable | Default | |
+|---|---|---|
+| `CRYWOLF_PROVIDER` | `gemini` | or `anthropic`, if a key ever appears |
+| `CRYWOLF_MODEL` | per provider | e.g. `gemini-2.5-pro` |
+| `CRYWOLF_EFFORT` | `medium` | Anthropic only |
+
+Rate limits and transient 5xx are retried with backoff inside `llm.py` — free-tier
+Gemini will throttle a 27-call replay, and that's expected, not a failure.
+
+To add a third provider, write a class with one `structured(system, user, schema)`
+method returning the validated model. Nothing else changes.
+
 ## Tuning knobs
 
-- `CRYWOLF_EFFORT` (default `medium`) — raise to `high` if reads feel shallow,
-  lower if the feed outpaces the observer.
 - `MAX_DELTA_PER_EVENT` in `observer.py` (0.30) — the per-event suspicion cap.
   Lower it if the chart looks jumpy; raise it if the observer looks asleep.

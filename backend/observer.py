@@ -10,6 +10,8 @@ Design notes worth knowing before you change anything here:
   model gets no conversation history -- the belief state IS the memory, which is
   what makes it inspectable. If it forgets something, you can see the forgetting.
 * Output is constrained by a strict JSON schema, so we never parse prose.
+* Which model answers is `llm.py`'s problem, not this file's. Nothing below
+  mentions a provider.
 * The model's raw numbers are advisory. `_settle` normalizes them and rate-limits
   how far any one player can move in a single event, because an unchecked model
   will happily swing a player from 0.1 to 0.9 on one sarcastic remark and the
@@ -18,11 +20,9 @@ Design notes worth knowing before you change anything here:
 
 from __future__ import annotations
 
-import os
 from typing import Dict, List, Optional
 
-import anthropic
-
+from backend.llm import StructuredLLM, get_backend
 from backend.schema import (
     BeliefState,
     Contradiction,
@@ -30,9 +30,6 @@ from backend.schema import (
     GameSetup,
     ObserverOutput,
 )
-
-MODEL = os.environ.get("CRYWOLF_MODEL", "claude-opus-5")
-EFFORT = os.environ.get("CRYWOLF_EFFORT", "medium")
 
 # No single line of dialogue is worth more than this much suspicion. Tuned by
 # watching replays: below ~0.2 the observer looks catatonic, above ~0.4 the
@@ -168,9 +165,9 @@ def _merge_contradictions(
 class Observer:
     """Stateful across one game. Construct once, feed events in order."""
 
-    def __init__(self, setup: GameSetup, client: Optional[anthropic.Anthropic] = None):
+    def __init__(self, setup: GameSetup, llm: Optional[StructuredLLM] = None):
         self.setup = setup
-        self.client = client or anthropic.Anthropic()
+        self.llm = llm or get_backend()
         uniform = 1.0 / len(setup.players)
         self.state = BeliefState(suspicion={p: uniform for p in setup.players})
         self.history: List[Dict[str, float]] = []
@@ -180,15 +177,11 @@ class Observer:
         prior = self.state
         first = prior.event_index < 0
 
-        response = self.client.messages.parse(
-            model=MODEL,
-            max_tokens=16000,
-            system=[{"type": "text", "text": SYSTEM, "cache_control": {"type": "ephemeral"}}],
-            messages=[{"role": "user", "content": render(event, prior, self.setup)}],
-            output_format=ObserverOutput,
-            output_config={"effort": EFFORT},
+        out: ObserverOutput = self.llm.structured(
+            system=SYSTEM,
+            user=render(event, prior, self.setup),
+            schema=ObserverOutput,
         )
-        out: ObserverOutput = response.parsed_output
 
         claims = dict(prior.claims_tracked)
         for entry in out.claims_tracked:

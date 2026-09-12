@@ -7,7 +7,6 @@ that logic is where the bugs actually live. Run with: python -m backend.test_obs
 from __future__ import annotations
 
 from pathlib import Path
-from types import SimpleNamespace
 
 from backend.observer import Observer, _merge_contradictions, _settle
 from backend.schema import (
@@ -84,33 +83,31 @@ def test_full_loop_with_stub_model() -> None:
         Path("data/fallback_transcript.json").read_text(encoding="utf-8")
     )
 
-    class StubMessages:
-        """Answers every event by nudging P4 upward, ignoring the prompt."""
+    class StubLLM:
+        """A StructuredLLM that nudges P4 upward, ignoring the prompt entirely."""
 
         def __init__(self) -> None:
             self.calls = 0
             self.prompts: list[str] = []
 
-        def parse(self, **kwargs):
+        def structured(self, system: str, user: str, schema):
             self.calls += 1
-            self.prompts.append(kwargs["messages"][0]["content"])
+            self.prompts.append(user)
             scores = {p: 0.15 for p in transcript.setup.players}
             scores["P4"] = 0.15 + min(0.6, 0.05 * self.calls)
-            return SimpleNamespace(
-                parsed_output=ObserverOutput(
-                    suspicion=[SuspicionEntry(player=p, score=s) for p, s in scores.items()],
-                    claims_tracked=[ClaimEntry(player="P4", claim=f"tracked as of call {self.calls}")],
-                    contradictions_noticed=(
-                        [Contradiction(player="P4", earlier="would vote P2", now="voted P1", round_noticed=2)]
-                        if self.calls > 18
-                        else []
-                    ),
-                    reasoning=f"stub reasoning {self.calls}",
-                )
+            return ObserverOutput(
+                suspicion=[SuspicionEntry(player=p, score=s) for p, s in scores.items()],
+                claims_tracked=[ClaimEntry(player="P4", claim=f"tracked as of call {self.calls}")],
+                contradictions_noticed=(
+                    [Contradiction(player="P4", earlier="would vote P2", now="voted P1", round_noticed=2)]
+                    if self.calls > 18
+                    else []
+                ),
+                reasoning=f"stub reasoning {self.calls}",
             )
 
-    stub = StubMessages()
-    observer = Observer(transcript.setup, client=SimpleNamespace(messages=stub))
+    stub = StubLLM()
+    observer = Observer(transcript.setup, llm=stub)
     for event in transcript.events:
         observer.observe(event)
 
