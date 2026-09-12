@@ -148,8 +148,9 @@ def feed_live(client: httpx.Client, transcript: Transcript, interval: float) -> 
     start = client.post("/game/start", json={"transcript": transcript.model_dump(), "live": True})
     if start.status_code != 200:
         print(f"couldn't start a live run: {start.status_code} {start.text[:400]}")
-        print("\nIf that's a missing key, either export GEMINI_API_KEY, or replay a")
-        print("recorded run instead:  python -m backend.feeder --replay <run file>")
+        print("\nIf that's a missing key: cp .env.example .env, put ANTHROPIC_API_KEY in it,")
+        print("and restart the server -- .env is read at startup, not per request.")
+        print("Or skip the model entirely:  python -m backend.feeder --replay <run file>")
         return 2
     total = len(transcript.events)
     print(f"live run: {total} events, players {', '.join(transcript.setup.players)}\n")
