@@ -692,6 +692,88 @@ h2 {
 }
 .phase-seg.current { color: var(--wood-dark); background: var(--brass); border-color: transparent; }
 
+/* ------------------------------------------------------------- scoreboard */
+/* The observer graded against ground truth after every event. It never sees
+   this -- that is what makes it a grade rather than a hint. */
+
+.belief-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(210px, 260px);
+  gap: 18px;
+  align-items: stretch;
+}
+.belief-row > .belief-board { margin: 0; }
+
+.scoreboard {
+  background: linear-gradient(180deg, var(--wood-2) 0%, var(--wood) 100%);
+  border: 1px solid var(--brass);
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.score-main { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.score-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--brass-light);
+  font-weight: 700;
+}
+.score-now {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.score-now.hit { background: var(--good); color: #f2fbf5; }
+.score-now.miss { background: rgba(0, 0, 0, 0.3); color: var(--ink-dim); border: 1px solid var(--wood-line); }
+
+.score-value {
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--brass-light);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.score-sub { display: block; margin-top: 4px; font-size: 11px; color: var(--ink-dim); }
+
+.score-meters { display: flex; flex-direction: column; gap: 8px; }
+.meter-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-dim);
+  margin-bottom: 3px;
+  font-variant-numeric: tabular-nums;
+}
+.meter-track { height: 5px; border-radius: 4px; background: rgba(0, 0, 0, 0.35); overflow: hidden; }
+.meter-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: var(--brass);
+  transition: width 700ms cubic-bezier(.3,.8,.3,1);
+}
+
+.score-foot {
+  font-size: 10.5px;
+  color: var(--ink-dim);
+  border-top: 1px solid var(--wood-line);
+  padding-top: 8px;
+}
+
+@media (max-width: 900px) {
+  .belief-row { grid-template-columns: 1fr; }
+}
+
 /* ----------------------------------------------------------------- ledger */
 
 .ledger-row {
