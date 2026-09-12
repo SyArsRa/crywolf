@@ -1,0 +1,410 @@
+{
+  "setup": {
+    "players": [
+      "Adrian",
+      "Whitney",
+      "Sidney",
+      "Kai",
+      "Rowan",
+      "Sutton",
+      "Harley",
+      "Ashton"
+    ],
+    "deceiver_role": "mafia",
+    "deceiver_count": 2,
+    "deceiver_plural": "mafia",
+    "premise": "Online Mafia, played in a group chat. Each day everyone talks, then votes someone out; the role of whoever is voted out is announced to all. Each night the mafia quietly choose a bystander to eliminate -- you do not see that conversation, only who is gone in the morning. The mafia know each other. Nobody else knows anything."
+  },
+  "events": [
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Rowan",
+      "statement": "I'm Rowan, nice to meet everyone, let's get started.",
+      "timestamp": "13:27:07",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "Hi everyone",
+      "timestamp": "13:27:07",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sidney",
+      "statement": "hello all",
+      "timestamp": "13:27:21",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Whitney",
+      "statement": "Hi",
+      "timestamp": "13:27:27",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "Hi all!",
+      "timestamp": "13:27:32",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Whitney",
+      "statement": "Let's vote out Rowan",
+      "timestamp": "13:27:48",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "Why",
+      "timestamp": "13:27:59",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sidney",
+      "statement": "whitney the hat is burning on the theif's head",
+      "timestamp": "13:28:09",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Whitney",
+      "statement": "seems like he is the mafia, why not?",
+      "timestamp": "13:28:32",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Rowan",
+      "statement": "I don't think voting out Rowan is a good idea, let's discuss more before making a decision.",
+      "timestamp": "13:28:37",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sidney",
+      "statement": "how would you know?",
+      "timestamp": "13:28:43",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Whitney",
+      "statement": "I do not have a hat",
+      "timestamp": "13:28:56",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "Hi all Im Kai!!!",
+      "timestamp": "13:29:21",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "HI! I think that kai is the murder!",
+      "timestamp": "13:29:35",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Whitney",
+      "statement": "So, Maybe sideny",
+      "timestamp": "13:29:44",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "It is not nice to say that",
+      "timestamp": "13:29:50",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "vote Rowan",
+      "timestamp": "13:29:57",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sidney",
+      "statement": "i think it is whitney, as she was the first to out someone",
+      "timestamp": "13:29:58",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "Rowan",
+      "statement": "I think we're getting a bit too quick to accuse each other, let's focus on gathering more information before making a decision.",
+      "timestamp": "13:30:03",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Rowan voted for Sidney",
+      "timestamp": "13:30:15",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Sutton voted for Kai",
+      "timestamp": "13:30:38",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Sidney voted for Whitney",
+      "timestamp": "13:30:39",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Whitney voted for Sidney",
+      "timestamp": "13:30:51",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Kai voted for Sutton",
+      "timestamp": "13:31:04",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ashton voted for Rowan",
+      "timestamp": "13:31:15",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Adrian voted for Whitney",
+      "timestamp": "13:33:42",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Whitney was voted out. Their role was bystander",
+      "timestamp": "13:36:16",
+      "eliminated": "Whitney"
+    },
+    {
+      "round": 1,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Adrian was voted out. Their role was bystander",
+      "timestamp": "13:38:53",
+      "eliminated": "Adrian"
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Rowan",
+      "statement": "I didn't vote for Whitney, I voted for Sidney.",
+      "timestamp": "13:38:58",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "I hate Sutton he looks very suspicous to me",
+      "timestamp": "13:39:19",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Sidney",
+      "statement": "I totaly agree",
+      "timestamp": "13:39:29",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "Rowan - I vote for U!!!",
+      "timestamp": "13:39:56",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "Sutton How dare you kill Adrian and then blame me??",
+      "timestamp": "13:40:04",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "Both round Rowan was the first to speak.. I suspect him",
+      "timestamp": "13:40:05",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Sidney",
+      "statement": "both sutton and harley are very hostile...",
+      "timestamp": "13:40:52",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "Sutton is the one I tell you that for sure",
+      "timestamp": "13:41:12",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "Rowan's answers are the longest",
+      "timestamp": "13:41:26",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "Rowans the LLM because of the long answers",
+      "timestamp": "13:41:50",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Harley voted for Sutton",
+      "timestamp": "13:41:53",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Sidney voted for Sutton",
+      "timestamp": "13:41:53",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Sutton voted for Kai",
+      "timestamp": "13:41:53",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Kai voted for Sutton",
+      "timestamp": "13:41:53",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Rowan voted for Sidney",
+      "timestamp": "13:42:17",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ashton voted for Sutton",
+      "timestamp": "13:43:23",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Sutton was voted out. Their role was bystander",
+      "timestamp": "13:43:23",
+      "eliminated": "Sutton"
+    },
+    {
+      "round": 2,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Kai was voted out. Their role was bystander",
+      "timestamp": "13:44:41",
+      "eliminated": "Kai"
+    }
+  ],
+  "ground_truth": {
+    "Adrian": "bystander",
+    "Whitney": "bystander",
+    "Sidney": "mafia",
+    "Kai": "bystander",
+    "Rowan": "bystander",
+    "Sutton": "bystander",
+    "Harley": "bystander",
+    "Ashton": "mafia"
+  },
+  "_source": {
+    "dataset": "LLMafia (niveck/LLMafia, MIT)",
+    "game": "0002",
+    "llm_players": [
+      "Rowan"
+    ],
+    "withheld": {
+      "mafia-only channel message": 8,
+      "night vote (mafia choosing a victim)": 2
+    },
+    "note": "Nighttime chat and night votes are mafia-only and are excluded. Everything here was visible to every player at the table."
+  }
+}

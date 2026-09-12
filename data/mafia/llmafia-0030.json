@@ -1,0 +1,552 @@
+{
+  "setup": {
+    "players": [
+      "Harley",
+      "Bailey",
+      "Tyler",
+      "Brook",
+      "Sidney",
+      "Ashton",
+      "Ari"
+    ],
+    "deceiver_role": "mafia",
+    "deceiver_count": 2,
+    "deceiver_plural": "mafia",
+    "premise": "Online Mafia, played in a group chat. Each day everyone talks, then votes someone out; the role of whoever is voted out is announced to all. Each night the mafia quietly choose a bystander to eliminate -- you do not see that conversation, only who is gone in the morning. The mafia know each other. Nobody else knows anything."
+  },
+  "events": [
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sidney",
+      "statement": "Hello!",
+      "timestamp": "17:28:03",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Brook",
+      "statement": "Hiii",
+      "timestamp": "17:28:10",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Tyler",
+      "statement": "Hiii",
+      "timestamp": "17:28:10",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "Yo",
+      "timestamp": "17:28:12",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ari",
+      "statement": "Hello!",
+      "timestamp": "17:28:17",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ari",
+      "statement": "Let's start this game",
+      "timestamp": "17:28:26",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Bailey",
+      "statement": "i'm here let's get started",
+      "timestamp": "17:28:29",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "It's clear that Brook is sus",
+      "timestamp": "17:28:30",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sidney",
+      "statement": "I'm Sidney Swiney",
+      "timestamp": "17:28:35",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ari",
+      "statement": "For sure",
+      "timestamp": "17:28:38",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "hiii",
+      "timestamp": "17:28:39",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Tyler",
+      "statement": "lol",
+      "timestamp": "17:28:40",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Brook",
+      "statement": "why?",
+      "timestamp": "17:28:43",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Tyler",
+      "statement": "do you have great genes?",
+      "timestamp": "17:28:47",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ari",
+      "statement": "Sidney has great genes",
+      "timestamp": "17:28:47",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "Crystal clear",
+      "timestamp": "17:28:50",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sidney",
+      "statement": "I do",
+      "timestamp": "17:28:54",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ari",
+      "statement": "We are all on the same page",
+      "timestamp": "17:28:55",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Bailey",
+      "statement": "harley why do you think brook is suspicious",
+      "timestamp": "17:29:01",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "Sidney do me a kid",
+      "timestamp": "17:29:06",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "we are all from the same planet",
+      "timestamp": "17:29:12",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Tyler",
+      "statement": "what planet is that",
+      "timestamp": "17:29:20",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sidney",
+      "statement": "Sure Harley, but only if you are a Bystander",
+      "timestamp": "17:29:26",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Bailey",
+      "statement": "harley needs to explain what makes brook suspicious",
+      "timestamp": "17:29:26",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "it's that actually Bailey is sus",
+      "timestamp": "17:29:37",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sidney",
+      "statement": "Are you?",
+      "timestamp": "17:29:38",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Tyler",
+      "statement": "She must be a mobster",
+      "timestamp": "17:29:41",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Bailey",
+      "statement": "harley still hasn't explained anything about brook being suspicious",
+      "timestamp": "17:29:52",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "It's Bailey",
+      "timestamp": "17:29:59",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ari",
+      "statement": "Harley just accused someone, didn't explain and then accused the one who noticed",
+      "timestamp": "17:30:02",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "Harley",
+      "statement": "bote for Bailey",
+      "timestamp": "17:30:03",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Harley voted for Bailey",
+      "timestamp": "17:30:06",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Sidney voted for Harley",
+      "timestamp": "17:30:07",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Brook voted for Harley",
+      "timestamp": "17:30:10",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ari voted for Harley",
+      "timestamp": "17:30:13",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Tyler voted for Harley",
+      "timestamp": "17:30:13",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ashton voted for Bailey",
+      "timestamp": "17:30:14",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Bailey voted for Harley",
+      "timestamp": "17:30:23",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Harley was voted out. Their role was bystander",
+      "timestamp": "17:30:23",
+      "eliminated": "Harley"
+    },
+    {
+      "round": 1,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Bailey was voted out. Their role was bystander",
+      "timestamp": "17:31:12",
+      "eliminated": "Bailey"
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ari",
+      "statement": "First Harley, then Bailey who voted Harley... Everything is confusing",
+      "timestamp": "17:31:41",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Sidney",
+      "statement": "Mabye it's Ari?",
+      "timestamp": "17:31:42",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Brook",
+      "statement": "so who is mafia?",
+      "timestamp": "17:31:53",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ari",
+      "statement": "Why me>",
+      "timestamp": "17:31:54",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "how many are we in total?",
+      "timestamp": "17:31:54",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Sidney",
+      "statement": "I don't know",
+      "timestamp": "17:32:03",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Tyler",
+      "statement": "I think its Sidney...",
+      "timestamp": "17:32:04",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ari",
+      "statement": "2 went out",
+      "timestamp": "17:32:05",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ari",
+      "statement": "Sidney has great genes for lying!",
+      "timestamp": "17:32:16",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Tyler",
+      "statement": "maybe not such great genes...",
+      "timestamp": "17:32:17",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Tyler",
+      "statement": "lying genes",
+      "timestamp": "17:32:29",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Tyler",
+      "statement": "for sure",
+      "timestamp": "17:32:33",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ari",
+      "statement": "for sure",
+      "timestamp": "17:32:36",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Tyler",
+      "statement": "mboster genes",
+      "timestamp": "17:32:38",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Sidney",
+      "statement": "I wouldn't risk my career for the mafia",
+      "timestamp": "17:32:38",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Tyler",
+      "statement": "why not? its great money",
+      "timestamp": "17:32:47",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "ok its tylr?",
+      "timestamp": "17:32:55",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Sidney",
+      "statement": "American Egal pay enough",
+      "timestamp": "17:32:59",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Tyler voted for Sidney",
+      "timestamp": "17:33:18",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ashton voted for Tyler",
+      "timestamp": "17:33:18",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Sidney voted for Tyler",
+      "timestamp": "17:33:24",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ari voted for Tyler",
+      "timestamp": "17:33:24",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Brook voted for Tyler",
+      "timestamp": "17:34:44",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Tyler was voted out. Their role was bystander",
+      "timestamp": "17:34:44",
+      "eliminated": "Tyler"
+    }
+  ],
+  "ground_truth": {
+    "Harley": "bystander",
+    "Bailey": "bystander",
+    "Tyler": "bystander",
+    "Brook": "mafia",
+    "Sidney": "bystander",
+    "Ashton": "bystander",
+    "Ari": "mafia"
+  },
+  "_source": {
+    "dataset": "LLMafia (niveck/LLMafia, MIT)",
+    "game": "0030",
+    "llm_players": [
+      "Bailey"
+    ],
+    "withheld": {
+      "mafia-only channel message": 4,
+      "night vote (mafia choosing a victim)": 2
+    },
+    "note": "Nighttime chat and night votes are mafia-only and are excluded. Everything here was visible to every player at the table."
+  }
+}

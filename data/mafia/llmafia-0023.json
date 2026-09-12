@@ -1,0 +1,592 @@
+{
+  "setup": {
+    "players": [
+      "Sidney",
+      "Noah",
+      "Ariel",
+      "Dakota",
+      "Harley",
+      "Hayden",
+      "Sage"
+    ],
+    "deceiver_role": "mafia",
+    "deceiver_count": 2,
+    "deceiver_plural": "mafia",
+    "premise": "Online Mafia, played in a group chat. Each day everyone talks, then votes someone out; the role of whoever is voted out is announced to all. Each night the mafia quietly choose a bystander to eliminate -- you do not see that conversation, only who is gone in the morning. The mafia know each other. Nobody else knows anything."
+  },
+  "events": [
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "Hellooooo",
+      "timestamp": "12:43:18",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sage",
+      "statement": "hi harly",
+      "timestamp": "12:43:22",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sage",
+      "statement": "are you Mafia?",
+      "timestamp": "12:43:28",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sidney",
+      "statement": "harley seems pretty excited let's get down to business",
+      "timestamp": "12:43:32",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "Nope",
+      "timestamp": "12:43:33",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "do you learn here?",
+      "timestamp": "12:43:35",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dakota",
+      "statement": "hi, I am a bystander. you can trust me!",
+      "timestamp": "12:43:35",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sidney",
+      "statement": "harley didnt answer sages question yet",
+      "timestamp": "12:43:47",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "wow wow",
+      "timestamp": "12:43:54",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "lol",
+      "timestamp": "12:43:57",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Hayden",
+      "statement": "who feels red today?",
+      "timestamp": "12:43:58",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "cut me some slack",
+      "timestamp": "12:44:00",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sage",
+      "statement": "sidney looked pretty exited do vote for Harly...",
+      "timestamp": "12:44:05",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "some players didn't answer",
+      "timestamp": "12:44:11",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "prob human",
+      "timestamp": "12:44:14",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "Mafia people please vote sidney out",
+      "timestamp": "12:44:27",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dakota",
+      "statement": "please is you are a mafia just tell us",
+      "timestamp": "12:44:33",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sidney",
+      "statement": "noahs comment about humans makes no sense right now",
+      "timestamp": "12:44:51",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dakota",
+      "statement": "harley why are you giving orders to the mafia?",
+      "timestamp": "12:44:54",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sidney",
+      "statement": "hayden's random question seems suspicious to me",
+      "timestamp": "12:45:01",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Hayden",
+      "statement": "why Sidney?",
+      "timestamp": "12:45:04",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "Harley tell us about yourself",
+      "timestamp": "12:45:05",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sage",
+      "statement": "im with dakota",
+      "timestamp": "12:45:05",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Sidney voted for Hayden",
+      "timestamp": "12:45:28",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Hayden voted for Sidney",
+      "timestamp": "12:45:45",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Sage voted for Dakota",
+      "timestamp": "12:45:45",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Noah voted for Harley",
+      "timestamp": "12:45:45",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Dakota voted for Harley",
+      "timestamp": "12:45:55",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Harley voted for Noah",
+      "timestamp": "12:46:01",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ariel voted for Dakota",
+      "timestamp": "12:46:41",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Dakota was voted out. Their role was bystander",
+      "timestamp": "12:46:41",
+      "eliminated": "Dakota"
+    },
+    {
+      "round": 1,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Sidney was voted out. Their role was bystander",
+      "timestamp": "12:48:26",
+      "eliminated": "Sidney"
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "just nice that Harley is still in the game even that she got the same as Dekotacon",
+      "timestamp": "12:48:54",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "notice*",
+      "timestamp": "12:49:01",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Sage",
+      "statement": "sidny suspected Harly before",
+      "timestamp": "12:49:13",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "Yeah I was so scared",
+      "timestamp": "12:49:13",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "write something in evringlish",
+      "timestamp": "12:49:13",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "That is a weird thing to say Noah",
+      "timestamp": "12:49:14",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "like kelev",
+      "timestamp": "12:49:18",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "Noad is a troll, not a Mafia",
+      "timestamp": "12:49:37",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "Noah*",
+      "timestamp": "12:49:43",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "Why would you protect him?",
+      "timestamp": "12:49:52",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Sage",
+      "statement": "intresting",
+      "timestamp": "12:50:01",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "He seems trustsworthy",
+      "timestamp": "12:50:01",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "Or she",
+      "timestamp": "12:50:09",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "write some word",
+      "timestamp": "12:50:11",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "it is easy",
+      "timestamp": "12:50:14",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "aba",
+      "timestamp": "12:50:16",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Hayden voted for Sage",
+      "timestamp": "12:50:42",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Sage voted for Harley",
+      "timestamp": "12:50:46",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Noah voted for Harley",
+      "timestamp": "12:50:51",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Harley voted for Sage",
+      "timestamp": "12:50:55",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ariel voted for Hayden",
+      "timestamp": "12:51:02",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Harley was voted out. Their role was mafia",
+      "timestamp": "12:51:02",
+      "eliminated": "Harley"
+    },
+    {
+      "round": 2,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Noah was voted out. Their role was bystander",
+      "timestamp": "12:51:41",
+      "eliminated": "Noah"
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Sage",
+      "statement": "ok so lets see who harly didnt vote for",
+      "timestamp": "12:52:01",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Hayden",
+      "statement": "ok even shock?",
+      "timestamp": "12:52:04",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "I think it has to be hayden",
+      "timestamp": "12:52:39",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Sage",
+      "statement": "i suspect Hayden",
+      "timestamp": "12:52:40",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Hayden",
+      "statement": "he didnt vote for any of us",
+      "timestamp": "12:52:54",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Sage",
+      "statement": "he woted like Harly",
+      "timestamp": "12:52:58",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Hayden",
+      "statement": "sage you are a suspect now",
+      "timestamp": "12:53:15",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "No, you are a suspect",
+      "timestamp": "12:53:24",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Sage",
+      "statement": "off course i want to win",
+      "timestamp": "12:53:25",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Hayden",
+      "statement": "you workes with Harley",
+      "timestamp": "12:53:40",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Hayden voted for Sage",
+      "timestamp": "12:53:48",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ariel voted for Hayden",
+      "timestamp": "12:53:50",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Sage voted for Hayden",
+      "timestamp": "12:53:50",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Hayden was voted out. Their role was mafia",
+      "timestamp": "12:53:50",
+      "eliminated": "Hayden"
+    }
+  ],
+  "ground_truth": {
+    "Sidney": "bystander",
+    "Noah": "bystander",
+    "Ariel": "bystander",
+    "Dakota": "bystander",
+    "Harley": "mafia",
+    "Hayden": "mafia",
+    "Sage": "bystander"
+  },
+  "_source": {
+    "dataset": "LLMafia (niveck/LLMafia, MIT)",
+    "game": "0023",
+    "llm_players": [
+      "Sidney"
+    ],
+    "withheld": {
+      "mafia-only channel message": 2,
+      "night vote (mafia choosing a victim)": 3
+    },
+    "note": "Nighttime chat and night votes are mafia-only and are excluded. Everything here was visible to every player at the table."
+  }
+}

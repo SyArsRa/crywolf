@@ -1,0 +1,664 @@
+{
+  "setup": {
+    "players": [
+      "Skylar",
+      "Addison",
+      "Reese",
+      "Bailey",
+      "Noah",
+      "Peyton",
+      "Ari"
+    ],
+    "deceiver_role": "mafia",
+    "deceiver_count": 2,
+    "deceiver_plural": "mafia",
+    "premise": "Online Mafia, played in a group chat. Each day everyone talks, then votes someone out; the role of whoever is voted out is announced to all. Each night the mafia quietly choose a bystander to eliminate -- you do not see that conversation, only who is gone in the morning. The mafia know each other. Nobody else knows anything."
+  },
+  "events": [
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "Hello!",
+      "timestamp": "17:41:35",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ari",
+      "statement": "Halooo",
+      "timestamp": "17:41:42",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Skylar",
+      "statement": "Hello",
+      "timestamp": "17:41:43",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Bailey",
+      "statement": "Hiiii",
+      "timestamp": "17:41:43",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "Hiii",
+      "timestamp": "17:41:47",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Peyton",
+      "statement": "hiii",
+      "timestamp": "17:41:48",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Addison",
+      "statement": "i'm here let's get started",
+      "timestamp": "17:41:49",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ari",
+      "statement": "Let's start it",
+      "timestamp": "17:41:50",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Skylar",
+      "statement": "Addison is here we can get started",
+      "timestamp": "17:42:01",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ari",
+      "statement": "So is Skylar",
+      "timestamp": "17:42:11",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Addison",
+      "statement": "let's figure out who we can trust first",
+      "timestamp": "17:42:11",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "okkkkkk lets go",
+      "timestamp": "17:42:12",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Skylar",
+      "statement": "Classic Ari",
+      "timestamp": "17:42:21",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Peyton",
+      "statement": "i vote reese",
+      "timestamp": "17:42:21",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ari",
+      "statement": "Addison speaks words of wisdo,",
+      "timestamp": "17:42:27",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Skylar",
+      "statement": "So it's Peyton",
+      "timestamp": "17:42:29",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ari",
+      "statement": "Why Peyton? Give us a reason",
+      "timestamp": "17:42:41",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "It must be Peyton",
+      "timestamp": "17:42:43",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ari",
+      "statement": "Or else you are sus",
+      "timestamp": "17:42:46",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "he seems sus",
+      "timestamp": "17:42:50",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Skylar",
+      "statement": "Ari is sus as fus",
+      "timestamp": "17:42:53",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Peyton",
+      "statement": "you sus",
+      "timestamp": "17:42:58",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Bailey",
+      "statement": "Skyler is just pointing fingers",
+      "timestamp": "17:43:04",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Addison",
+      "statement": "peyton voted pretty quickly",
+      "timestamp": "17:43:04",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ari",
+      "statement": "Why? You just accused someone",
+      "timestamp": "17:43:08",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "Peyton is a sus name",
+      "timestamp": "17:43:09",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Skylar",
+      "statement": "+1",
+      "timestamp": "17:43:15",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Peyton",
+      "statement": "+2",
+      "timestamp": "17:43:20",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Addison",
+      "statement": "ari is being really defensive right now",
+      "timestamp": "17:43:23",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "Peyton accused Reese for no reason",
+      "timestamp": "17:43:24",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ari",
+      "statement": "Either Skylar or Peyton - Both accusing people for no reason",
+      "timestamp": "17:43:34",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "true dat",
+      "timestamp": "17:43:34",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Noah voted for Peyton",
+      "timestamp": "17:43:40",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Bailey voted for Peyton",
+      "timestamp": "17:43:42",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ari voted for Peyton",
+      "timestamp": "17:43:43",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Addison voted for Peyton",
+      "timestamp": "17:43:45",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Peyton voted for Reese",
+      "timestamp": "17:43:45",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Reese voted for Peyton",
+      "timestamp": "17:43:46",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Skylar voted for Peyton",
+      "timestamp": "17:43:49",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Peyton was voted out. Their role was bystander",
+      "timestamp": "17:43:49",
+      "eliminated": "Peyton"
+    },
+    {
+      "round": 1,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Ari was voted out. Their role was bystander",
+      "timestamp": "17:44:38",
+      "eliminated": "Ari"
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "who wanted Ari dead?",
+      "timestamp": "17:45:05",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Addison",
+      "statement": "mafia got another bystander during nighttime",
+      "timestamp": "17:45:16",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "Addison?",
+      "timestamp": "17:45:20",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Skylar",
+      "statement": "That's what I wanted to say",
+      "timestamp": "17:45:31",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Skylar",
+      "statement": "or was that Reese?",
+      "timestamp": "17:45:42",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "not me",
+      "timestamp": "17:45:53",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "im innocent",
+      "timestamp": "17:45:56",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "im Reese Whiterspoon",
+      "timestamp": "17:46:13",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Skylar",
+      "statement": "how do you eat your soup",
+      "timestamp": "17:46:31",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Addison voted for Skylar",
+      "timestamp": "17:46:45",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Reese voted for Skylar",
+      "timestamp": "17:46:47",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Noah voted for Addison",
+      "timestamp": "17:46:48",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Bailey voted for Skylar",
+      "timestamp": "17:46:50",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Skylar voted for Addison",
+      "timestamp": "17:46:51",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Skylar was voted out. Their role was mafia",
+      "timestamp": "17:46:51",
+      "eliminated": "Skylar"
+    },
+    {
+      "round": 2,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Addison was voted out. Their role was bystander",
+      "timestamp": "17:47:12",
+      "eliminated": "Addison"
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "so",
+      "timestamp": "17:47:27",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "this is akward..",
+      "timestamp": "17:47:43",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Bailey",
+      "statement": "I think it's Noah",
+      "timestamp": "17:47:45",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "not me",
+      "timestamp": "17:47:53",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "maybe Reese?",
+      "timestamp": "17:48:01",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "i also think Noah",
+      "timestamp": "17:48:07",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "nopeee..",
+      "timestamp": "17:48:12",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Bailey",
+      "statement": "that what a mafia would say",
+      "timestamp": "17:48:13",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "i eat soups",
+      "timestamp": "17:48:21",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "not mafia",
+      "timestamp": "17:48:24",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "If he was a bystander then the mafia would kill him before",
+      "timestamp": "17:48:26",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "her",
+      "timestamp": "17:48:32",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "sorry",
+      "timestamp": "17:48:34",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Bailey",
+      "statement": "so Noah right?",
+      "timestamp": "17:48:45",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "Noah is vvvverryyy sus",
+      "timestamp": "17:48:46",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "yes",
+      "timestamp": "17:48:49",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "nooo",
+      "timestamp": "17:48:56",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Reese voted for Noah",
+      "timestamp": "17:49:16",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Noah voted for Reese",
+      "timestamp": "17:49:17",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Bailey voted for Noah",
+      "timestamp": "17:49:18",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Noah was voted out. Their role was mafia",
+      "timestamp": "17:49:18",
+      "eliminated": "Noah"
+    }
+  ],
+  "ground_truth": {
+    "Skylar": "mafia",
+    "Addison": "bystander",
+    "Reese": "bystander",
+    "Bailey": "bystander",
+    "Noah": "mafia",
+    "Peyton": "bystander",
+    "Ari": "bystander"
+  },
+  "_source": {
+    "dataset": "LLMafia (niveck/LLMafia, MIT)",
+    "game": "0031",
+    "llm_players": [
+      "Addison"
+    ],
+    "withheld": {
+      "mafia-only channel message": 7,
+      "night vote (mafia choosing a victim)": 3
+    },
+    "note": "Nighttime chat and night votes are mafia-only and are excluded. Everything here was visible to every player at the table."
+  }
+}

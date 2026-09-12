@@ -220,3 +220,6 @@ __marimo__/
 # Cry Wolf recorded runs
 runs/
 out/
+
+# Raw dataset downloads (re-fetchable; see data/adapters/)
+data/raw/

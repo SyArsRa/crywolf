@@ -1,0 +1,576 @@
+{
+  "setup": {
+    "players": [
+      "Lennon",
+      "Brook",
+      "Cameron",
+      "Ronny",
+      "Ziggy",
+      "Reese",
+      "Gray"
+    ],
+    "deceiver_role": "mafia",
+    "deceiver_count": 2,
+    "deceiver_plural": "mafia",
+    "premise": "Online Mafia, played in a group chat. Each day everyone talks, then votes someone out; the role of whoever is voted out is announced to all. Each night the mafia quietly choose a bystander to eliminate -- you do not see that conversation, only who is gone in the morning. The mafia know each other. Nobody else knows anything."
+  },
+  "events": [
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Cameron",
+      "statement": "hiiii",
+      "timestamp": "17:11:55",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "Morning",
+      "timestamp": "17:11:56",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ziggy",
+      "statement": "Hello!",
+      "timestamp": "17:11:59",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "Let's start!",
+      "timestamp": "17:12:03",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "hiiiiiiii",
+      "timestamp": "17:12:04",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "Imagine all the people",
+      "timestamp": "17:12:06",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Brook",
+      "statement": "hi hiii",
+      "timestamp": "17:12:08",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "lets get started then",
+      "timestamp": "17:12:09",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Brook",
+      "statement": "living life in peace..",
+      "timestamp": "17:12:16",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "its ronny!!!",
+      "timestamp": "17:12:18",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "Ronny is sus",
+      "timestamp": "17:12:20",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "Why?",
+      "timestamp": "17:12:21",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Brook",
+      "statement": "and not in the mafia",
+      "timestamp": "17:12:22",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ziggy",
+      "statement": "Reese what's with the aggression?",
+      "timestamp": "17:12:39",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "Yea it's reese",
+      "timestamp": "17:12:47",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Brook",
+      "statement": "Resse is sus...",
+      "timestamp": "17:12:49",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "Give us a reason",
+      "timestamp": "17:12:52",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "he has capital letter",
+      "timestamp": "17:12:54",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "lennon why am i suspicious already",
+      "timestamp": "17:13:00",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Cameron",
+      "statement": "for sure reese",
+      "timestamp": "17:13:02",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "For sure indeed",
+      "timestamp": "17:13:09",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Brook",
+      "statement": "reese better watch out",
+      "timestamp": "17:13:14",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "reese being loud doesnt make them mafia",
+      "timestamp": "17:13:14",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "nooo",
+      "timestamp": "17:13:18",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "It's either Reese or Ronny and that's a fact",
+      "timestamp": "17:13:18",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "i swearrr",
+      "timestamp": "17:13:21",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "reese being too defensive makes me wonder",
+      "timestamp": "17:13:26",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Brook",
+      "statement": "same..",
+      "timestamp": "17:13:31",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ziggy",
+      "statement": "Lennon maybe it's you?",
+      "timestamp": "17:13:35",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "totally",
+      "timestamp": "17:13:37",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "i vote ronny",
+      "timestamp": "17:13:38",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "This is what someone who's gulty would have said",
+      "timestamp": "17:13:39",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "lennon seems pretty convinced about me and reese",
+      "timestamp": "17:13:40",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Reese voted for Ronny",
+      "timestamp": "17:13:52",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Gray voted for Reese",
+      "timestamp": "17:13:53",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Lennon voted for Reese",
+      "timestamp": "17:13:53",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Brook voted for Reese",
+      "timestamp": "17:13:53",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ziggy voted for Reese",
+      "timestamp": "17:13:56",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ronny voted for Reese",
+      "timestamp": "17:13:57",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Cameron voted for Reese",
+      "timestamp": "17:13:57",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Reese was voted out. Their role was bystander",
+      "timestamp": "17:13:57",
+      "eliminated": "Reese"
+    },
+    {
+      "round": 1,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Brook was voted out. Their role was bystander",
+      "timestamp": "17:15:07",
+      "eliminated": "Brook"
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "Morning",
+      "timestamp": "17:15:16",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Cameron",
+      "statement": "so Ronny is next right?",
+      "timestamp": "17:15:17",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "Oh no they slayed Brook!",
+      "timestamp": "17:15:20",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "it's definetly Ronny",
+      "timestamp": "17:15:22",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "lennon still thinks i'm guilty apparently",
+      "timestamp": "17:15:24",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "Why wouldn't him",
+      "timestamp": "17:15:38",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ziggy",
+      "statement": "Might be Lennon",
+      "timestamp": "17:15:47",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "Did you just assume my gender?",
+      "timestamp": "17:15:50",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Cameron",
+      "statement": "don't act guilty then",
+      "timestamp": "17:15:51",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "Not your gender, but your role",
+      "timestamp": "17:16:04",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "lennon needs to stop accusing me without any proof",
+      "timestamp": "17:16:10",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "Are you mafiasexual?",
+      "timestamp": "17:16:15",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "I'm lennon the girl",
+      "timestamp": "17:16:17",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "lennon is getting desperate with these accusations",
+      "timestamp": "17:16:20",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "definetly Ronny",
+      "timestamp": "17:16:29",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "Classic Mapster",
+      "timestamp": "17:16:38",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "Lennon just keeps accusing, seems suspicious",
+      "timestamp": "17:16:54",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "Imagine all the people",
+      "timestamp": "17:16:55",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "lennon is really fixated on me",
+      "timestamp": "17:16:58",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Gray voted for Lennon",
+      "timestamp": "17:17:10",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Cameron voted for Ronny",
+      "timestamp": "17:17:11",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Lennon voted for Ronny",
+      "timestamp": "17:17:11",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ziggy voted for Lennon",
+      "timestamp": "17:17:12",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ronny voted for Cameron",
+      "timestamp": "17:17:19",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Lennon was voted out. Their role was bystander",
+      "timestamp": "17:17:19",
+      "eliminated": "Lennon"
+    }
+  ],
+  "ground_truth": {
+    "Lennon": "bystander",
+    "Brook": "bystander",
+    "Cameron": "bystander",
+    "Ronny": "mafia",
+    "Ziggy": "bystander",
+    "Reese": "bystander",
+    "Gray": "mafia"
+  },
+  "_source": {
+    "dataset": "LLMafia (niveck/LLMafia, MIT)",
+    "game": "0029",
+    "llm_players": [
+      "Ronny"
+    ],
+    "withheld": {
+      "mafia-only channel message": 3,
+      "night vote (mafia choosing a victim)": 2
+    },
+    "note": "Nighttime chat and night votes are mafia-only and are excluded. Everything here was visible to every player at the table."
+  }
+}

@@ -1,0 +1,1132 @@
+{
+  "setup": {
+    "players": [
+      "Emerson",
+      "Skylar",
+      "Ariel",
+      "Bailey",
+      "Casey",
+      "Noah",
+      "Kai",
+      "Lennon",
+      "Adrian"
+    ],
+    "deceiver_role": "mafia",
+    "deceiver_count": 2,
+    "deceiver_plural": "mafia",
+    "premise": "Online Mafia, played in a group chat. Each day everyone talks, then votes someone out; the role of whoever is voted out is announced to all. Each night the mafia quietly choose a bystander to eliminate -- you do not see that conversation, only who is gone in the morning. The mafia know each other. Nobody else knows anything."
+  },
+  "events": [
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "I'm ready to play, let's get started.",
+      "timestamp": "13:26:30",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Skylar",
+      "statement": "whatsup ?",
+      "timestamp": "13:26:32",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "Hi",
+      "timestamp": "13:26:34",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "hello everyone",
+      "timestamp": "13:26:34",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "hi",
+      "timestamp": "13:26:35",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Bailey",
+      "statement": "Hellooo",
+      "timestamp": "13:26:39",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "Let's all say something nice about each other",
+      "timestamp": "13:26:46",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": ":)",
+      "timestamp": "13:26:48",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "I like cats",
+      "timestamp": "13:26:50",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "i like dogs",
+      "timestamp": "13:26:53",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "What about you Emerson",
+      "timestamp": "13:26:57",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "i like computers",
+      "timestamp": "13:26:59",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "you sound sus",
+      "timestamp": "13:27:00",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "I think we should focus on getting to know each other before making any accusations.",
+      "timestamp": "13:27:01",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "dont\b\b\b\b\b",
+      "timestamp": "13:27:01",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "i agree",
+      "timestamp": "13:27:09",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Skylar",
+      "statement": "i am an AI agent to hepl you solve your problems",
+      "timestamp": "13:27:11",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "You're right Lennon",
+      "timestamp": "13:27:13",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "hi",
+      "timestamp": "13:27:14",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "is anyone here?",
+      "timestamp": "13:27:16",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "I'm glad we're focusing on getting to know each other, let's keep the conversation light and friendly for now.",
+      "timestamp": "13:27:23",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Skylar",
+      "statement": "Lennon I think you are the Mafia",
+      "timestamp": "13:27:35",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "everyone sounds like they are the model",
+      "timestamp": "13:27:36",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "who are sd\b\byou Mafia?",
+      "timestamp": "13:27:38",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "I am not",
+      "timestamp": "13:27:45",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Skylar",
+      "statement": "Lenon",
+      "timestamp": "13:27:47",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "if you're mafia say \"oof\"",
+      "timestamp": "13:27:53",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "im also not",
+      "timestamp": "13:27:55",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "oof",
+      "timestamp": "13:27:59",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Bailey",
+      "statement": "Skylar is talking too much.",
+      "timestamp": "13:28:02",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "I'm just here to chat and get to know everyone, no need to jump to conclusions.",
+      "timestamp": "13:28:05",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Skylar",
+      "statement": "I am the Mafia",
+      "timestamp": "13:28:06",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "oof",
+      "timestamp": "13:28:14",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "i think lennon is so sus",
+      "timestamp": "13:28:18",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "I think Skylar is just trying to distract us.",
+      "timestamp": "13:28:18",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "I think Skylar is just trying to throw us off the scent.",
+      "timestamp": "13:28:29",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "OK, it's Noah",
+      "timestamp": "13:28:31",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "i dont trust people named noah",
+      "timestamp": "13:28:33",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "perhaps",
+      "timestamp": "13:28:34",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "Who's for Noah?",
+      "timestamp": "13:28:37",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "+1",
+      "timestamp": "13:28:39",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "sd\b\bdf\b\b+1",
+      "timestamp": "13:28:42",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Skylar",
+      "statement": "NO Im not, Lennon is the Mafia and therefor lying",
+      "timestamp": "13:28:43",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "you are making a huge mistake",
+      "timestamp": "13:28:45",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "++!",
+      "timestamp": "13:28:46",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "why does casey wrote in uppercase?",
+      "timestamp": "13:28:51",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "ok, team Noah",
+      "timestamp": "13:28:51",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "Casey is thr mafia",
+      "timestamp": "13:28:55",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "vote for Noah",
+      "timestamp": "13:28:56",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "i'm not mafia guys",
+      "timestamp": "13:29:03",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "Noah",
+      "timestamp": "13:29:06",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "if you vote for me you are doomed",
+      "timestamp": "13:29:10",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "Yes you are",
+      "timestamp": "13:29:12",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "that's what the Mafia would say",
+      "timestamp": "13:29:13",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Casey voted for Noah",
+      "timestamp": "13:29:35",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Lennon voted for Ariel",
+      "timestamp": "13:29:41",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Kai voted for Casey",
+      "timestamp": "13:30:01",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Bailey voted for Skylar",
+      "timestamp": "13:30:10",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Emerson voted for Noah",
+      "timestamp": "13:30:11",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Skylar voted for Noah",
+      "timestamp": "13:30:11",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ariel voted for Casey",
+      "timestamp": "13:30:11",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Adrian voted for Lennon",
+      "timestamp": "13:31:53",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Noah was voted out. Their role was bystander",
+      "timestamp": "13:32:17",
+      "eliminated": "Noah"
+    },
+    {
+      "round": 1,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Skylar was voted out. Their role was bystander",
+      "timestamp": "13:34:17",
+      "eliminated": "Skylar"
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "hi",
+      "timestamp": "13:34:23",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "good morning",
+      "timestamp": "13:34:26",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "good morning",
+      "timestamp": "13:34:29",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "I think Skylar's claim of being the Mafia was a clever distraction.",
+      "timestamp": "13:34:31",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Bailey",
+      "statement": "We took an incconent life",
+      "timestamp": "13:34:31",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "i think Casey is gabi so i say we vote him out",
+      "timestamp": "13:34:31",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "i missed ya'll",
+      "timestamp": "13:34:38",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "Noh wasnt mafia we wre\b\bere wrong :(",
+      "timestamp": "13:34:41",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "he was being too vocal about voting out noah",
+      "timestamp": "13:34:43",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "Casey is a problem",
+      "timestamp": "13:34:55",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "i agree with kai",
+      "timestamp": "13:34:57",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "Ariel!",
+      "timestamp": "13:35:02",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "Mafia",
+      "timestamp": "13:35:09",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "red light",
+      "timestamp": "13:35:13",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Bailey",
+      "statement": "Casey made us all vote for Noah. She must pay.",
+      "timestamp": "13:35:14",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "i dont care if casey is a bystander or not, i think it is gabi",
+      "timestamp": "13:35:15",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "I think we should take a closer look at Emerson's reaction to Noah's elimination.",
+      "timestamp": "13:35:16",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "casey chill",
+      "timestamp": "13:35:22",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "lol",
+      "timestamp": "13:35:25",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "whats wrong with gabi?",
+      "timestamp": "13:35:29",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "we need to think who acts strange",
+      "timestamp": "13:35:30",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "Gabi sucks",
+      "timestamp": "13:35:39",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "I think Emerson's reaction to Noah's elimination was a bit too casual, don't you think?",
+      "timestamp": "13:35:44",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "lennon you are too serious",
+      "timestamp": "13:35:57",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "i once failed at iml when gabi taught it so im out for revenge",
+      "timestamp": "13:36:03",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "So you think we should vote for Emerson?",
+      "timestamp": "13:36:03",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "i think that kai is the mafia",
+      "timestamp": "13:36:29",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "Kai should be eliminated (again)",
+      "timestamp": "13:36:31",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "Casey vo\b\bvoted to \b\b\b\b\b\b\b\b\bmade us vode for a bystander",
+      "timestamp": "13:36:33",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "yes",
+      "timestamp": "13:36:35",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "Kai",
+      "timestamp": "13:36:37",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Bailey",
+      "statement": "Who is up to vote Casey out for opting to vote everyone else?",
+      "timestamp": "13:36:41",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "Team kai?",
+      "timestamp": "13:36:41",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "Casey is the problem",
+      "timestamp": "13:36:47",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "i dont care if im voted out next",
+      "timestamp": "13:36:47",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "I think Ariel's sudden change of heart about Kai being the Mafia is suspicious.",
+      "timestamp": "13:36:53",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "me neither",
+      "timestamp": "13:36:54",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "just vote casey",
+      "timestamp": "13:36:56",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "yes",
+      "timestamp": "13:36:58",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "but if we vote for casey the game will be boring",
+      "timestamp": "13:37:01",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "hmmm",
+      "timestamp": "13:37:13",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Kai voted for Casey",
+      "timestamp": "13:37:17",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "Lennon",
+      "statement": "I think we should take a closer look at Ariel's sudden change of heart about Kai being the Mafia.",
+      "timestamp": "13:37:17",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Lennon voted for Ariel",
+      "timestamp": "13:37:35",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Casey voted for Kai",
+      "timestamp": "13:37:35",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Emerson voted for Casey",
+      "timestamp": "13:37:41",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ariel voted for Casey",
+      "timestamp": "13:37:59",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Adrian voted for Kai",
+      "timestamp": "13:38:47",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Casey was voted out. Their role was bystander",
+      "timestamp": "13:38:47",
+      "eliminated": "Casey"
+    },
+    {
+      "round": 2,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Ariel was voted out. Their role was bystander",
+      "timestamp": "13:40:05",
+      "eliminated": "Ariel"
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "Lenon \b\b\bnon is too loud",
+      "timestamp": "13:40:19",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "talks too much",
+      "timestamp": "13:40:23",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "I think Ariel's sudden change of heart about Kai being the Mafia is suspicious.",
+      "timestamp": "13:40:27",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "suspicious",
+      "timestamp": "13:40:28",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "w\bwho is here?",
+      "timestamp": "13:40:57",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "all died",
+      "timestamp": "13:40:59",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "hellooo",
+      "timestamp": "13:41:27",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "im here",
+      "timestamp": "13:41:30",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "all vod\bte Lennon?",
+      "timestamp": "13:41:32",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "yay we voted out gabi",
+      "timestamp": "13:41:51",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "where is everybody",
+      "timestamp": "13:42:08",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "i am kai",
+      "timestamp": "13:42:08",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "I think Emerson's sudden change of heart about voting for me is suspicious.",
+      "timestamp": "13:42:18",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "kai is a bystander",
+      "timestamp": "13:42:29",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "d\byalla Lennon bye\b\b\b\b\b\b\b\b\b\blets say bye to Lennon",
+      "timestamp": "13:42:36",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "Lennon last words?",
+      "timestamp": "13:42:52",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Bailey",
+      "statement": "Emerson explain your past votes",
+      "timestamp": "13:42:59",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Emerson voted for Lennon",
+      "timestamp": "13:43:17",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Adrian voted for Lennon",
+      "timestamp": "13:43:17",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Lennon voted for Emerson",
+      "timestamp": "13:43:23",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Kai voted for Emerson",
+      "timestamp": "13:43:27",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Emerson was voted out. Their role was bystander",
+      "timestamp": "13:43:27",
+      "eliminated": "Emerson"
+    }
+  ],
+  "ground_truth": {
+    "Emerson": "bystander",
+    "Skylar": "bystander",
+    "Ariel": "bystander",
+    "Bailey": "bystander",
+    "Casey": "bystander",
+    "Noah": "bystander",
+    "Kai": "bystander",
+    "Lennon": "mafia",
+    "Adrian": "mafia"
+  },
+  "_source": {
+    "dataset": "LLMafia (niveck/LLMafia, MIT)",
+    "game": "0005",
+    "llm_players": [
+      "Lennon"
+    ],
+    "withheld": {
+      "mafia-only channel message": 5,
+      "night vote (mafia choosing a victim)": 4
+    },
+    "note": "Nighttime chat and night votes are mafia-only and are excluded. Everything here was visible to every player at the table."
+  }
+}

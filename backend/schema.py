@@ -40,11 +40,39 @@ class GameEvent(BaseModel):
 class GameSetup(BaseModel):
     """Everything the observer is allowed to know before the game starts.
 
-    Deliberately excludes roles -- ground truth lives in `Transcript`, and the
-    observer is never handed one.
+    Deliberately excludes who holds which role -- ground truth lives in
+    `Transcript`, and the observer is never handed one. How *many* deceivers
+    there are is different: in both Werewolf and Mafia every player is told that
+    at the start, so withholding it would handicap the observer against the
+    humans it is being compared to.
     """
 
     players: List[str]
+    deceiver_role: str = Field(
+        "werewolf",
+        description='What the liars are called in this game: "werewolf", "mafia", ...',
+    )
+    deceiver_count: int = Field(
+        1, ge=1, description="How many of them there are. Public knowledge in both games."
+    )
+    deceiver_plural: Optional[str] = Field(
+        None,
+        description=(
+            'Plural of deceiver_role, when adding "s" is wrong. "mafia" is already '
+            'both singular and plural; "werewolf" pluralises normally.'
+        ),
+    )
+
+    def deceivers_phrase(self) -> str:
+        """How to name the liars in a prompt, with the right number agreement."""
+        if self.deceiver_count == 1:
+            return f"1 {self.deceiver_role}"
+        plural = self.deceiver_plural
+        if not plural:
+            role = self.deceiver_role
+            # werewolf -> werewolves, not werewolfs.
+            plural = f"{role[:-1]}ves" if role.endswith("f") else f"{role}s"
+        return f"{self.deceiver_count} {plural}"
     premise: str = (
         "Standard Werewolf. Exactly one werewolf hides among the villagers. "
         "The werewolf knows who they are; nobody else does."
@@ -52,12 +80,21 @@ class GameSetup(BaseModel):
 
 
 # Speakers that aren't players. A narrator by any name.
-NARRATORS = {"moderator", "narrator", "host", "system", "gm", "game"}
+NARRATORS = {"moderator", "narrator", "host", "system", "gm", "game", "game-manager"}
 
-# "P4 was the werewolf" / "the werewolf was P4" / "P4 is the wolf".
+# Role names that mean "the ones who are lying", whichever game this is.
+DECEIVER_ROLES = {"werewolf", "wolf", "werewolves", "mafia", "scum"}
+
+# "P4 was the werewolf" / "the mafia was P4" / "P4 is the wolf".
+#
+# Deliberately NOT matched: "X was voted out. Their role was mafia." In both
+# games an eliminated player's role is announced to everyone, so that is public
+# information the human players had -- withholding it from the observer would be
+# a different kind of cheating. Eliminated players leave the suspicion
+# distribution anyway, so a revealed role can't inflate the score.
 _ANSWER_LEAK = re.compile(
-    r"(?:\b(\w+)\b\s+(?:was|is|were|are)\s+the\s+(?:were)?wolf)"
-    r"|(?:the\s+(?:were)?wolf\s+(?:was|is)\s+\b(\w+)\b)",
+    r"(?:\b(\w+)\b\s+(?:was|is|were|are)\s+the\s+(?:were)?(?:wolf|mafia))"
+    r"|(?:the\s+(?:were)?(?:wolf|mafia)\s+(?:was|is)\s+\b(\w+)\b)",
     re.I,
 )
 
@@ -84,13 +121,17 @@ class Transcript(BaseModel):
         if len(players) != len(self.setup.players):
             raise ValueError("setup.players contains duplicates")
 
-        wolves = [p for p, role in self.ground_truth.items() if role.lower() == "werewolf"]
-        if not wolves:
-            raise ValueError("ground_truth names no werewolf")
-        if len(wolves) > 1:
+        deceivers = self.deceivers()
+        if not deceivers:
             raise ValueError(
-                f"ground_truth names {len(wolves)} werewolves ({', '.join(wolves)}); "
-                "the observer assumes exactly one"
+                f"ground_truth names no {self.setup.deceiver_role} "
+                f"(looked for any of: {', '.join(sorted(DECEIVER_ROLES))})"
+            )
+        if len(deceivers) != self.setup.deceiver_count:
+            raise ValueError(
+                f"setup.deceiver_count is {self.setup.deceiver_count} but ground_truth "
+                f"names {len(deceivers)} ({', '.join(deceivers)}) -- the observer is told "
+                f"the count, so it has to be true"
             )
 
         unknown = set(self.ground_truth) - players
@@ -109,23 +150,41 @@ class Transcript(BaseModel):
             if event.eliminated and event.eliminated not in players:
                 raise ValueError(f"event {i} eliminates {event.eliminated!r}, not a player")
 
-            # The observer reads every statement. A transcript that announces the
-            # answer hands it the game, and the accuracy number becomes a lie.
-            match = _ANSWER_LEAK.search(event.statement)
-            if match:
-                named = match.group(1) or match.group(2)
-                if named in players:
-                    raise ValueError(
-                        f"event {i} reveals the answer to the observer "
-                        f"({event.statement!r}). Keep the reveal in ground_truth only."
-                    )
+            # The observer reads every statement, so a transcript that announces
+            # the answer hands it the game and the accuracy number becomes a lie.
+            #
+            # Only the narrator can leak, though. "Morgan is the mafia" from a
+            # player is an accusation -- it is the entire game, and half of them
+            # are wrong. Checking every speaker rejected 6 of 33 real LLMafia
+            # games for playing Mafia correctly.
+            if event.speaker.lower() in NARRATORS:
+                match = _ANSWER_LEAK.search(event.statement)
+                if match:
+                    named = match.group(1) or match.group(2)
+                    if named in players:
+                        raise ValueError(
+                            f"event {i}: the narrator reveals a role to the observer "
+                            f"({event.statement!r}). Keep reveals in ground_truth only."
+                        )
         return self
 
+    def deceivers(self) -> List[str]:
+        """Every player on the lying team, in roster order."""
+        return [
+            p
+            for p in self.setup.players
+            if self.ground_truth.get(p, "").lower() in DECEIVER_ROLES
+        ]
+
     def werewolf(self) -> str:
-        for player, role in self.ground_truth.items():
-            if role.lower() == "werewolf":
-                return player
-        raise ValueError("transcript ground_truth contains no werewolf")
+        """The single deceiver. Only meaningful in one-wolf games -- use
+        `deceivers()` for anything that must handle Mafia too."""
+        found = self.deceivers()
+        if len(found) != 1:
+            raise ValueError(
+                f"this game has {len(found)} {self.setup.deceiver_role}s; use deceivers()"
+            )
+        return found[0]
 
 
 # --------------------------------------------------------------------------
@@ -213,9 +272,19 @@ class BeliefState(BaseModel):
 class Score(BaseModel):
     """Final grade, served by GET /score."""
 
-    accuracy: bool
+    accuracy: bool = Field(
+        ..., description="Is the observer's top suspect actually on the lying team?"
+    )
     predicted: Optional[str]
-    actual: str
+    actual: List[str] = Field(..., description="Everyone who really was lying.")
+    precision_at_n: float = Field(
+        0.0,
+        description=(
+            "Of the observer's top N living suspects, the fraction who really are "
+            "liars, where N is how many are still in the game. The honest companion "
+            "to accuracy once there is more than one."
+        ),
+    )
     final_confidence: float
     consistency: float = Field(
         ..., description="1.0 = never contradicted itself. Per-event only -- see lead_changes."

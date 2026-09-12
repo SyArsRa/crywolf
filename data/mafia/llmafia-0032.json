@@ -1,0 +1,640 @@
+{
+  "setup": {
+    "players": [
+      "Charlie",
+      "Dylan",
+      "Whitney",
+      "Parker",
+      "Kai",
+      "Dakota",
+      "Finley"
+    ],
+    "deceiver_role": "mafia",
+    "deceiver_count": 2,
+    "deceiver_plural": "mafia",
+    "premise": "Online Mafia, played in a group chat. Each day everyone talks, then votes someone out; the role of whoever is voted out is announced to all. Each night the mafia quietly choose a bystander to eliminate -- you do not see that conversation, only who is gone in the morning. The mafia know each other. Nobody else knows anything."
+  },
+  "events": [
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "hello",
+      "timestamp": "17:59:35",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Whitney",
+      "statement": "hii",
+      "timestamp": "17:59:43",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "hi",
+      "timestamp": "17:59:46",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dakota",
+      "statement": "hii",
+      "timestamp": "17:59:46",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "Hiii",
+      "timestamp": "17:59:48",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "Yo! let's start our final match!",
+      "timestamp": "17:59:49",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Whitney",
+      "statement": "such high spirits",
+      "timestamp": "17:59:56",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "Finley is sus",
+      "timestamp": "17:59:59",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Whitney",
+      "statement": "totally",
+      "timestamp": "18:00:03",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dylan",
+      "statement": "i'm here let's get started",
+      "timestamp": "18:00:04",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "Why sus? Just energetic!",
+      "timestamp": "18:00:09",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "Dylan is Finley",
+      "timestamp": "18:00:11",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Whitney",
+      "statement": "Dylan chill",
+      "timestamp": "18:00:11",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dakota",
+      "statement": "dylan",
+      "timestamp": "18:00:21",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "Where were you Dylan?",
+      "timestamp": "18:00:21",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dakota",
+      "statement": "chill",
+      "timestamp": "18:00:23",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Whitney",
+      "statement": "ok bro...",
+      "timestamp": "18:00:24",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "What? Charlie wdym",
+      "timestamp": "18:00:26",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dylan",
+      "statement": "finley seems pretty eager to begin",
+      "timestamp": "18:00:37",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "It's obvious",
+      "timestamp": "18:00:42",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Whitney",
+      "statement": "that dylan is sus right?",
+      "timestamp": "18:00:55",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "Yea it's probably Dylan",
+      "timestamp": "18:00:56",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Whitney",
+      "statement": "yeah",
+      "timestamp": "18:01:00",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "let's vote Dylan",
+      "timestamp": "18:01:07",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dakota",
+      "statement": "yes!",
+      "timestamp": "18:01:08",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "Charlie is such a party pooper",
+      "timestamp": "18:01:12",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Whitney",
+      "statement": "parker also quiet..",
+      "timestamp": "18:01:16",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "Finley is next",
+      "timestamp": "18:01:24",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dylan",
+      "statement": "charlie needs to explain what he means by saying i am finley",
+      "timestamp": "18:01:29",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Parker voted for Dylan",
+      "timestamp": "18:01:39",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Finley voted for Charlie",
+      "timestamp": "18:01:40",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Charlie voted for Dylan",
+      "timestamp": "18:01:41",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Dakota voted for Dylan",
+      "timestamp": "18:01:43",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Kai voted for Parker",
+      "timestamp": "18:01:48",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Whitney voted for Dylan",
+      "timestamp": "18:01:48",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Dylan voted for Charlie",
+      "timestamp": "18:02:04",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Dylan was voted out. Their role was bystander",
+      "timestamp": "18:02:04",
+      "eliminated": "Dylan"
+    },
+    {
+      "round": 1,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Parker was voted out. Their role was bystander",
+      "timestamp": "18:03:07",
+      "eliminated": "Parker"
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "Yo yo yoooo",
+      "timestamp": "18:03:17",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Whitney",
+      "statement": "interstingg...",
+      "timestamp": "18:03:22",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "who could it be",
+      "timestamp": "18:03:22",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Dakota",
+      "statement": "who left??",
+      "timestamp": "18:03:29",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Whitney",
+      "statement": "Maybe its Finley ?",
+      "timestamp": "18:03:30",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "maybe the sus Charlie!!!",
+      "timestamp": "18:03:35",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "I think Charlie is sus",
+      "timestamp": "18:03:38",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "I believe its Fin",
+      "timestamp": "18:03:39",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "sus af",
+      "timestamp": "18:03:44",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Dakota",
+      "statement": "charlie??",
+      "timestamp": "18:03:48",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "Finley? yes",
+      "timestamp": "18:03:51",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "hell yeah",
+      "timestamp": "18:03:54",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Whitney",
+      "statement": "I say finley",
+      "timestamp": "18:03:57",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "Finley is sus",
+      "timestamp": "18:04:00",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "Charlie",
+      "timestamp": "18:04:00",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Whitney",
+      "statement": "its a sus name",
+      "timestamp": "18:04:01",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "You're making a huge mistake",
+      "timestamp": "18:04:10",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "Whitney houston",
+      "timestamp": "18:04:13",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "Finley didn't vote for Dylan so I think he is good",
+      "timestamp": "18:04:17",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "Kai knows",
+      "timestamp": "18:04:26",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "It's a trick",
+      "timestamp": "18:04:27",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "It's kai",
+      "timestamp": "18:04:31",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "Such a trickster",
+      "timestamp": "18:04:38",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Dakota",
+      "statement": "kai??",
+      "timestamp": "18:04:38",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "vote for kai or you\\ll die",
+      "timestamp": "18:04:39",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Dakota",
+      "statement": "dont wanna dieee",
+      "timestamp": "18:04:50",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Whitney",
+      "statement": "I have nothing... bus sus for finley",
+      "timestamp": "18:04:50",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "I'm a bystander",
+      "timestamp": "18:04:52",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "So dramatic Charlie",
+      "timestamp": "18:04:53",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "And Whitney too",
+      "timestamp": "18:05:04",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "Kai",
+      "statement": "I;m voting Charlie",
+      "timestamp": "18:05:07",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Charlie voted for Kai",
+      "timestamp": "18:05:09",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Dakota voted for Kai",
+      "timestamp": "18:05:13",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Kai voted for Charlie",
+      "timestamp": "18:05:16",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Whitney voted for Kai",
+      "timestamp": "18:05:24",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Finley voted for Charlie",
+      "timestamp": "18:05:28",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Kai was voted out. Their role was bystander",
+      "timestamp": "18:05:28",
+      "eliminated": "Kai"
+    }
+  ],
+  "ground_truth": {
+    "Charlie": "bystander",
+    "Dylan": "bystander",
+    "Whitney": "bystander",
+    "Parker": "bystander",
+    "Kai": "bystander",
+    "Dakota": "mafia",
+    "Finley": "mafia"
+  },
+  "_source": {
+    "dataset": "LLMafia (niveck/LLMafia, MIT)",
+    "game": "0032",
+    "llm_players": [
+      "Dylan"
+    ],
+    "withheld": {
+      "mafia-only channel message": 6,
+      "night vote (mafia choosing a victim)": 2
+    },
+    "note": "Nighttime chat and night votes are mafia-only and are excluded. Everything here was visible to every player at the table."
+  }
+}

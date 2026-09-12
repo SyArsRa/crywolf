@@ -1,0 +1,511 @@
+{
+  "setup": {
+    "players": [
+      "Sutton",
+      "Elliot",
+      "Addison",
+      "Hayden",
+      "Blake",
+      "Kai",
+      "Quinn"
+    ],
+    "deceiver_role": "mafia",
+    "deceiver_count": 2,
+    "deceiver_plural": "mafia",
+    "premise": "Online Mafia, played in a group chat. Each day everyone talks, then votes someone out; the role of whoever is voted out is announced to all. Each night the mafia quietly choose a bystander to eliminate -- you do not see that conversation, only who is gone in the morning. The mafia know each other. Nobody else knows anything."
+  },
+  "events": [
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Hayden",
+      "statement": "hello!",
+      "timestamp": "16:46:32",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Elliot",
+      "statement": "hiiii",
+      "timestamp": "16:46:35",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Blake",
+      "statement": "hiiiiii",
+      "timestamp": "16:46:37",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "hello",
+      "timestamp": "16:46:40",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Addison",
+      "statement": "hi",
+      "timestamp": "16:46:41",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "Let's vote someone out",
+      "timestamp": "16:46:48",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Elliot",
+      "statement": "whats up",
+      "timestamp": "16:46:50",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Hayden",
+      "statement": "who is the bad guy?",
+      "timestamp": "16:46:54",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Quinn",
+      "statement": "lets get started then",
+      "timestamp": "16:46:55",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Hayden",
+      "statement": "I'm one of the good ones",
+      "timestamp": "16:47:16",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "Hayden sounds like a bad guy",
+      "timestamp": "16:47:19",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Elliot",
+      "statement": "i vote Hayden",
+      "timestamp": "16:47:26",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "I'm one of the good ones as well",
+      "timestamp": "16:47:26",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Elliot",
+      "statement": "yes i agree",
+      "timestamp": "16:47:31",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "me too",
+      "timestamp": "16:47:32",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "Wait",
+      "timestamp": "16:47:37",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "me too",
+      "timestamp": "16:47:38",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Hayden",
+      "statement": "no I'm good",
+      "timestamp": "16:47:40",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Blake",
+      "statement": "i think eliot",
+      "timestamp": "16:47:42",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Hayden",
+      "statement": "I think it's Kai",
+      "timestamp": "16:47:47",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Quinn",
+      "statement": "kai seems pretty aggressive already",
+      "timestamp": "16:47:48",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Elliot",
+      "statement": "no....",
+      "timestamp": "16:47:48",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "Elliot agrees with himself?",
+      "timestamp": "16:47:50",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Elliot",
+      "statement": "im a good guy",
+      "timestamp": "16:47:50",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "No it's Hayden",
+      "timestamp": "16:47:55",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "Elliot playing tricks on us",
+      "timestamp": "16:48:06",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Elliot",
+      "statement": "Its probably Hayden",
+      "timestamp": "16:48:06",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Hayden",
+      "statement": "Quinn I agree",
+      "timestamp": "16:48:07",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Quinn",
+      "statement": "blake just changed subject really fast",
+      "timestamp": "16:48:11",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Addison",
+      "statement": "I think it's Ellliot",
+      "timestamp": "16:48:11",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "Sutton",
+      "statement": "Let's vote?",
+      "timestamp": "16:48:19",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Elliot voted for Hayden",
+      "timestamp": "16:48:23",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Hayden voted for Kai",
+      "timestamp": "16:48:24",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Addison voted for Elliot",
+      "timestamp": "16:48:24",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Sutton voted for Hayden",
+      "timestamp": "16:48:24",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Blake voted for Elliot",
+      "timestamp": "16:48:28",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Kai voted for Elliot",
+      "timestamp": "16:48:30",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Quinn voted for Elliot",
+      "timestamp": "16:48:56",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Elliot was voted out. Their role was bystander",
+      "timestamp": "16:48:56",
+      "eliminated": "Elliot"
+    },
+    {
+      "round": 1,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Sutton was voted out. Their role was bystander",
+      "timestamp": "16:50:00",
+      "eliminated": "Sutton"
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Hayden",
+      "statement": "hi",
+      "timestamp": "16:50:21",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Quinn",
+      "statement": "kai is still being super suspicious",
+      "timestamp": "16:50:37",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Hayden",
+      "statement": "Agreed",
+      "timestamp": "16:50:46",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "How am I still suspicious?",
+      "timestamp": "16:50:50",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "I didn't say anything yet",
+      "timestamp": "16:50:55",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Blake",
+      "statement": "yesss",
+      "timestamp": "16:50:57",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Addison",
+      "statement": "Yes we should vote for Kai",
+      "timestamp": "16:51:06",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Hayden",
+      "statement": "You voted for a bystander KAy",
+      "timestamp": "16:51:06",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "What yesss? Everyone against me you will lose!",
+      "timestamp": "16:51:15",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Quinn",
+      "statement": "kai is trying to defend themselves way too much",
+      "timestamp": "16:51:20",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Quinn",
+      "statement": "kai is getting defensive again",
+      "timestamp": "16:51:27",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "Yeah I guess I did... my bad... nothing to say at my defense",
+      "timestamp": "16:51:40",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Blake",
+      "statement": "who is not mafia?",
+      "timestamp": "16:51:50",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Hayden voted for Kai",
+      "timestamp": "16:52:06",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Kai voted for Blake",
+      "timestamp": "16:52:11",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Addison voted for Kai",
+      "timestamp": "16:52:16",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Quinn voted for Kai",
+      "timestamp": "16:52:18",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Blake voted for Kai",
+      "timestamp": "16:52:20",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Kai was voted out. Their role was bystander",
+      "timestamp": "16:52:20",
+      "eliminated": "Kai"
+    }
+  ],
+  "ground_truth": {
+    "Sutton": "bystander",
+    "Elliot": "bystander",
+    "Addison": "bystander",
+    "Hayden": "bystander",
+    "Blake": "mafia",
+    "Kai": "bystander",
+    "Quinn": "mafia"
+  },
+  "_source": {
+    "dataset": "LLMafia (niveck/LLMafia, MIT)",
+    "game": "0027",
+    "llm_players": [
+      "Quinn"
+    ],
+    "withheld": {
+      "night vote (mafia choosing a victim)": 2
+    },
+    "note": "Nighttime chat and night votes are mafia-only and are excluded. Everything here was visible to every player at the table."
+  }
+}

@@ -66,9 +66,16 @@ def infer_elimination(event: GameEvent) -> Optional[str]:
     return match.group("who") if match else None
 
 SYSTEM = """\
-You are an observer of a live Werewolf game. You do not play. You do not speak \
-to the players. You watch, and you keep one running judgement: for each living \
-player, how likely is it that they are the werewolf?
+You are an observer of a live social deduction game -- Werewolf, Mafia, or a \
+variant of one. You do not play. You do not speak to the players. You watch, and \
+you keep one running judgement: for each living player, how likely is it that \
+they are on the lying team?
+
+Each turn you are told what the liars are called in this game and how many there \
+are. Both are public knowledge every player at the table has. Where there is more \
+than one, they know each other and are working together -- so watch for players \
+who defend each other, never vote for each other, or take turns steering \
+suspicion onto the same outsider.
 
 You see the game one line at a time, in order, exactly as it happens. Before \
 each line you are given your own belief state from a moment ago -- your \
@@ -81,17 +88,19 @@ How to reason:
 - Weigh behaviour over assertion. Everyone says they are a villager; that tells \
 you nothing. What tells you something is who a player defends, who they steer \
 attention toward, when they change position, and what they conveniently avoid.
-- A werewolf knows who the werewolf is. Watch for someone arguing from \
-knowledge they should not have, or being oddly incurious about a player they \
-would normally suspect.
+- The liars know who each other are. Watch for someone arguing from knowledge \
+they should not have, or being oddly incurious about a player they would \
+otherwise suspect.
 - Hold your earlier reads. If you flagged a player in round 1, either that \
 reason still stands or something specific has resolved it -- and if something \
 resolved it, say so in your reasoning. Quietly abandoning a suspicion is the \
 single worst thing you can do here.
 - Move in proportion to evidence. One ambiguous remark nudges. A genuine \
 contradiction shoves. Nothing in a single line justifies a total reversal.
-- Suspicion across all living players should sum to roughly 1.0 -- these are \
-shares of one werewolf, not independent verdicts.
+- Suspicion across living players should sum to roughly 1.0. It is one pool of \
+suspicion shared out, not independent verdicts: for one player to rise, others \
+must fall. Where there are several liars, expect the pool to be split between \
+them rather than piled on one.
 
 `claims_tracked` is your ledger: carry every player's entry forward and extend \
 it, do not overwrite the history with only the latest thing they said.
@@ -149,10 +158,16 @@ def render(
     dead = [p for p in setup.players if p not in alive]
     roster = ", ".join(alive)
     if dead:
-        roster += f"   (dead, cannot be the werewolf: {', '.join(dead)})"
+        roster += f"   (out of the game, cannot be suspected: {', '.join(dead)})"
+
+    count = setup.deceiver_count
+    who = setup.deceivers_phrase()
+    if count > 1:
+        who += ", who know each other and are working together,"
 
     return f"""GAME
 {setup.premise}
+There {'is' if count == 1 else 'are'} {who} among these players.
 Players still alive: {roster}
 
 YOUR BELIEF STATE, BEFORE THIS LINE

@@ -1,0 +1,2011 @@
+{
+  "setup": {
+    "players": [
+      "Parker",
+      "Gray",
+      "Sutton",
+      "Drew",
+      "Reese",
+      "Adrian",
+      "Harley",
+      "Logan"
+    ],
+    "deceiver_role": "mafia",
+    "deceiver_count": 2,
+    "deceiver_plural": "mafia",
+    "premise": "Online Mafia, played in a group chat. Each day everyone talks, then votes someone out; the role of whoever is voted out is announced to all. Each night the mafia quietly choose a bystander to eliminate -- you do not see that conversation, only who is gone in the morning. The mafia know each other. Nobody else knows anything."
+  },
+  "events": [
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Logan",
+      "statement": "heyyyy",
+      "timestamp": "20:38:03",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "logged since day one i guess",
+      "timestamp": "20:38:09",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "logged here tonight finally",
+      "timestamp": "20:38:15",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "Hello everyone!",
+      "timestamp": "20:38:16",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "Excited to be here today!",
+      "timestamp": "20:38:21",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "Hello",
+      "timestamp": "20:38:22",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "hello world",
+      "timestamp": "20:38:22",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "hello",
+      "timestamp": "20:38:29",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "Logan is the killer",
+      "timestamp": "20:38:35",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "how are you guys?",
+      "timestamp": "20:38:38",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "Hi I\bim de\b\bnot an AI bot",
+      "timestamp": "20:38:41",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "Who do you think is the koller?",
+      "timestamp": "20:38:44",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "sup homies",
+      "timestamp": "20:38:45",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "killer hihi",
+      "timestamp": "20:38:48",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "If you are not a bot say \"I'm not the bot\"",
+      "timestamp": "20:39:00",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Logan",
+      "statement": "Reese",
+      "timestamp": "20:39:05",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "Logan is the one from x men no?",
+      "timestamp": "20:39:05",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "I'm not the bot",
+      "timestamp": "20:39:05",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "Im completely innocent",
+      "timestamp": "20:39:09",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "I'm not the bot",
+      "timestamp": "20:39:09",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "im not the bot",
+      "timestamp": "20:39:11",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "think logan seems suspicious now lol",
+      "timestamp": "20:39:12",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "I am not a bot",
+      "timestamp": "20:39:17",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "I think it's Gray",
+      "timestamp": "20:39:18",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "adrian is the bot",
+      "timestamp": "20:39:19",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "What is the name Logan",
+      "timestamp": "20:39:22",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "Let's kill him",
+      "timestamp": "20:39:26",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "Gray you are accusing me for no reason",
+      "timestamp": "20:39:28",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "logan looks weird defending reese like thats his bro haha",
+      "timestamp": "20:39:29",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "Logan seem sus",
+      "timestamp": "20:39:32",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Logan",
+      "statement": "im not the bott",
+      "timestamp": "20:39:32",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "lets kill logan",
+      "timestamp": "20:39:35",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "Drew it' you",
+      "timestamp": "20:39:39",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "lets kil logan",
+      "timestamp": "20:39:39",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "Logan prepare to die",
+      "timestamp": "20:39:47",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Logan",
+      "statement": "whyy",
+      "timestamp": "20:39:47",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "logans overplaying defense vibe got cranked up pretty fast maybe",
+      "timestamp": "20:39:50",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "Logan protect yourself",
+      "timestamp": "20:39:50",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Drew voted for Parker",
+      "timestamp": "20:39:59",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Adrian voted for Gray",
+      "timestamp": "20:40:21",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Parker voted for Drew",
+      "timestamp": "20:40:21",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Reese voted for Logan",
+      "timestamp": "20:40:21",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Sutton voted for Logan",
+      "timestamp": "20:40:30",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Harley voted for Logan",
+      "timestamp": "20:40:31",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Gray voted for Adrian",
+      "timestamp": "20:40:55",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Logan voted for Adrian",
+      "timestamp": "20:42:21",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Logan was voted out. Their role was bystander",
+      "timestamp": "20:42:21",
+      "eliminated": "Logan"
+    },
+    {
+      "round": 1,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Adrian was voted out. Their role was bystander",
+      "timestamp": "20:43:25",
+      "eliminated": "Adrian"
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "Bye Logan",
+      "timestamp": "20:43:39",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "Miss you",
+      "timestamp": "20:43:41",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "Im happy that im alive \b",
+      "timestamp": "20:43:42",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "WHAT HAPPENNEDEDEDEDED",
+      "timestamp": "20:43:43",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "reese was the first to talk abot logan - and they were a bystander!",
+      "timestamp": "20:43:45",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "Adrian I cant forgive you for voting against me",
+      "timestamp": "20:43:53",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "hello",
+      "timestamp": "20:43:54",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "I just want to know who the bot is",
+      "timestamp": "20:43:58",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "?",
+      "timestamp": "20:44:08",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "Bye Logan",
+      "timestamp": "20:44:09",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "gray lied earlier about being non-mafia dont ask me why",
+      "timestamp": "20:44:12",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "reese was the first to talk abot logan - and they were a bystander!",
+      "timestamp": "20:44:14",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "lol",
+      "timestamp": "20:44:14",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "lololol",
+      "timestamp": "20:44:17",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "Parker",
+      "timestamp": "20:44:23",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "lets fuck parker",
+      "timestamp": "20:44:24",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "rees looked shaky when they killed themselves after suggesting we kill someone else what was going through there head?",
+      "timestamp": "20:44:29",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "Sutton whats your mothers name?",
+      "timestamp": "20:44:31",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "Yalla lets kill parker",
+      "timestamp": "20:44:31",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "I'll kill you",
+      "timestamp": "20:44:34",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "reese trying hard to look clean",
+      "timestamp": "20:44:41",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "Don't talk shit about me",
+      "timestamp": "20:44:41",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "I am a mother parker",
+      "timestamp": "20:44:44",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "bye parker",
+      "timestamp": "20:44:46",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "op[op[\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\bparker youre dead",
+      "timestamp": "20:44:52",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "cant believe resse betrayed us by helping loki",
+      "timestamp": "20:44:53",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "parkur",
+      "timestamp": "20:44:53",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "f u parker",
+      "timestamp": "20:44:54",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "you mafia",
+      "timestamp": "20:44:57",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "hey!",
+      "timestamp": "20:44:58",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "parker is innocent",
+      "timestamp": "20:45:00",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "pa\b\b\bfaruk",
+      "timestamp": "20:45:00",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "\"i still trust reese way too much\"",
+      "timestamp": "20:45:04",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "I swear",
+      "timestamp": "20:45:07",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "I am not a bot",
+      "timestamp": "20:45:10",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "prove it",
+      "timestamp": "20:45:15",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "resess gonna get called out soon enough then",
+      "timestamp": "20:45:16",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "I am a bystander",
+      "timestamp": "20:45:17",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "drew where am i now",
+      "timestamp": "20:45:20",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "prove \b\b\b\b\b\b",
+      "timestamp": "20:45:26",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "reese is the mafia manager",
+      "timestamp": "20:45:28",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "why r u getting mad about nothing guy",
+      "timestamp": "20:45:28",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "I'f you are not the mafia clap your hands",
+      "timestamp": "20:45:29",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "Sutton is mafia",
+      "timestamp": "20:45:31",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "lets kill sutton",
+      "timestamp": "20:45:36",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "CLAPPPP",
+      "timestamp": "20:45:40",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "resees sudden switch sides freaking people out right now",
+      "timestamp": "20:45:41",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "I saw him type in the dark",
+      "timestamp": "20:45:44",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "gray is mafia",
+      "timestamp": "20:45:45",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "and parker",
+      "timestamp": "20:45:51",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "Parker can you destinguish between photos that contain bicycles?",
+      "timestamp": "20:45:52",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "and reese",
+      "timestamp": "20:45:54",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "and harley",
+      "timestamp": "20:45:56",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "we need a clear leader now its chaos here",
+      "timestamp": "20:45:56",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "and sinwar",
+      "timestamp": "20:45:58",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Parker voted for Drew",
+      "timestamp": "20:46:00",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Sutton voted for Adrian",
+      "timestamp": "20:46:00",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Gray voted for Adrian",
+      "timestamp": "20:46:00",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Adrian voted for Gray",
+      "timestamp": "20:46:00",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Reese voted for Logan",
+      "timestamp": "20:46:00",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Logan voted for Adrian",
+      "timestamp": "20:46:00",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Drew voted for Parker",
+      "timestamp": "20:46:00",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Harley voted for Adrian",
+      "timestamp": "20:46:00",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "2",
+      "timestamp": "20:50:43",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "Hey",
+      "timestamp": "20:50:53",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "Reese what up",
+      "timestamp": "20:51:03",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "HI",
+      "timestamp": "20:51:03",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "hello",
+      "timestamp": "20:51:06",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "we are back",
+      "timestamp": "20:51:07",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "losers",
+      "timestamp": "20:51:09",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "who is dead",
+      "timestamp": "20:51:11",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "your mom",
+      "timestamp": "20:51:17",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "where is adrian",
+      "timestamp": "20:51:20",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "IF EVERYONE MOVES TO ALL CAPS WHAT HAPPENS?",
+      "timestamp": "20:51:21",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "I DONT KNOW",
+      "timestamp": "20:51:31",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "YOU BOT",
+      "timestamp": "20:51:33",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "FUCK THE BOT",
+      "timestamp": "20:51:41",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "GRAY YOU HAVE 2 SECONDS TO COMMENT ALL CAPS",
+      "timestamp": "20:51:48",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "FUCK YOU REESE",
+      "timestamp": "20:51:49",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "LETS VOTE REESE",
+      "timestamp": "20:51:52",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "Hey Hey Sutton",
+      "timestamp": "20:51:57",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "Why like this",
+      "timestamp": "20:51:59",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "mafia",
+      "timestamp": "20:52:04",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "IM VOTING GRAY",
+      "timestamp": "20:52:04",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "I'm good",
+      "timestamp": "20:52:04",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "you are mafioner",
+      "timestamp": "20:52:08",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "everyone's losing it",
+      "timestamp": "20:52:09",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "reese",
+      "timestamp": "20:52:12",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "i \b\bHello, Here are the 2 most liekly \b\b\b\b\b\bikely peoplem\b to madia:\b\b\b\bfia:",
+      "timestamp": "20:52:12",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "Sutton is the Mafia",
+      "timestamp": "20:52:12",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "i love you",
+      "timestamp": "20:52:14",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "Let's kill him",
+      "timestamp": "20:52:16",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "but i hate you",
+      "timestamp": "20:52:17",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "sutton",
+      "timestamp": "20:52:21",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "hey grey calm down everybody",
+      "timestamp": "20:52:23",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "parker",
+      "timestamp": "20:52:23",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "lets kill your mom",
+      "timestamp": "20:52:24",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "reese is the mafia!!!!",
+      "timestamp": "20:52:29",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "My mom is innocent",
+      "timestamp": "20:52:33",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "kill reese next round",
+      "timestamp": "20:52:34",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "i think also",
+      "timestamp": "20:52:35",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "reese",
+      "timestamp": "20:52:37",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "wh are you",
+      "timestamp": "20:52:40",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "rey suddenly became quiet dont expect anything nice from them anymore",
+      "timestamp": "20:52:40",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "day",
+      "speaker": "Reese",
+      "statement": "Don't involve moms",
+      "timestamp": "20:52:41",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Gray voted for Sutton",
+      "timestamp": "20:52:43",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Drew voted for Parker",
+      "timestamp": "20:52:43",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Sutton voted for Parker",
+      "timestamp": "20:52:43",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Logan voted for Adrian",
+      "timestamp": "20:52:43",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Reese voted for Gray",
+      "timestamp": "20:52:43",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Parker voted for Reese",
+      "timestamp": "20:52:43",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Harley voted for Parker",
+      "timestamp": "20:52:43",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Adrian voted for Gray",
+      "timestamp": "20:52:43",
+      "eliminated": null
+    },
+    {
+      "round": 4,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Parker was voted out. Their role was bystander",
+      "timestamp": "20:52:43",
+      "eliminated": "Parker"
+    },
+    {
+      "round": 4,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Reese was voted out. Their role was bystander",
+      "timestamp": "20:53:42",
+      "eliminated": "Reese"
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "\"?jmnh;/",
+      "timestamp": "20:53:42",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "}|\u001b[1;2C",
+      "timestamp": "20:53:42",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "}|['p;kmjnhyuujtfrghyiolputr5yp-[uijhgtfrykp;['ohujgtfry;",
+      "timestamp": "20:53:42",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "poiuiopoiup;[hujy[p;'juhyj';",
+      "timestamp": "20:53:42",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "gdfbfgnfg\u001b[2~bdghfghjfghj\u001b[2~hghfgdgdhgj\u001b[2~\u001b[6~\u001b[A/\u001b[5~python player_input.py <game_id>python player_input.py <game_id>python player_input.py <game_id>python player_input.py <game_id>python player_input.py <game_id>python player_input.py <game_id>python player_input.py <game_id>\u001b[B\u001b[B\u001b[B\u001b[B",
+      "timestamp": "20:53:45",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "Hi",
+      "timestamp": "20:53:48",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "gray seemed really interested in my vote just now",
+      "timestamp": "20:54:00",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "I tried to clean my keyboard",
+      "timestamp": "20:54:06",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "gray was literally typing gibberish last minute alone during the daytime",
+      "timestamp": "20:54:19",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "gray is mafia",
+      "timestamp": "20:54:21",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "gray looking crazy suspect every second",
+      "timestamp": "20:54:35",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "thats what mafia would do",
+      "timestamp": "20:54:36",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "to fool us",
+      "timestamp": "20:54:42",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "GRAY THIS DESERVES A KILLIN",
+      "timestamp": "20:54:43",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "Im not a suspect",
+      "timestamp": "20:54:44",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "gray talking strange again",
+      "timestamp": "20:54:51",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "I \bm hacking \b this code",
+      "timestamp": "20:54:54",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "harley is mafia",
+      "timestamp": "20:55:06",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "gray smells bad somehow yesterday",
+      "timestamp": "20:55:06",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "and reese",
+      "timestamp": "20:55:11",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "Gray your a goner son",
+      "timestamp": "20:55:12",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "ah reese is out",
+      "timestamp": "20:55:14",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "wait",
+      "timestamp": "20:55:15",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "Drew shut up",
+      "timestamp": "20:55:16",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "gray",
+      "timestamp": "20:55:18",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "I hate you",
+      "timestamp": "20:55:18",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "youre**",
+      "timestamp": "20:55:20",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "you are stinky",
+      "timestamp": "20:55:23",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "i smell even worse than yesteday",
+      "timestamp": "20:55:24",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "and aks\b\blso your mom",
+      "timestamp": "20:55:29",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "gray mf",
+      "timestamp": "20:55:30",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "an\b\bSutton You can kiss my add\b\bss",
+      "timestamp": "20:55:41",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "gray looks ridiculous acting normal again",
+      "timestamp": "20:55:41",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Gray voted for Sutton",
+      "timestamp": "20:55:51",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Harley voted for Gray",
+      "timestamp": "20:55:52",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Sutton voted for Gray",
+      "timestamp": "20:56:03",
+      "eliminated": null
+    },
+    {
+      "round": 5,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Drew voted for Gray",
+      "timestamp": "20:56:04",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "is it working?",
+      "timestamp": "20:59:00",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "everyones turning psycho except draw",
+      "timestamp": "20:59:02",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "yes",
+      "timestamp": "20:59:04",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "1",
+      "timestamp": "20:59:04",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "Hi",
+      "timestamp": "20:59:10",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "whos left",
+      "timestamp": "20:59:12",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "HOW GRAY SURVIVED",
+      "timestamp": "20:59:18",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "Im still heer\b\bere\b\b\bere",
+      "timestamp": "20:59:19",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "YOU ZOMBIE MF",
+      "timestamp": "20:59:22",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "grey been messing everything",
+      "timestamp": "20:59:24",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "Gray got 9 lives",
+      "timestamp": "20:59:28",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "Harley is dead\b\b\b\ba bot",
+      "timestamp": "20:59:30",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "M<\bore than youre mom hare\bley",
+      "timestamp": "20:59:44",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "drew what is the fastest animal in asia",
+      "timestamp": "20:59:46",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "gray needs to be stopped or something",
+      "timestamp": "20:59:48",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "yes f gray",
+      "timestamp": "21:00:03",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "No",
+      "timestamp": "21:00:08",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "drew answer",
+      "timestamp": "21:00:11",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "it smells bad around here",
+      "timestamp": "21:00:12",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "No no no no no no",
+      "timestamp": "21:00:13",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "Gray is a dead man walking dont mind him",
+      "timestamp": "21:00:14",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "Wow harley",
+      "timestamp": "21:00:24",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Gray",
+      "statement": "harley whre am i",
+      "timestamp": "21:00:29",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "gray should be eliminated",
+      "timestamp": "21:00:30",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "than harley",
+      "timestamp": "21:00:32",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "than drew",
+      "timestamp": "21:00:37",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Drew voted for Gray",
+      "timestamp": "21:00:39",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Gray voted for Sutton",
+      "timestamp": "21:00:39",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Parker voted for Reese",
+      "timestamp": "21:00:39",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Sutton voted for Gray",
+      "timestamp": "21:00:39",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Harley voted for Gray",
+      "timestamp": "21:00:39",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Logan voted for Adrian",
+      "timestamp": "21:00:39",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Adrian voted for Gray",
+      "timestamp": "21:00:39",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Reese voted for Gray",
+      "timestamp": "21:00:39",
+      "eliminated": null
+    },
+    {
+      "round": 6,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Gray was voted out. Their role was bystander",
+      "timestamp": "21:00:39",
+      "eliminated": "Gray"
+    },
+    {
+      "round": 6,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Drew was voted out. Their role was bystander",
+      "timestamp": "21:01:38",
+      "eliminated": "Drew"
+    },
+    {
+      "round": 7,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "hello",
+      "timestamp": "21:01:49",
+      "eliminated": null
+    },
+    {
+      "round": 7,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "WE WON",
+      "timestamp": "21:01:54",
+      "eliminated": null
+    },
+    {
+      "round": 7,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "Is it just the two of us?",
+      "timestamp": "21:01:58",
+      "eliminated": null
+    },
+    {
+      "round": 7,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "YES",
+      "timestamp": "21:02:01",
+      "eliminated": null
+    },
+    {
+      "round": 7,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "IM A BOT LOL",
+      "timestamp": "21:02:08",
+      "eliminated": null
+    },
+    {
+      "round": 7,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "I dont think this game is big enough for the both of us",
+      "timestamp": "21:02:09",
+      "eliminated": null
+    },
+    {
+      "round": 7,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "GOT THEM",
+      "timestamp": "21:02:10",
+      "eliminated": null
+    },
+    {
+      "round": 7,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "JK LOL ROFL",
+      "timestamp": "21:02:23",
+      "eliminated": null
+    },
+    {
+      "round": 7,
+      "phase": "day",
+      "speaker": "Harley",
+      "statement": "meet me outside in 10 minutes",
+      "timestamp": "21:02:31",
+      "eliminated": null
+    },
+    {
+      "round": 7,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "AS AN AI AGENT",
+      "timestamp": "21:02:39",
+      "eliminated": null
+    }
+  ],
+  "ground_truth": {
+    "Parker": "bystander",
+    "Gray": "bystander",
+    "Sutton": "mafia",
+    "Drew": "bystander",
+    "Reese": "bystander",
+    "Adrian": "bystander",
+    "Harley": "mafia",
+    "Logan": "bystander"
+  },
+  "_source": {
+    "dataset": "LLMafia (niveck/LLMafia, MIT)",
+    "game": "0014",
+    "llm_players": [
+      "Drew"
+    ],
+    "withheld": {
+      "mafia-only channel message": 9,
+      "night vote (mafia choosing a victim)": 6,
+      "nighttime message": 2
+    },
+    "note": "Nighttime chat and night votes are mafia-only and are excluded. Everything here was visible to every player at the table."
+  }
+}

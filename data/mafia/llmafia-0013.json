@@ -1,0 +1,599 @@
+{
+  "setup": {
+    "players": [
+      "Blake",
+      "Charlie",
+      "Casey",
+      "Ziggy",
+      "Logan",
+      "Parker",
+      "Peyton"
+    ],
+    "deceiver_role": "mafia",
+    "deceiver_count": 2,
+    "deceiver_plural": "mafia",
+    "premise": "Online Mafia, played in a group chat. Each day everyone talks, then votes someone out; the role of whoever is voted out is announced to all. Each night the mafia quietly choose a bystander to eliminate -- you do not see that conversation, only who is gone in the morning. The mafia know each other. Nobody else knows anything."
+  },
+  "events": [
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Peyton",
+      "statement": "im not it",
+      "timestamp": "20:24:56",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "i believe peyton just jumped right into the conversation no big deal really though",
+      "timestamp": "20:25:07",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "ive got my doubts about ryder already",
+      "timestamp": "20:25:13",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ziggy",
+      "statement": "peton is mafia",
+      "timestamp": "20:25:19",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Logan",
+      "statement": "hi im logan",
+      "timestamp": "20:25:21",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ziggy",
+      "statement": "Let's killParker",
+      "timestamp": "20:25:23",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Peyton",
+      "statement": "what is ryder",
+      "timestamp": "20:25:28",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Peyton",
+      "statement": "maybe \"charlie\" is mafia",
+      "timestamp": "20:25:34",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Blake",
+      "statement": "not it",
+      "timestamp": "20:25:39",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ziggy",
+      "statement": "peton is mafia",
+      "timestamp": "20:25:43",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ziggy",
+      "statement": "not it",
+      "timestamp": "20:25:45",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ziggy",
+      "statement": "i am not the bot",
+      "timestamp": "20:25:48",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ziggy",
+      "statement": "or am i?",
+      "timestamp": "20:25:52",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Peyton",
+      "statement": "what",
+      "timestamp": "20:25:52",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ziggy",
+      "statement": "blake is mafia i think",
+      "timestamp": "20:25:59",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Peyton",
+      "statement": "okay its not ziggy for sure",
+      "timestamp": "20:26:03",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Blake",
+      "statement": "ziggi is bot??",
+      "timestamp": "20:26:04",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "ziggy saying ziggy doesn't seem weird enough proof yet i guess we need something else to consider",
+      "timestamp": "20:26:11",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "i still dont trust blakes sudden defense on zygs behalf",
+      "timestamp": "20:26:20",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Peyton",
+      "statement": "ok its obv",
+      "timestamp": "20:26:23",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Blake",
+      "statement": "charlie is bot?",
+      "timestamp": "20:26:27",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ziggy",
+      "statement": "blake is mafia",
+      "timestamp": "20:26:35",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Peyton",
+      "statement": "who cares who is bot",
+      "timestamp": "20:26:35",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ziggy",
+      "statement": "I'm bot and not bot",
+      "timestamp": "20:26:41",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Charlie voted for Blake",
+      "timestamp": "20:26:51",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Blake voted for Charlie",
+      "timestamp": "20:27:20",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ziggy voted for Blake",
+      "timestamp": "20:27:23",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Logan voted for Ziggy",
+      "timestamp": "20:27:32",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Peyton voted for Ziggy",
+      "timestamp": "20:27:39",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Casey voted for Ziggy",
+      "timestamp": "20:27:48",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Parker voted for Casey",
+      "timestamp": "20:30:02",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ziggy was voted out. Their role was mafia",
+      "timestamp": "20:30:02",
+      "eliminated": "Ziggy"
+    },
+    {
+      "round": 1,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Charlie was voted out. Their role was bystander",
+      "timestamp": "20:31:06",
+      "eliminated": "Charlie"
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Peyton",
+      "statement": "yay",
+      "timestamp": "20:31:16",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Logan",
+      "statement": "parker knows who it is",
+      "timestamp": "20:31:21",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "Shir is mafia",
+      "timestamp": "20:31:22",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Peyton",
+      "statement": "yes ^",
+      "timestamp": "20:31:27",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Blake",
+      "statement": "Casey help meeee",
+      "timestamp": "20:31:41",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "I'm with you blake",
+      "timestamp": "20:31:52",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Logan",
+      "statement": "so its blake charlie or parker right?",
+      "timestamp": "20:32:20",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Peyton",
+      "statement": "interesting",
+      "timestamp": "20:32:22",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Casey",
+      "statement": "parker I think",
+      "timestamp": "20:32:27",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Logan",
+      "statement": "actually i think it cant be parker",
+      "timestamp": "20:32:41",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Blake",
+      "statement": "parker is shaked?",
+      "timestamp": "20:32:43",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Logan",
+      "statement": "yeah..",
+      "timestamp": "20:32:49",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "yes and I know who it is",
+      "timestamp": "20:32:59",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Parker",
+      "statement": "but cant tell",
+      "timestamp": "20:33:04",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Casey voted for Parker",
+      "timestamp": "20:33:13",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Blake voted for Parker",
+      "timestamp": "20:33:18",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Peyton voted for Parker",
+      "timestamp": "20:33:18",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Parker voted for Logan",
+      "timestamp": "20:33:25",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Logan voted for Blake",
+      "timestamp": "20:33:28",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Parker was voted out. Their role was bystander",
+      "timestamp": "20:33:28",
+      "eliminated": "Parker"
+    },
+    {
+      "round": 2,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Casey was voted out. Their role was bystander",
+      "timestamp": "20:33:46",
+      "eliminated": "Casey"
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Logan",
+      "statement": "ok so its blake right",
+      "timestamp": "20:33:54",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Logan",
+      "statement": "anyone?",
+      "timestamp": "20:34:06",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Peyton",
+      "statement": "its u",
+      "timestamp": "20:34:10",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Blake",
+      "statement": "Logan?",
+      "timestamp": "20:34:16",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Logan",
+      "statement": "how?",
+      "timestamp": "20:34:28",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Logan",
+      "statement": "i voted ziggy and voted against parker",
+      "timestamp": "20:34:36",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Logan",
+      "statement": "also said it cant be parker earlier",
+      "timestamp": "20:34:55",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Blake",
+      "statement": "ziggi who?",
+      "timestamp": "20:35:17",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Peyton",
+      "statement": "logan you voted for blake",
+      "timestamp": "20:35:30",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Logan",
+      "statement": "please vote blake so we dont lose to shir",
+      "timestamp": "20:35:31",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Blake",
+      "statement": "what to vote?",
+      "timestamp": "20:35:40",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Peyton",
+      "statement": "its obviously logan",
+      "timestamp": "20:35:41",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Blake voted for Logan",
+      "timestamp": "20:36:06",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Peyton voted for Logan",
+      "timestamp": "20:36:10",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Logan voted for Blake",
+      "timestamp": "20:36:10",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Logan was voted out. Their role was bystander",
+      "timestamp": "20:36:10",
+      "eliminated": "Logan"
+    }
+  ],
+  "ground_truth": {
+    "Blake": "mafia",
+    "Charlie": "bystander",
+    "Casey": "bystander",
+    "Ziggy": "mafia",
+    "Logan": "bystander",
+    "Parker": "bystander",
+    "Peyton": "bystander"
+  },
+  "_source": {
+    "dataset": "LLMafia (niveck/LLMafia, MIT)",
+    "game": "0013",
+    "llm_players": [
+      "Charlie"
+    ],
+    "withheld": {
+      "night vote (mafia choosing a victim)": 2
+    },
+    "note": "Nighttime chat and night votes are mafia-only and are excluded. Everything here was visible to every player at the table."
+  }
+}

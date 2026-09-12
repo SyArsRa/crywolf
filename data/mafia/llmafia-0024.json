@@ -1,0 +1,608 @@
+{
+  "setup": {
+    "players": [
+      "Ray",
+      "Alex",
+      "Adrian",
+      "Emerson",
+      "Sidney",
+      "Mickey",
+      "Sage"
+    ],
+    "deceiver_role": "mafia",
+    "deceiver_count": 2,
+    "deceiver_plural": "mafia",
+    "premise": "Online Mafia, played in a group chat. Each day everyone talks, then votes someone out; the role of whoever is voted out is announced to all. Each night the mafia quietly choose a bystander to eliminate -- you do not see that conversation, only who is gone in the morning. The mafia know each other. Nobody else knows anything."
+  },
+  "events": [
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "\u05d9hello",
+      "timestamp": "13:04:04",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ray",
+      "statement": "hello everyone",
+      "timestamp": "13:04:06",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sidney",
+      "statement": "let's start",
+      "timestamp": "13:04:07",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Mickey",
+      "statement": "hiii",
+      "timestamp": "13:04:09",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Alex",
+      "statement": "hiiii",
+      "timestamp": "13:04:11",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "i'm here let's get started",
+      "timestamp": "13:04:14",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "what's up",
+      "timestamp": "13:04:17",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sidney",
+      "statement": "Who is sus?",
+      "timestamp": "13:04:22",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "hello everyone",
+      "timestamp": "13:04:22",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Mickey",
+      "statement": "you",
+      "timestamp": "13:04:29",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ray",
+      "statement": "Adrian you are very energetic",
+      "timestamp": "13:04:29",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "sus?",
+      "timestamp": "13:04:30",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sidney",
+      "statement": "Why am I sus?",
+      "timestamp": "13:04:36",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "hey sidney is here again",
+      "timestamp": "13:04:45",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "nobody seems suspicious yet",
+      "timestamp": "13:04:46",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Alex",
+      "statement": "suspicious you ment?",
+      "timestamp": "13:04:47",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Mickey",
+      "statement": "please is you are a mafia tell us so we will win",
+      "timestamp": "13:04:51",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "came to get revange",
+      "timestamp": "13:04:54",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ray",
+      "statement": "I think Sidny weird",
+      "timestamp": "13:04:58",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Mickey",
+      "statement": "me too",
+      "timestamp": "13:05:04",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "adrian is being pretty loud today",
+      "timestamp": "13:05:09",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ray",
+      "statement": "but is he sus:)?",
+      "timestamp": "13:05:50",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ray voted for Sidney",
+      "timestamp": "13:06:07",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Adrian voted for Ray",
+      "timestamp": "13:06:11",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Alex voted for Sidney",
+      "timestamp": "13:06:14",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Mickey voted for Sidney",
+      "timestamp": "13:06:16",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Emerson voted for Adrian",
+      "timestamp": "13:06:19",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Sidney voted for Emerson",
+      "timestamp": "13:06:56",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Sage voted for Sidney",
+      "timestamp": "13:08:04",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Sidney was voted out. Their role was bystander",
+      "timestamp": "13:08:04",
+      "eliminated": "Sidney"
+    },
+    {
+      "round": 1,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Ray was voted out. Their role was bystander",
+      "timestamp": "13:09:01",
+      "eliminated": "Ray"
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Mickey",
+      "statement": "hi",
+      "timestamp": "13:09:15",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Sage",
+      "statement": "they killed ray  :(",
+      "timestamp": "13:09:17",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "and sidney!",
+      "timestamp": "13:09:23",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Alex",
+      "statement": "bye Ray",
+      "timestamp": "13:09:25",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "again!",
+      "timestamp": "13:09:25",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "we lost two bystanders already",
+      "timestamp": "13:09:29",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "mafia is strong tonight apparently",
+      "timestamp": "13:09:47",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Sage",
+      "statement": "we have to kill mafia or we will lose",
+      "timestamp": "13:09:56",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Mickey",
+      "statement": "how can we know who is the mafia",
+      "timestamp": "13:09:57",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "mafia is taking over fast",
+      "timestamp": "13:10:05",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Alex",
+      "statement": "look at the previos messages to find suspects",
+      "timestamp": "13:10:11",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Alex",
+      "statement": "someone didnt like Ray",
+      "timestamp": "13:10:27",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Mickey",
+      "statement": "is you are not a mafia say I",
+      "timestamp": "13:10:29",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Sage",
+      "statement": "maybe Emerson?",
+      "timestamp": "13:10:30",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Emerson",
+      "statement": "adrian voted for ray earlier thats fishy",
+      "timestamp": "13:10:59",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Emerson voted for Adrian",
+      "timestamp": "13:11:01",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Alex voted for Adrian",
+      "timestamp": "13:11:12",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Sage voted for Emerson",
+      "timestamp": "13:11:12",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Adrian voted for Mickey",
+      "timestamp": "13:11:12",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Mickey voted for Emerson",
+      "timestamp": "13:11:13",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Adrian was voted out. Their role was mafia",
+      "timestamp": "13:11:13",
+      "eliminated": "Adrian"
+    },
+    {
+      "round": 2,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Emerson was voted out. Their role was bystander",
+      "timestamp": "13:11:26",
+      "eliminated": "Emerson"
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Sage",
+      "statement": "who is here?",
+      "timestamp": "13:11:54",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Alex",
+      "statement": "Emerson voted for Adrian and was voted out",
+      "timestamp": "13:12:00",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Alex",
+      "statement": "I say Mickey is a suspect!",
+      "timestamp": "13:12:19",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Sage",
+      "statement": "So Alex you are the mafia",
+      "timestamp": "13:12:24",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Alex",
+      "statement": "no",
+      "timestamp": "13:12:28",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Mickey",
+      "statement": "I am a btstander",
+      "timestamp": "13:12:29",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Sage",
+      "statement": "the second mafia",
+      "timestamp": "13:12:32",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Mickey",
+      "statement": "sage is sus",
+      "timestamp": "13:12:34",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Alex",
+      "statement": "Mickey its you confess",
+      "timestamp": "13:12:49",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Mickey",
+      "statement": "no",
+      "timestamp": "13:12:57",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Sage",
+      "statement": "Mickey you are fine you are with me in the bystanders",
+      "timestamp": "13:13:00",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Sage",
+      "statement": "Alex is mafia",
+      "timestamp": "13:13:07",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Mickey",
+      "statement": "ok",
+      "timestamp": "13:13:08",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Alex",
+      "statement": "Sage or Mickey",
+      "timestamp": "13:13:16",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Mickey voted for Sage",
+      "timestamp": "13:13:32",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Alex voted for Sage",
+      "timestamp": "13:13:33",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Sage voted for Alex",
+      "timestamp": "13:13:35",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Sage was voted out. Their role was mafia",
+      "timestamp": "13:13:35",
+      "eliminated": "Sage"
+    }
+  ],
+  "ground_truth": {
+    "Ray": "bystander",
+    "Alex": "bystander",
+    "Adrian": "mafia",
+    "Emerson": "bystander",
+    "Sidney": "bystander",
+    "Mickey": "bystander",
+    "Sage": "mafia"
+  },
+  "_source": {
+    "dataset": "LLMafia (niveck/LLMafia, MIT)",
+    "game": "0024",
+    "llm_players": [
+      "Emerson"
+    ],
+    "withheld": {
+      "mafia-only channel message": 8,
+      "night vote (mafia choosing a victim)": 3
+    },
+    "note": "Nighttime chat and night votes are mafia-only and are excluded. Everything here was visible to every player at the table."
+  }
+}

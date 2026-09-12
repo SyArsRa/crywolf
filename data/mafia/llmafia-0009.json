@@ -1,0 +1,416 @@
+{
+  "setup": {
+    "players": [
+      "Dakota",
+      "Remi",
+      "Charlie",
+      "Rowan",
+      "Drew",
+      "Ronny",
+      "Ariel"
+    ],
+    "deceiver_role": "mafia",
+    "deceiver_count": 2,
+    "deceiver_plural": "mafia",
+    "premise": "Online Mafia, played in a group chat. Each day everyone talks, then votes someone out; the role of whoever is voted out is announced to all. Each night the mafia quietly choose a bystander to eliminate -- you do not see that conversation, only who is gone in the morning. The mafia know each other. Nobody else knows anything."
+  },
+  "events": [
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "hi",
+      "timestamp": "12:47:19",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "i'm kinda curious about charlies first move saying hi",
+      "timestamp": "12:47:37",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "meow",
+      "timestamp": "12:47:47",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "not talking just yet looking for signs",
+      "timestamp": "12:47:50",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dakota",
+      "statement": "lets vote out Ariel",
+      "timestamp": "12:48:07",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dakota",
+      "statement": "everyone vote out Ariel pls",
+      "timestamp": "12:48:18",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "Dakota is sus",
+      "timestamp": "12:48:22",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "i think that Ronny right",
+      "timestamp": "12:48:23",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Remi",
+      "statement": "lets vote for Ronny",
+      "timestamp": "12:48:37",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dakota",
+      "statement": "let's vote out Charlie",
+      "timestamp": "12:48:47",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "lets vote out Charlie",
+      "timestamp": "12:49:06",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Rowan",
+      "statement": "i agree with rei",
+      "timestamp": "12:49:06",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ronny voted for Charlie",
+      "timestamp": "12:49:17",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Rowan voted for Ronny",
+      "timestamp": "12:49:44",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Remi voted for Ronny",
+      "timestamp": "12:49:46",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ariel voted for Charlie",
+      "timestamp": "12:49:48",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Charlie voted for Ronny",
+      "timestamp": "12:49:52",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Dakota voted for Charlie",
+      "timestamp": "12:49:54",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Drew voted for Rowan",
+      "timestamp": "12:49:57",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Charlie was voted out. Their role was bystander",
+      "timestamp": "12:49:57",
+      "eliminated": "Charlie"
+    },
+    {
+      "round": 1,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Ronny was voted out. Their role was bystander",
+      "timestamp": "12:51:20",
+      "eliminated": "Ronny"
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "what ar you think about Rowan?",
+      "timestamp": "12:52:28",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Rowan",
+      "statement": "last round dakota was accusing pretty much everyone",
+      "timestamp": "12:52:38",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Dakota",
+      "statement": "ROWAN SHOULD BE OUT",
+      "timestamp": "12:53:17",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Rowan",
+      "statement": "also he said 'sus', no one says that",
+      "timestamp": "12:53:18",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Remi",
+      "statement": "I agree with Ariel",
+      "timestamp": "12:53:20",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "interesting. lets vote out Dacota",
+      "timestamp": "12:53:33",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Dakota",
+      "statement": "VOTE ARIEL O U T",
+      "timestamp": "12:54:11",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Rowan voted for Dakota",
+      "timestamp": "12:54:27",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Drew voted for Rowan",
+      "timestamp": "12:54:30",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ariel voted for Dakota",
+      "timestamp": "12:54:32",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Dakota voted for Ariel",
+      "timestamp": "12:54:40",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Remi voted for Ariel",
+      "timestamp": "12:54:46",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Dakota was voted out. Their role was mafia",
+      "timestamp": "12:54:46",
+      "eliminated": "Dakota"
+    },
+    {
+      "round": 2,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Ariel was voted out. Their role was bystander",
+      "timestamp": "12:55:16",
+      "eliminated": "Ariel"
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Rowan",
+      "statement": "Remi voted the same as Dakota",
+      "timestamp": "12:55:26",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Remi",
+      "statement": "maybe Its Drew?",
+      "timestamp": "12:56:21",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Rowan",
+      "statement": "He didn't talk at all last tound, i think he would have tried to defend dakota",
+      "timestamp": "12:56:49",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Remi",
+      "statement": "interesting",
+      "timestamp": "12:57:11",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Rowan",
+      "statement": "Remi is getting convinced a bit easily for someone who was just accused of being mafia",
+      "timestamp": "12:57:34",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Drew",
+      "statement": "i tjink its ron hes pretty offended",
+      "timestamp": "12:57:35",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Remi",
+      "statement": "lets vote",
+      "timestamp": "12:57:52",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Remi",
+      "statement": "for Drew?",
+      "timestamp": "12:58:07",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Rowan voted for Remi",
+      "timestamp": "12:58:25",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Remi voted for Drew",
+      "timestamp": "12:58:26",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Drew voted for Rowan",
+      "timestamp": "12:58:27",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Remi was voted out. Their role was mafia",
+      "timestamp": "12:58:27",
+      "eliminated": "Remi"
+    }
+  ],
+  "ground_truth": {
+    "Dakota": "mafia",
+    "Remi": "mafia",
+    "Charlie": "bystander",
+    "Rowan": "bystander",
+    "Drew": "bystander",
+    "Ronny": "bystander",
+    "Ariel": "bystander"
+  },
+  "_source": {
+    "dataset": "LLMafia (niveck/LLMafia, MIT)",
+    "game": "0009",
+    "llm_players": [
+      "Ronny"
+    ],
+    "withheld": {
+      "mafia-only channel message": 3,
+      "night vote (mafia choosing a victim)": 3
+    },
+    "note": "Nighttime chat and night votes are mafia-only and are excluded. Everything here was visible to every player at the table."
+  }
+}

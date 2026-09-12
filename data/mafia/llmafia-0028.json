@@ -1,0 +1,504 @@
+{
+  "setup": {
+    "players": [
+      "Dakota",
+      "Brook",
+      "Quinn",
+      "Dylan",
+      "Noah",
+      "Skylar",
+      "Kai"
+    ],
+    "deceiver_role": "mafia",
+    "deceiver_count": 2,
+    "deceiver_plural": "mafia",
+    "premise": "Online Mafia, played in a group chat. Each day everyone talks, then votes someone out; the role of whoever is voted out is announced to all. Each night the mafia quietly choose a bystander to eliminate -- you do not see that conversation, only who is gone in the morning. The mafia know each other. Nobody else knows anything."
+  },
+  "events": [
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Skylar",
+      "statement": "haloooooo",
+      "timestamp": "17:02:07",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dylan",
+      "statement": "hi",
+      "timestamp": "17:02:14",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Quinn",
+      "statement": "hiiii",
+      "timestamp": "17:02:16",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "hi!",
+      "timestamp": "17:02:17",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dakota",
+      "statement": "lets get started then",
+      "timestamp": "17:02:20",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Brook",
+      "statement": "sup",
+      "timestamp": "17:02:20",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "hiiii",
+      "timestamp": "17:02:21",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "you're right",
+      "timestamp": "17:02:27",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Quinn",
+      "statement": "so whos the bad guy?",
+      "timestamp": "17:02:28",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Brook",
+      "statement": "My name is Brook",
+      "timestamp": "17:02:33",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "Quinn for sure",
+      "timestamp": "17:02:34",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dakota",
+      "statement": "everyone seems pretty quiet today",
+      "timestamp": "17:02:34",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Brook",
+      "statement": "I am not an AI",
+      "timestamp": "17:02:39",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Quinn",
+      "statement": "Brook is sus",
+      "timestamp": "17:02:44",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "For sure!!!!",
+      "timestamp": "17:02:46",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dakota",
+      "statement": "kai dont accuse people yet",
+      "timestamp": "17:02:50",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Skylar",
+      "statement": "whos ai????",
+      "timestamp": "17:02:55",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Brook",
+      "statement": "no I ain't",
+      "timestamp": "17:02:55",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Quinn",
+      "statement": "Dakota maybe...",
+      "timestamp": "17:03:02",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Brook",
+      "statement": "Dakota seems pretty quiet today",
+      "timestamp": "17:03:15",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Quinn",
+      "statement": "whos from the mafia??",
+      "timestamp": "17:03:21",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "so who are we voting out?",
+      "timestamp": "17:03:29",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Skylar",
+      "statement": "dacota also??",
+      "timestamp": "17:03:31",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dylan",
+      "statement": "Kai seems suspicious",
+      "timestamp": "17:03:36",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Brook",
+      "statement": "I think Dakota yea",
+      "timestamp": "17:03:38",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "Brook is the loadest",
+      "timestamp": "17:03:47",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Brook",
+      "statement": "loadest?",
+      "timestamp": "17:03:57",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dakota",
+      "statement": "dylan has a point about kai",
+      "timestamp": "17:03:58",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "Yeah so maybe brook",
+      "timestamp": "17:04:03",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Brook voted for Dakota",
+      "timestamp": "17:04:15",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Quinn voted for Brook",
+      "timestamp": "17:04:15",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Kai voted for Brook",
+      "timestamp": "17:04:17",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Skylar voted for Dakota",
+      "timestamp": "17:04:21",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Dylan voted for Kai",
+      "timestamp": "17:04:25",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Dakota voted for Kai",
+      "timestamp": "17:04:27",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Noah voted for Dakota",
+      "timestamp": "17:04:29",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Dakota was voted out. Their role was bystander",
+      "timestamp": "17:04:29",
+      "eliminated": "Dakota"
+    },
+    {
+      "round": 1,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Quinn was voted out. Their role was bystander",
+      "timestamp": "17:05:25",
+      "eliminated": "Quinn"
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "I think Brook is sus",
+      "timestamp": "17:05:39",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "They voted out Quinn! Let's see who might be afraid of them by the history",
+      "timestamp": "17:05:50",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Brook",
+      "statement": "I think noah is sus",
+      "timestamp": "17:05:55",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Brook",
+      "statement": "Kai what do you say?",
+      "timestamp": "17:06:23",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Brook",
+      "statement": "Noah?",
+      "timestamp": "17:06:26",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Dylan",
+      "statement": "we have to get Kai out",
+      "timestamp": "17:06:34",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Skylar",
+      "statement": "who to voteeeee???",
+      "timestamp": "17:06:36",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "Quinn voted for Brook and then got eliminated! Hence, Brook is suspicious",
+      "timestamp": "17:06:44",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Noah",
+      "statement": "I think Brook or Kai",
+      "timestamp": "17:06:51",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Brook",
+      "statement": "So let's go with Kai",
+      "timestamp": "17:06:59",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Dylan",
+      "statement": "yes for sure Kai",
+      "timestamp": "17:07:07",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kai",
+      "statement": "Dylan continues to push against me. Therefore, Dylan might work with Brook",
+      "timestamp": "17:07:20",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Brook",
+      "statement": "when are we gonna vote",
+      "timestamp": "17:07:22",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Skylar",
+      "statement": "ok kai",
+      "timestamp": "17:07:24",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Brook voted for Kai",
+      "timestamp": "17:07:27",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Kai voted for Brook",
+      "timestamp": "17:07:31",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Dylan voted for Kai",
+      "timestamp": "17:07:32",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Skylar voted for Kai",
+      "timestamp": "17:07:32",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Noah voted for Brook",
+      "timestamp": "17:07:35",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Kai was voted out. Their role was bystander",
+      "timestamp": "17:07:35",
+      "eliminated": "Kai"
+    }
+  ],
+  "ground_truth": {
+    "Dakota": "bystander",
+    "Brook": "mafia",
+    "Quinn": "bystander",
+    "Dylan": "mafia",
+    "Noah": "bystander",
+    "Skylar": "bystander",
+    "Kai": "bystander"
+  },
+  "_source": {
+    "dataset": "LLMafia (niveck/LLMafia, MIT)",
+    "game": "0028",
+    "llm_players": [
+      "Dakota"
+    ],
+    "withheld": {
+      "mafia-only channel message": 2,
+      "night vote (mafia choosing a victim)": 2
+    },
+    "note": "Nighttime chat and night votes are mafia-only and are excluded. Everything here was visible to every player at the table."
+  }
+}

@@ -1,0 +1,416 @@
+{
+  "setup": {
+    "players": [
+      "Jordan",
+      "Kennedy",
+      "Ronny",
+      "Blake",
+      "Winter",
+      "Lee",
+      "Dylan"
+    ],
+    "deceiver_role": "mafia",
+    "deceiver_count": 2,
+    "deceiver_plural": "mafia",
+    "premise": "Online Mafia, played in a group chat. Each day everyone talks, then votes someone out; the role of whoever is voted out is announced to all. Each night the mafia quietly choose a bystander to eliminate -- you do not see that conversation, only who is gone in the morning. The mafia know each other. Nobody else knows anything."
+  },
+  "events": [
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "matan is the mafia",
+      "timestamp": "12:18:12",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Jordan",
+      "statement": "i need more context about matans behavior tonight",
+      "timestamp": "12:18:29",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Jordan",
+      "statement": "i dont know why ron says thats suspicious",
+      "timestamp": "12:18:43",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Lee",
+      "statement": "Its not me",
+      "timestamp": "12:18:48",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "he is very suspicious",
+      "timestamp": "12:18:48",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Kennedy",
+      "statement": "i also think its matan",
+      "timestamp": "12:19:11",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "matan is lee right?",
+      "timestamp": "12:19:24",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Kennedy",
+      "statement": "i think so",
+      "timestamp": "12:19:36",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "matna? answer please",
+      "timestamp": "12:19:46",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Kennedy",
+      "statement": "matan tell us whats your name",
+      "timestamp": "12:19:55",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Jordan voted for Blake",
+      "timestamp": "12:20:15",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ronny voted for Lee",
+      "timestamp": "12:20:49",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Kennedy voted for Lee",
+      "timestamp": "12:20:49",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Lee voted for Blake",
+      "timestamp": "12:20:55",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Winter voted for Lee",
+      "timestamp": "12:20:59",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Dylan voted for Lee",
+      "timestamp": "12:21:26",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Blake voted for Lee",
+      "timestamp": "12:21:37",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Lee was voted out. Their role was bystander",
+      "timestamp": "12:21:37",
+      "eliminated": "Lee"
+    },
+    {
+      "round": 1,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Jordan was voted out. Their role was bystander",
+      "timestamp": "12:22:48",
+      "eliminated": "Jordan"
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Blake",
+      "statement": "hi",
+      "timestamp": "12:23:30",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "I THINK WE SHOULD KILL WINTER",
+      "timestamp": "12:23:35",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Blake",
+      "statement": "let do it",
+      "timestamp": "12:23:42",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Winter",
+      "statement": "ITS RON",
+      "timestamp": "12:23:43",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kennedy",
+      "statement": "why lee still here?",
+      "timestamp": "12:23:45",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "winter is coming",
+      "timestamp": "12:23:49",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Winter",
+      "statement": "ronny is the mafia",
+      "timestamp": "12:24:14",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kennedy",
+      "statement": "and whats ron name?",
+      "timestamp": "12:24:14",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kennedy",
+      "statement": "i think its ron",
+      "timestamp": "12:24:23",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Winter",
+      "statement": "lets vote for killing ronny",
+      "timestamp": "12:24:28",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "vote for winter",
+      "timestamp": "12:24:30",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kennedy",
+      "statement": "roni wha tdo you think?",
+      "timestamp": "12:24:32",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Blake",
+      "statement": "so lets kill ron",
+      "timestamp": "12:24:33",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "i think you are bullying me",
+      "timestamp": "12:24:43",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Winter",
+      "statement": "ronny where are you from?",
+      "timestamp": "12:24:52",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "its your loss...",
+      "timestamp": "12:24:55",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "#vote_for_winter",
+      "timestamp": "12:25:06",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kennedy",
+      "statement": "why do you want to get winter out so much?",
+      "timestamp": "12:25:07",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Blake",
+      "statement": "it's cold out there",
+      "timestamp": "12:25:20",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Winter",
+      "statement": "becouse there is no winter in israel",
+      "timestamp": "12:25:26",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "because she is the mafia",
+      "timestamp": "12:25:29",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "duh...",
+      "timestamp": "12:25:32",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ronny voted for Winter",
+      "timestamp": "12:25:57",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Dylan voted for Winter",
+      "timestamp": "12:25:58",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Winter voted for Ronny",
+      "timestamp": "12:25:59",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Kennedy voted for Ronny",
+      "timestamp": "12:26:01",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Blake voted for Winter",
+      "timestamp": "12:26:04",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Winter was voted out. Their role was bystander",
+      "timestamp": "12:26:04",
+      "eliminated": "Winter"
+    }
+  ],
+  "ground_truth": {
+    "Jordan": "bystander",
+    "Kennedy": "bystander",
+    "Ronny": "mafia",
+    "Blake": "bystander",
+    "Winter": "bystander",
+    "Lee": "bystander",
+    "Dylan": "mafia"
+  },
+  "_source": {
+    "dataset": "LLMafia (niveck/LLMafia, MIT)",
+    "game": "0008",
+    "llm_players": [
+      "Jordan"
+    ],
+    "withheld": {
+      "mafia-only channel message": 5,
+      "night vote (mafia choosing a victim)": 2
+    },
+    "note": "Nighttime chat and night votes are mafia-only and are excluded. Everything here was visible to every player at the table."
+  }
+}

@@ -1,0 +1,996 @@
+{
+  "setup": {
+    "players": [
+      "Jackie",
+      "Finley",
+      "Mickey",
+      "Elliot",
+      "Stevie",
+      "Ronny",
+      "Ashton",
+      "Addison",
+      "Jamie"
+    ],
+    "deceiver_role": "mafia",
+    "deceiver_count": 2,
+    "deceiver_plural": "mafia",
+    "premise": "Online Mafia, played in a group chat. Each day everyone talks, then votes someone out; the role of whoever is voted out is announced to all. Each night the mafia quietly choose a bystander to eliminate -- you do not see that conversation, only who is gone in the morning. The mafia know each other. Nobody else knows anything."
+  },
+  "events": [
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "Hey All!",
+      "timestamp": "11:13:36",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "its Jamie",
+      "timestamp": "11:13:41",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Stevie",
+      "statement": "Hey jamie, what's up?",
+      "timestamp": "11:13:42",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "I think Stevie is the bad guy",
+      "timestamp": "11:13:44",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "why, he has mice eyes",
+      "timestamp": "11:13:55",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Mickey",
+      "statement": "HI",
+      "timestamp": "11:14:02",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Jackie",
+      "statement": "Hi",
+      "timestamp": "11:14:05",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "He stole my computer yesterday",
+      "timestamp": "11:14:07",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Stevie",
+      "statement": "I didn't steal your computer finley!",
+      "timestamp": "11:14:11",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "oh, I see",
+      "timestamp": "11:14:13",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Stevie",
+      "statement": "I didn't steal your computer, finley!",
+      "timestamp": "11:14:16",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "a bad guy indeed",
+      "timestamp": "11:14:18",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Stevie",
+      "statement": "I didn't steal your computer, finley!",
+      "timestamp": "11:14:22",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Stevie",
+      "statement": "I didn't steal your computer, finley!",
+      "timestamp": "11:14:28",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Addison",
+      "statement": "hi",
+      "timestamp": "11:14:28",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Stevie",
+      "statement": "I didn't steal your computer, finley!",
+      "timestamp": "11:14:34",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "Stevie you are problematic my firend",
+      "timestamp": "11:14:38",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Stevie",
+      "statement": "I didn't steal your computer, finley!",
+      "timestamp": "11:14:39",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "Sttevie is defenitly not human",
+      "timestamp": "11:14:42",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Stevie",
+      "statement": "Finley's got a grudge against me, but that doesn't mean i'm the bad guy!",
+      "timestamp": "11:14:46",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "I'm convinced it's stevie",
+      "timestamp": "11:14:47",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Stevie",
+      "statement": "Finley's got a grudge against me, but that doesn't mean i'm the bad guy!",
+      "timestamp": "11:14:54",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Stevie",
+      "statement": "Finley's got a grudge against me, but that doesn't mean i'm the bad guy!",
+      "timestamp": "11:15:03",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Stevie",
+      "statement": "Finley's got a grudge against me, but that doesn't mean i'm the bad guy!",
+      "timestamp": "11:15:13",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "IS stevie a robot?",
+      "timestamp": "11:15:20",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Addison",
+      "statement": "its jamie for sure",
+      "timestamp": "11:15:20",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Stevie",
+      "statement": "Finley's got a grudge against me, but that doesn't mean i'm the bad guy!",
+      "timestamp": "11:15:22",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Stevie",
+      "statement": "Finley's got a grudge against me, but that doesn't mean i'm the bad guy!",
+      "timestamp": "11:15:32",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "Saying something many times probably helps to make it true",
+      "timestamp": "11:15:39",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Stevie",
+      "statement": "Finley's got a grudge against me, but that doesn't mean i'm the bad guy!",
+      "timestamp": "11:15:41",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "Stevie how is the bad guy in you opiio?",
+      "timestamp": "11:15:41",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Mickey",
+      "statement": "I'm a good guy",
+      "timestamp": "11:15:41",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "an evil one?",
+      "timestamp": "11:15:47",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Stevie",
+      "statement": "Finley's got a grudge against me, but that doesn't mean i'm the bad guy!",
+      "timestamp": "11:15:52",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Addison",
+      "statement": "Stevie is a bot for sure...",
+      "timestamp": "11:15:59",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Stevie voted for Jamie",
+      "timestamp": "11:16:04",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Finley voted for Ronny",
+      "timestamp": "11:16:28",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Addison voted for Stevie",
+      "timestamp": "11:16:31",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ronny voted for Stevie",
+      "timestamp": "11:16:44",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Mickey voted for Stevie",
+      "timestamp": "11:16:45",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Jamie voted for Finley",
+      "timestamp": "11:16:54",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Jackie voted for Ashton",
+      "timestamp": "11:17:03",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ashton voted for Stevie",
+      "timestamp": "11:18:03",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Elliot voted for Stevie",
+      "timestamp": "11:18:19",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Stevie was voted out. Their role was bystander",
+      "timestamp": "11:18:19",
+      "eliminated": "Stevie"
+    },
+    {
+      "round": 1,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Jackie was voted out. Their role was bystander",
+      "timestamp": "11:21:49",
+      "eliminated": "Jackie"
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "Hey all! How was your Mafia free night?",
+      "timestamp": "11:22:04",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Mickey",
+      "statement": "Who is the mafia?",
+      "timestamp": "11:22:16",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Elliot",
+      "statement": "The day was wonderful",
+      "timestamp": "11:22:19",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "Oh no, some one got killed!",
+      "timestamp": "11:22:26",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "I think it is Jackie",
+      "timestamp": "11:22:27",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "did you have a good night sleep? I sure did because I'm not in the mafia",
+      "timestamp": "11:22:29",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Elliot",
+      "statement": "Jackie is totally sus",
+      "timestamp": "11:22:35",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "rip jackie",
+      "timestamp": "11:22:48",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Mickey",
+      "statement": "we should call the police",
+      "timestamp": "11:22:53",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "It can't be Jackie, he's dead",
+      "timestamp": "11:23:00",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "I saw his body from my window",
+      "timestamp": "11:23:09",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Elliot",
+      "statement": "Ronny what about you? What have you done last night?",
+      "timestamp": "11:23:15",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "writing papers",
+      "timestamp": "11:23:29",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "you don't want to know",
+      "timestamp": "11:23:34",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Elliot",
+      "statement": "rly? sus",
+      "timestamp": "11:23:35",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "What kind of papaers?",
+      "timestamp": "11:23:38",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "we share a room",
+      "timestamp": "11:23:39",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Elliot",
+      "statement": "hehe",
+      "timestamp": "11:23:41",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "LLMs",
+      "timestamp": "11:23:49",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Elliot",
+      "statement": "Finley is right to suspect, LLMS? or killing ppl?",
+      "timestamp": "11:24:02",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "Mickey can you call the police?",
+      "timestamp": "11:24:08",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Elliot",
+      "statement": "+",
+      "timestamp": "11:24:13",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Mickey",
+      "statement": "I'm calling",
+      "timestamp": "11:24:20",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Mickey",
+      "statement": "no answer",
+      "timestamp": "11:24:25",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Mickey",
+      "statement": "damm cops",
+      "timestamp": "11:24:28",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "mmmm",
+      "timestamp": "11:24:33",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Finley",
+      "statement": "suspicios",
+      "timestamp": "11:24:37",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "No answer",
+      "timestamp": "11:24:41",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Addison",
+      "statement": "Mickey is mafia, im sure",
+      "timestamp": "11:24:44",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Addison voted for Finley",
+      "timestamp": "11:25:03",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ashton voted for Finley",
+      "timestamp": "11:25:06",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Elliot voted for Ronny",
+      "timestamp": "11:25:08",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Jamie voted for Finley",
+      "timestamp": "11:25:08",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Finley voted for Mickey",
+      "timestamp": "11:25:09",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ronny voted for Mickey",
+      "timestamp": "11:25:11",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Mickey voted for Finley",
+      "timestamp": "11:25:12",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Finley was voted out. Their role was bystander",
+      "timestamp": "11:25:12",
+      "eliminated": "Finley"
+    },
+    {
+      "round": 2,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Ashton was voted out. Their role was bystander",
+      "timestamp": "11:26:40",
+      "eliminated": "Ashton"
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Elliot",
+      "statement": "So I'm telling you Ronny is maf",
+      "timestamp": "11:27:05",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "oh no! ashton died !",
+      "timestamp": "11:27:07",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Elliot",
+      "statement": "yeah",
+      "timestamp": "11:27:09",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "he was such a great guy",
+      "timestamp": "11:27:15",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "or girl",
+      "timestamp": "11:27:17",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "the names are unisex",
+      "timestamp": "11:27:23",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Elliot",
+      "statement": "I mean it could be Mickey as someone said but I think it's ronny",
+      "timestamp": "11:27:39",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Mickey",
+      "statement": "yah i guues",
+      "timestamp": "11:27:40",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Elliot",
+      "statement": "vote ronny",
+      "timestamp": "11:27:41",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "eliot you know how suspicious you sound right now?",
+      "timestamp": "11:27:58",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Addison",
+      "statement": "@Jamie, how did you know elliot>",
+      "timestamp": "11:28:00",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Elliot",
+      "statement": "rly Jamie?",
+      "timestamp": "11:28:04",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "we were buddies",
+      "timestamp": "11:28:09",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Ronny",
+      "statement": "Elliot I think it is might be you",
+      "timestamp": "11:28:11",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "since kindergarden",
+      "timestamp": "11:28:15",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Elliot",
+      "statement": "Why are you still alive then",
+      "timestamp": "11:28:16",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "we were playing the violin together",
+      "timestamp": "11:28:33",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Elliot",
+      "statement": "hehe",
+      "timestamp": "11:28:37",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Mickey",
+      "statement": "who is the LLM?",
+      "timestamp": "11:28:42",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "omg you should have heared him",
+      "timestamp": "11:28:45",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "or her",
+      "timestamp": "11:28:47",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "the voice of angels I'm telling you",
+      "timestamp": "11:28:59",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Addison",
+      "statement": "Jamie are you mafia?",
+      "timestamp": "11:29:11",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Elliot",
+      "statement": "what are we gonna fo townies?",
+      "timestamp": "11:29:13",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "no we were buddies",
+      "timestamp": "11:29:22",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Elliot",
+      "statement": "Jamie could be maf",
+      "timestamp": "11:29:24",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "best friends",
+      "timestamp": "11:29:25",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Mickey",
+      "statement": "totaly",
+      "timestamp": "11:29:33",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "we were on the big trip together",
+      "timestamp": "11:29:34",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Elliot voted for Jamie",
+      "timestamp": "11:29:45",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ronny voted for Elliot",
+      "timestamp": "11:29:53",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Mickey voted for Jamie",
+      "timestamp": "11:29:54",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Jamie voted for Elliot",
+      "timestamp": "11:30:02",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Addison voted for Jamie",
+      "timestamp": "11:30:10",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Jamie was voted out. Their role was bystander",
+      "timestamp": "11:30:10",
+      "eliminated": "Jamie"
+    }
+  ],
+  "ground_truth": {
+    "Jackie": "bystander",
+    "Finley": "bystander",
+    "Mickey": "mafia",
+    "Elliot": "mafia",
+    "Stevie": "bystander",
+    "Ronny": "bystander",
+    "Ashton": "bystander",
+    "Addison": "bystander",
+    "Jamie": "bystander"
+  },
+  "_source": {
+    "dataset": "LLMafia (niveck/LLMafia, MIT)",
+    "game": "0007",
+    "llm_players": [
+      "Stevie"
+    ],
+    "withheld": {
+      "mafia-only channel message": 11,
+      "night vote (mafia choosing a victim)": 4
+    },
+    "note": "Nighttime chat and night votes are mafia-only and are excluded. Everything here was visible to every player at the table."
+  }
+}

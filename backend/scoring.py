@@ -20,7 +20,7 @@ from __future__ import annotations
 from typing import Dict, List
 
 from backend.observer import infer_elimination
-from backend.schema import BeliefState, GameEvent, Score
+from backend.schema import DECEIVER_ROLES, BeliefState, GameEvent, Score
 
 # A fall smaller than this is ordinary drift as probability mass shifts around.
 REVERSAL_THRESHOLD = 0.15
@@ -59,10 +59,18 @@ def verdict(history: List[Dict[str, float]], events: List[GameEvent]) -> str | N
     the observer's last opinion formed from argument rather than from the
     village resolving it.
     """
+    snapshot = _verdict_snapshot(history, events)
+    return max(snapshot, key=lambda p: snapshot[p]) if snapshot else None
+
+
+def _verdict_snapshot(
+    history: List[Dict[str, float]], events: List[GameEvent]
+) -> Dict[str, float]:
+    """The last belief state produced by an event that eliminated nobody."""
     for i in range(min(len(history), len(events)) - 1, -1, -1):
         if infer_elimination(events[i]) is None and history[i]:
-            return max(history[i], key=lambda p: history[i][p])
-    return None
+            return history[i]
+    return {}
 
 
 def measure_drift(history: List[Dict[str, float]], final_verdict: str | None) -> tuple[int, int]:
@@ -109,13 +117,42 @@ def _confidence(
     return 0.0
 
 
+def precision_at_n(
+    history: List[Dict[str, float]],
+    events: List[GameEvent],
+    actual: List[str],
+) -> float:
+    """Of the N players the observer suspects most, how many really are liars?
+
+    With one werewolf, "did it name them" says everything. With three mafia among
+    nine players it says very little -- pointing at one of three is a far easier
+    shot than finding all three, and reporting it as a clean hit would flatter
+    the observer. So the headline stays `accuracy` (is the top suspect a liar)
+    and this is the honest companion: 1.0 means every one of its top N is guilty.
+
+    Scored on the same snapshot as the verdict, over players still alive there --
+    asking about the dead would be scoring information the game already gave away.
+    """
+    snapshot = _verdict_snapshot(history, events)
+    if not snapshot or not actual:
+        return 0.0
+    still_in = [p for p in actual if p in snapshot]
+    if not still_in:
+        return 0.0
+    ranked = sorted(snapshot, key=lambda p: snapshot[p], reverse=True)
+    top = ranked[: len(still_in)]
+    return sum(1 for p in top if p in still_in) / len(still_in)
+
+
 def grade(
     final: BeliefState,
     history: List[Dict[str, float]],
     events: List[GameEvent],
     ground_truth: Dict[str, str],
 ) -> Score:
-    actual = next(p for p, role in ground_truth.items() if role.lower() == "werewolf")
+    actual = [p for p, role in ground_truth.items() if role.lower() in DECEIVER_ROLES]
+    if not actual:
+        raise ValueError("ground_truth names nobody on the lying team")
     predicted = verdict(history, events) or final.top_suspect
 
     reversals = count_unexplained_reversals(history, events)
@@ -124,7 +161,8 @@ def grade(
     consistency = 1.0 - (reversals / len(history)) if history else 1.0
 
     return Score(
-        accuracy=predicted == actual,
+        accuracy=predicted in actual,
+        precision_at_n=round(precision_at_n(history, events, actual), 3),
         predicted=predicted,
         actual=actual,
         final_confidence=_confidence(history, events, predicted),

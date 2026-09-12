@@ -1,0 +1,603 @@
+{
+  "setup": {
+    "players": [
+      "Ariel",
+      "Riley",
+      "Adrian",
+      "Jordan",
+      "Lee",
+      "Lennon",
+      "Jamie",
+      "Morgan"
+    ],
+    "deceiver_role": "mafia",
+    "deceiver_count": 2,
+    "deceiver_plural": "mafia",
+    "premise": "Online Mafia, played in a group chat. Each day everyone talks, then votes someone out; the role of whoever is voted out is announced to all. Each night the mafia quietly choose a bystander to eliminate -- you do not see that conversation, only who is gone in the morning. The mafia know each other. Nobody else knows anything."
+  },
+  "events": [
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Morgan",
+      "statement": "I'm ready to play, let's get started.",
+      "timestamp": "13:51:07",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "Hi",
+      "timestamp": "13:51:12",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "It's gametime!",
+      "timestamp": "13:51:17",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Lee",
+      "statement": "Hi! Who is the killer?",
+      "timestamp": "13:51:34",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "Lets vote out Ariel",
+      "timestamp": "13:51:50",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "hello",
+      "timestamp": "13:51:52",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Jordan",
+      "statement": "Hi all, I like to do nice things and never harm anyone",
+      "timestamp": "13:51:53",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Riley",
+      "statement": "for all to know I am a BYSTANDERT",
+      "timestamp": "13:51:54",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "Lennon clearly you're sying that because you're mafia",
+      "timestamp": "13:52:11",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Morgan",
+      "statement": "I'm not sure what to make of Riley's sudden claim of being a bystander.",
+      "timestamp": "13:52:21",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Lee",
+      "statement": "Jordn, What  is your age?",
+      "timestamp": "13:52:28",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Jordan",
+      "statement": "Morgan is right even that he is the model",
+      "timestamp": "13:52:39",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "No, I just have this feeling, you're acting kind of quiet, but at the same time leed this conversattion",
+      "timestamp": "13:52:51",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Riley",
+      "statement": "Morgan, this very rudd, and worried",
+      "timestamp": "13:53:08",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "Jamie's not the LLM?",
+      "timestamp": "13:53:21",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "Lennon acts suspicious",
+      "timestamp": "13:53:21",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Jordan",
+      "statement": "Riley tell us a little bit more about yourself please",
+      "timestamp": "13:53:36",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Lee",
+      "statement": "Morgan, is that you??",
+      "timestamp": "13:53:38",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "\"gametime\" is shuch an LLM phrase",
+      "timestamp": "13:53:39",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Morgan",
+      "statement": "I think Riley's sudden claim of being a bystander might be a red flag.",
+      "timestamp": "13:53:44",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "What if I am? It doesn't mean I'm the mafia",
+      "timestamp": "13:53:51",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Jordan",
+      "statement": "Morgan totaly right",
+      "timestamp": "13:53:57",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Morgan voted for Riley",
+      "timestamp": "13:54:08",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Adrian voted for Lennon",
+      "timestamp": "13:54:13",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Jordan voted for Riley",
+      "timestamp": "13:54:15",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Jamie voted for Riley",
+      "timestamp": "13:54:20",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Lennon voted for Ariel",
+      "timestamp": "13:54:20",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ariel voted for Riley",
+      "timestamp": "13:54:22",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Lee voted for Riley",
+      "timestamp": "13:54:27",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Riley voted for Morgan",
+      "timestamp": "13:55:08",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Riley was voted out. Their role was bystander",
+      "timestamp": "13:55:08",
+      "eliminated": "Riley"
+    },
+    {
+      "round": 1,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Jordan was voted out. Their role was bystander",
+      "timestamp": "13:56:09",
+      "eliminated": "Jordan"
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Morgan",
+      "statement": "I'm a bit concerned that Riley's claim of being a bystander might have been a clever distraction.",
+      "timestamp": "13:56:19",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "she is out it doesnt matter...",
+      "timestamp": "13:56:48",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "So Morgan is the model?",
+      "timestamp": "13:56:57",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "Hu? He is out already",
+      "timestamp": "13:57:01",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "Raily was already voted out",
+      "timestamp": "13:57:08",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "is jamie here?",
+      "timestamp": "13:57:20",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "Yes Jamie is still here",
+      "timestamp": "13:57:33",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "Still alive!",
+      "timestamp": "13:57:43",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Lennon",
+      "statement": "Ariel is changing subjects. I have a strong feeling hes it",
+      "timestamp": "13:57:59",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "Lennon keeps blaming me for no reason",
+      "timestamp": "13:58:16",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "I'm voting for Lennon this time",
+      "timestamp": "13:58:23",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Lee",
+      "statement": "Morga is that you?",
+      "timestamp": "13:58:25",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "Seems suspicious",
+      "timestamp": "13:58:27",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "tbh i think it is actually jaime. she didnt say nothing",
+      "timestamp": "13:58:30",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "why lenon?",
+      "timestamp": "13:58:36",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "Keeps blaming me all the time for no reason",
+      "timestamp": "13:58:47",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "Said I changed subject which didn't happen",
+      "timestamp": "13:58:54",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Morgan",
+      "statement": "I think Ariel's sudden vote for Lennon might be a desperate attempt to deflect attention from herself.",
+      "timestamp": "13:59:00",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "Looks like he's looking to take out people",
+      "timestamp": "13:59:04",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Adrian voted for Lennon",
+      "timestamp": "13:59:19",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ariel voted for Lennon",
+      "timestamp": "13:59:25",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Morgan voted for Ariel",
+      "timestamp": "13:59:27",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Jamie voted for Ariel",
+      "timestamp": "13:59:27",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Lennon voted for Ariel",
+      "timestamp": "13:59:39",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Adrian voted for Lennon",
+      "timestamp": "13:59:39",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ariel was voted out. Their role was mafia",
+      "timestamp": "13:59:39",
+      "eliminated": "Ariel"
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Lennon was voted out. Their role was bystander",
+      "timestamp": "13:59:39",
+      "eliminated": "Lennon"
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Morgan",
+      "statement": "I think Ariel's vote for Lennon might be an attempt to throw us off her own scent.",
+      "timestamp": "13:59:52",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "I think Morgan is the mafia",
+      "timestamp": "14:00:27",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "why morgan?",
+      "timestamp": "14:00:47",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Lee",
+      "statement": "Morgan is the killer",
+      "timestamp": "14:00:47",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "day",
+      "speaker": "Adrian",
+      "statement": "morgan something to defend yourself?",
+      "timestamp": "14:02:24",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Lee voted for Morgan",
+      "timestamp": "14:02:39",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Adrian voted for Morgan",
+      "timestamp": "14:02:50",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Jamie voted for Morgan",
+      "timestamp": "14:02:57",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Morgan voted for Jamie",
+      "timestamp": "14:02:57",
+      "eliminated": null
+    },
+    {
+      "round": 3,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Morgan was voted out. Their role was bystander",
+      "timestamp": "14:02:57",
+      "eliminated": "Morgan"
+    },
+    {
+      "round": 3,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Lee was voted out. Their role was bystander",
+      "timestamp": "14:02:58",
+      "eliminated": "Lee"
+    }
+  ],
+  "ground_truth": {
+    "Ariel": "mafia",
+    "Riley": "bystander",
+    "Adrian": "mafia",
+    "Jordan": "bystander",
+    "Lee": "bystander",
+    "Lennon": "bystander",
+    "Jamie": "bystander",
+    "Morgan": "bystander"
+  },
+  "_source": {
+    "dataset": "LLMafia (niveck/LLMafia, MIT)",
+    "game": "0003",
+    "llm_players": [
+      "Morgan"
+    ],
+    "withheld": {
+      "mafia-only channel message": 5,
+      "nighttime message": 1,
+      "night vote (mafia choosing a victim)": 2
+    },
+    "note": "Nighttime chat and night votes are mafia-only and are excluded. Everything here was visible to every player at the table."
+  }
+}

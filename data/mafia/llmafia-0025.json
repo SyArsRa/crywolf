@@ -1,0 +1,416 @@
+{
+  "setup": {
+    "players": [
+      "Charlie",
+      "Ray",
+      "Jamie",
+      "Dylan",
+      "Morgan",
+      "Kennedy",
+      "Ariel"
+    ],
+    "deceiver_role": "mafia",
+    "deceiver_count": 2,
+    "deceiver_plural": "mafia",
+    "premise": "Online Mafia, played in a group chat. Each day everyone talks, then votes someone out; the role of whoever is voted out is announced to all. Each night the mafia quietly choose a bystander to eliminate -- you do not see that conversation, only who is gone in the morning. The mafia know each other. Nobody else knows anything."
+  },
+  "events": [
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dylan",
+      "statement": "Hey guysssss",
+      "timestamp": "13:43:25",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ray",
+      "statement": "lets get started then",
+      "timestamp": "13:43:31",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dylan",
+      "statement": "how are you?",
+      "timestamp": "13:43:37",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ray",
+      "statement": "dylan seems pretty excited lets hear what others got to say",
+      "timestamp": "13:43:58",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "I'm tiredddd",
+      "timestamp": "13:44:06",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "I'm tired too let's get it over with",
+      "timestamp": "13:44:16",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "so who's mafia",
+      "timestamp": "13:44:20",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "tell us",
+      "timestamp": "13:44:22",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "I only slept 2 hours tonight",
+      "timestamp": "13:44:23",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Kennedy",
+      "statement": "So rush",
+      "timestamp": "13:44:27",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "So it's definitely not me",
+      "timestamp": "13:44:30",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dylan",
+      "statement": "I putting my shekels on Charlie",
+      "timestamp": "13:44:41",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Jamie",
+      "statement": "Morgan you there?",
+      "timestamp": "13:44:43",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Kennedy",
+      "statement": "Maybe the hurry people are sus",
+      "timestamp": "13:44:43",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "So who should we vote for?",
+      "timestamp": "13:44:52",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Jamie voted for Ray",
+      "timestamp": "13:45:21",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ray voted for Dylan",
+      "timestamp": "13:45:22",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Kennedy voted for Jamie",
+      "timestamp": "13:45:39",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ariel voted for Jamie",
+      "timestamp": "13:45:45",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Charlie voted for Dylan",
+      "timestamp": "13:45:54",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Dylan voted for Jamie",
+      "timestamp": "13:46:17",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Morgan voted for Charlie",
+      "timestamp": "13:46:49",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Jamie was voted out. Their role was bystander",
+      "timestamp": "13:46:49",
+      "eliminated": "Jamie"
+    },
+    {
+      "round": 1,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Ray was voted out. Their role was bystander",
+      "timestamp": "13:48:01",
+      "eliminated": "Ray"
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Dylan",
+      "statement": "Hey :)))",
+      "timestamp": "13:48:09",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Dylan",
+      "statement": "How was your night?",
+      "timestamp": "13:48:18",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "who killed Ray??",
+      "timestamp": "13:48:22",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kennedy",
+      "statement": "Yeah you need to confess",
+      "timestamp": "13:48:30",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Dylan",
+      "statement": "wtf is Ray dead???",
+      "timestamp": "13:48:34",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "they executed them",
+      "timestamp": "13:48:45",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Dylan",
+      "statement": "nooo we were besties",
+      "timestamp": "13:48:46",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ariel",
+      "statement": "OK so who should we vote for?",
+      "timestamp": "13:49:07",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Dylan",
+      "statement": "I want revenge",
+      "timestamp": "13:49:15",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kennedy",
+      "statement": "You keep pushing for vote Ariel",
+      "timestamp": "13:49:18",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Morgan",
+      "statement": "\u001b[CI say Dylan",
+      "timestamp": "13:49:21",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Charlie",
+      "statement": "Yallah Dylan really speaks a lot",
+      "timestamp": "13:49:33",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Dylan",
+      "statement": "I'm going to find them and say: hellow, my name is Dylan",
+      "timestamp": "13:49:36",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Dylan",
+      "statement": "you killed my ray",
+      "timestamp": "13:49:41",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Dylan",
+      "statement": "prepare to die",
+      "timestamp": "13:49:45",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kennedy",
+      "statement": "LOL",
+      "timestamp": "13:49:45",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Kennedy",
+      "statement": "SO you are a killer!",
+      "timestamp": "13:49:53",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Kennedy voted for Dylan",
+      "timestamp": "13:50:08",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Morgan voted for Dylan",
+      "timestamp": "13:50:10",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ariel voted for Dylan",
+      "timestamp": "13:50:14",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Charlie voted for Dylan",
+      "timestamp": "13:50:18",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Dylan voted for Morgan",
+      "timestamp": "13:50:19",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Dylan was voted out. Their role was bystander",
+      "timestamp": "13:50:19",
+      "eliminated": "Dylan"
+    }
+  ],
+  "ground_truth": {
+    "Charlie": "mafia",
+    "Ray": "bystander",
+    "Jamie": "bystander",
+    "Dylan": "bystander",
+    "Morgan": "bystander",
+    "Kennedy": "mafia",
+    "Ariel": "bystander"
+  },
+  "_source": {
+    "dataset": "LLMafia (niveck/LLMafia, MIT)",
+    "game": "0025",
+    "llm_players": [
+      "Ray"
+    ],
+    "withheld": {
+      "mafia-only channel message": 1,
+      "night vote (mafia choosing a victim)": 1
+    },
+    "note": "Nighttime chat and night votes are mafia-only and are excluded. Everything here was visible to every player at the table."
+  }
+}

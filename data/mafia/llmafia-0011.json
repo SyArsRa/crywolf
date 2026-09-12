@@ -1,0 +1,535 @@
+{
+  "setup": {
+    "players": [
+      "Harper",
+      "Eden",
+      "Dylan",
+      "Bailey",
+      "Sutton",
+      "Robin",
+      "Ashton"
+    ],
+    "deceiver_role": "mafia",
+    "deceiver_count": 2,
+    "deceiver_plural": "mafia",
+    "premise": "Online Mafia, played in a group chat. Each day everyone talks, then votes someone out; the role of whoever is voted out is announced to all. Each night the mafia quietly choose a bystander to eliminate -- you do not see that conversation, only who is gone in the morning. The mafia know each other. Nobody else knows anything."
+  },
+  "events": [
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Robin",
+      "statement": "hi",
+      "timestamp": "16:13:57",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dylan",
+      "statement": "this is anas",
+      "timestamp": "16:13:59",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Harper",
+      "statement": "i'm here waiting with robin now",
+      "timestamp": "16:14:08",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Bailey",
+      "statement": "sho asmhn ele 7dk asmaa ?",
+      "timestamp": "16:14:10",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "aaaaa",
+      "timestamp": "16:14:17",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dylan",
+      "statement": "this is ashton",
+      "timestamp": "16:14:20",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Robin",
+      "statement": "meen ento tayeb",
+      "timestamp": "16:14:23",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dylan",
+      "statement": "asmo ashton",
+      "timestamp": "16:14:35",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Bailey",
+      "statement": "dylan this is anas or ashton ?",
+      "timestamp": "16:14:36",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Harper",
+      "statement": "ive chatted anas too recently not much else he does tho still no mention of him being suspect yet",
+      "timestamp": "16:14:42",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Dylan",
+      "statement": "ashton",
+      "timestamp": "16:14:45",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Robin",
+      "statement": "hay rachel",
+      "timestamp": "16:14:48",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "wait wait wait",
+      "timestamp": "16:14:54",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "ana asma aw anas",
+      "timestamp": "16:14:56",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "aaa dylan",
+      "timestamp": "16:14:56",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "day",
+      "speaker": "Eden",
+      "statement": "i am a poor little bystander",
+      "timestamp": "16:15:00",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Harper voted for Dylan",
+      "timestamp": "16:15:11",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "Harper",
+      "statement": "not sure about by voting based solely off nicknames though dont see how its helpful",
+      "timestamp": "16:15:11",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Robin voted for Dylan",
+      "timestamp": "16:16:00",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Bailey voted for Dylan",
+      "timestamp": "16:16:02",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Sutton voted for Dylan",
+      "timestamp": "16:16:15",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Dylan voted for Harper",
+      "timestamp": "16:16:17",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ashton voted for Eden",
+      "timestamp": "16:16:17",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Eden voted for Ashton",
+      "timestamp": "16:16:37",
+      "eliminated": null
+    },
+    {
+      "round": 1,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Dylan was voted out. Their role was mafia",
+      "timestamp": "16:16:37",
+      "eliminated": "Dylan"
+    },
+    {
+      "round": 1,
+      "phase": "night",
+      "speaker": "MODERATOR",
+      "statement": "Eden was voted out. Their role was bystander",
+      "timestamp": "16:18:32",
+      "eliminated": "Eden"
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "YAAZLME SHO BDO HAY",
+      "timestamp": "16:19:23",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Bailey",
+      "statement": "it's robin or harper",
+      "timestamp": "16:19:24",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "OT HARPER",
+      "timestamp": "16:19:28",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "ITS HARPER",
+      "timestamp": "16:19:31",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Robin",
+      "statement": "sho halfetan aywa",
+      "timestamp": "16:19:34",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "IM 100% SURE",
+      "timestamp": "16:19:34",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "ITS HARPER",
+      "timestamp": "16:19:35",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "PLEASE VOTE HARPER",
+      "timestamp": "16:19:38",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "PEASE VOTE HARPER",
+      "timestamp": "16:19:40",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "ITS HARPER",
+      "timestamp": "16:19:45",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "ITS HARPER",
+      "timestamp": "16:19:47",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "TRUST MEE",
+      "timestamp": "16:19:49",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "IM TELLING YOU",
+      "timestamp": "16:19:51",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "IM TELLING U GOTTA LISTEN",
+      "timestamp": "16:19:55",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "ITS HARPER",
+      "timestamp": "16:19:56",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Bailey",
+      "statement": "ashton being so defensive",
+      "timestamp": "16:19:56",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "IV SEEN HIM",
+      "timestamp": "16:19:59",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Harper",
+      "statement": "cant believe u actually trusted nicknames as evidence bailey maddy bad call",
+      "timestamp": "16:20:02",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "KILL DYLAN",
+      "timestamp": "16:20:03",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "VOTE HARPER OUT",
+      "timestamp": "16:20:09",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Harper",
+      "statement": ".harped pretty sus suddenly",
+      "timestamp": "16:20:13",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "harper AI",
+      "timestamp": "16:20:18",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "VOTE OUT HARPER",
+      "timestamp": "16:20:23",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Sutton",
+      "statement": "w emposte brdo",
+      "timestamp": "16:20:24",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "PLEASEEE IM BEGGING YOU",
+      "timestamp": "16:20:27",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Harper",
+      "statement": "asper harper innocent yall trust robins vibes",
+      "timestamp": "16:20:30",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "NO NO NO",
+      "timestamp": "16:20:36",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Robin",
+      "statement": "el AI harper ya anas",
+      "timestamp": "16:20:37",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Harper",
+      "statement": "robintesameharperdonttrustashotim",
+      "timestamp": "16:20:43",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "day",
+      "speaker": "Ashton",
+      "statement": "YOU CANT TRUST ANYONE BASED THEIR VIBES??",
+      "timestamp": "16:20:54",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Harper voted for Robin",
+      "timestamp": "16:21:13",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Bailey voted for Ashton",
+      "timestamp": "16:21:15",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Robin voted for Ashton",
+      "timestamp": "16:21:27",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ashton voted for Harper",
+      "timestamp": "16:22:03",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Sutton voted for Bailey",
+      "timestamp": "16:22:09",
+      "eliminated": null
+    },
+    {
+      "round": 2,
+      "phase": "vote",
+      "speaker": "MODERATOR",
+      "statement": "Ashton was voted out. Their role was mafia",
+      "timestamp": "16:22:09",
+      "eliminated": "Ashton"
+    }
+  ],
+  "ground_truth": {
+    "Harper": "bystander",
+    "Eden": "bystander",
+    "Dylan": "mafia",
+    "Bailey": "bystander",
+    "Sutton": "bystander",
+    "Robin": "bystander",
+    "Ashton": "mafia"
+  },
+  "_source": {
+    "dataset": "LLMafia (niveck/LLMafia, MIT)",
+    "game": "0011",
+    "llm_players": [
+      "Harper"
+    ],
+    "withheld": {
+      "night vote (mafia choosing a victim)": 1
+    },
+    "note": "Nighttime chat and night votes are mafia-only and are excluded. Everything here was visible to every player at the table."
+  }
+}
