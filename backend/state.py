@@ -22,6 +22,10 @@ from backend.schema import BeliefState, GameEvent, GameSetup, Transcript
 
 RUNS_DIR = Path("runs")
 
+# How far into a replay the fast-forwarded opening may run when the feed
+# never announces a role. Mirrors `feeder._Tempo`.
+OPENING_FRACTION = 0.45
+
 
 class Turn(BaseModel):
     """One event and the belief state it produced.
@@ -84,6 +88,33 @@ class Run:
         return self.transcript.setup.players
 
     @property
+    def in_opening(self) -> bool:
+        """Is the game still in the stretch where nothing can be checked?
+
+        Drives how fast the run loop plays: the opening is fast-forwarded.
+
+        A live run asks the observer, which knows precisely -- it is holding the
+        computed evidence. A replay has no observer, so it reads the feed the way
+        `feeder._Tempo` does: a role announcement is the real signal, an
+        elimination stands in for games that announce deaths without roles, and
+        the fraction is the backstop for a game that does neither. Without that
+        last guard the shipped demo recording, which names no role until its
+        final line, would fast-forward end to end.
+        """
+        if self.observer is not None:
+            return not self.observer.opening_read
+        # Imported here, not at module scope: a replay is supposed to be able
+        # to run without the model stack present at all.
+        from backend.observer import _ROLE_REVEAL
+
+        if len(self.turns) >= OPENING_FRACTION * self.total_expected:
+            return False
+        return not any(
+            _ROLE_REVEAL.search(t.event.statement) or t.event.eliminated or t.state.eliminated
+            for t in self.turns
+        )
+
+    @property
     def total_expected(self) -> int:
         return self._events_expected or len(self.transcript.events)
 
@@ -133,6 +164,11 @@ class Run:
         return self.committed
 
     def finish(self, error: Optional[str] = None) -> None:
+        # A game can end with the observer's opening still buffered and unread --
+        # see Observer.flush. Only on a clean finish: a run that was stopped or
+        # that failed should not spend a model call on its way out.
+        if error is None and self.observer is not None:
+            self.observer.flush()
         self.error = error
         # Stopping early on purpose is a finished run, not a truncated one: the
         # loop reached its goal, which is the whole point of having one.

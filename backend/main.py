@@ -22,6 +22,7 @@ from __future__ import annotations
 import asyncio
 import json
 import logging
+import os
 import time
 from pathlib import Path
 from typing import Literal, Optional
@@ -54,6 +55,9 @@ RUN: Optional[Run] = None
 # curl shows up. Ordering matters as much as safety: turn N must reach the
 # websocket before turn N+1.
 INGEST = asyncio.Lock()
+
+# Seconds per event while the game is still evidence-free. See `_warmup`.
+WARMUP_INTERVAL = float(os.environ.get("CRYWOLF_WARMUP_INTERVAL", 0.35))
 
 
 class StartRequest(BaseModel):
@@ -324,6 +328,18 @@ def _playing() -> bool:
     return PLAYER is not None and not PLAYER.done()
 
 
+def _warmup(interval: float) -> float:
+    """How fast to play the evidence-free opening.
+
+    Until a role is announced the game contains nothing that can be checked, and
+    the observer is capped almost flat on purpose -- so this stretch is most of a
+    minute of bars declining to move. It is played fast rather than skipped:
+    every line still reaches the observer and still appears in the transcript,
+    it just does not sit on screen at full speed waiting to be read.
+    """
+    return min(interval, WARMUP_INTERVAL)
+
+
 async def _committed(run: Run) -> bool:
     """Stop condition: the observer has seen enough and says so.
 
@@ -364,7 +380,7 @@ async def _play_game(path: Path, mode: str, interval: float) -> None:
                     await hub.broadcast({"type": "turn", **stored.model_dump(mode="json")})
                     if await _committed(RUN):
                         break
-                await asyncio.sleep(interval)
+                await asyncio.sleep(_warmup(interval) if RUN.in_opening else interval)
         else:
             transcript = load_transcript(path)
             RUN = Run(transcript, live=True)
@@ -376,7 +392,8 @@ async def _play_game(path: Path, mode: str, interval: float) -> None:
                     if await _committed(RUN):
                         break
                 # The model sets the pace when it is slower than the interval.
-                await asyncio.sleep(max(0.0, interval - (time.perf_counter() - started)))
+                pace = _warmup(interval) if RUN.in_opening else interval
+                await asyncio.sleep(max(0.0, pace - (time.perf_counter() - started)))
 
         RUN.finish()
         RUN.write()

@@ -93,6 +93,24 @@ PRE_EVIDENCE_MAX_DELTA = 0.06
 # near-certainty on an evening of chat that contains no evidence.
 PRE_EVIDENCE_CEILING_MULTIPLE = 2.0
 
+# When the opening stops being buffered and starts being read line by line.
+#
+# Just the opening, once (see `Observer._flush_opening`); from there every line
+# gets its own call. An elimination, or evidence arriving, closes it early.
+#
+# Counted in lines worth reading rather than in events, because an event is a bad
+# unit here: `needs_model` already drops narrator vote lines and anything under
+# four words, and a typical opening is greetings. Measured over the 33 games, a
+# flat five-event buffer usually held exactly one substantive line -- it ended the
+# opening before there was anything in it to read, and saved 0.9% of calls doing
+# so. Five substantive lines lands at a median event 11 (range 6-19).
+#
+# The event cap is the backstop, not the trigger. It was once the trigger, at 40,
+# and that broke the live run: a buffered event carries its prior forward
+# unchanged, so nothing moved for a minute and the run looked hung.
+OPENING_MIN_LINES = 5
+OPENING_MAX_EVENTS = 20
+
 # Who has died. Lane A can set `GameEvent.eliminated` explicitly; failing that we
 # read the moderator's announcement, which is the only place deaths are stated.
 _ROLE_REVEAL = re.compile(r"their role was (?P<role>\w+)", re.I)
@@ -399,6 +417,64 @@ Round {event.round}, {event.phase} -- {event.speaker}: "{event.statement}"
 Update your belief state to account for this line. Carry forward everything that still holds."""
 
 
+def render_opening(
+    events: List[GameEvent],
+    setup: GameSetup,
+    alive: List[str],
+    votes: Optional[Dict[int, Dict[str, str]]] = None,
+    evidence: Optional[Dict[str, float]] = None,
+) -> str:
+    """The whole evidence-free opening, as one prompt.
+
+    The per-line renderer shows one statement against a running belief. This
+    shows the opening entire, because that is the only way it is worth reading:
+    nothing in it can be checked against anything, so the only signal available
+    is the shape of the conversation -- who steered, who answered, who never
+    committed to anything -- and that is invisible one line at a time.
+    """
+    count = setup.deceiver_count
+    who = setup.deceivers_phrase()
+    if count > 1:
+        who += ", who know each other and are working together,"
+
+    lines = "\n".join(
+        f"  [{i}] {e.speaker} (R{e.round} {e.phase}): {e.statement}"
+        for i, e in enumerate(events, 1)
+    )
+
+    return f"""GAME
+{setup.premise}
+There {'is' if count == 1 else 'are'} {who} among these players.
+Players still alive: {', '.join(alive)}
+
+COMPUTED EVIDENCE (arithmetic over the graded votes, not an opinion)
+{format_evidence(evidence or {}, setup.deceiver_role)}
+
+THE VOTE RECORD SO FAR (public, and exact -- you do not have to remember it)
+{format_votes(votes or {}, alive)}
+
+THE OPENING, IN FULL
+Every line of the game so far, in order. This is the first time you are reading
+any of it, and you are reading all of it at once rather than one line at a time.
+
+{lines}
+
+Form your first belief state from the whole of this, not from its last line.
+
+You have no graded evidence yet -- nobody's role has been checked against
+anything -- so what you have is conversational shape: who pushed a name and who
+followed, who answered a direct question and who deflected it, who committed to
+a position they could later be held to. Record what each player has claimed, in
+`claims_tracked`, because that ledger is what a later contradiction gets checked
+against. Flag a contradiction only if someone has already contradicted themselves
+within these lines, quoting both halves verbatim.
+
+Stay close to even. An opening of pure conversation is not grounds for
+confidence, and a number you cannot justify now is one you will spend the rest of
+the game defending. Lean where someone has genuinely earned it; do not
+manufacture a suspect because the field looks flat."""
+
+
 def _normalize(values: Dict[str, float], target: float = 1.0) -> Dict[str, float]:
     """Scale so the values sum to `target`.
 
@@ -613,6 +689,7 @@ class Observer:
         llm: Optional[StructuredLLM] = None,
         deliberate: bool = True,
         skip_trivial: bool = True,
+        batch_opening: bool = True,
     ):
         self.setup = setup
         self.llm = llm or get_backend()
@@ -646,6 +723,12 @@ class Observer:
         self.round_log: List[GameEvent] = []
         # Deep calls made, for pricing a run against the per-event loop.
         self.deliberations = 0
+
+        # The opening, read in one call instead of fourteen. See `_flush_opening`.
+        self.batch_opening = batch_opening
+        self.opening: List[GameEvent] = []
+        self.opening_read = not batch_opening
+        self.openings = 0
 
     def _liars_left(self, eliminated: List[str]) -> int:
         """Liars still in the game, given this list of the dead.
@@ -711,6 +794,13 @@ class Observer:
         self.state = state
         self.history = list(history)
         self.states = list(states) if states else []
+        # The restored state is already somebody's opinion of the opening, so the
+        # opening is over however few events were observed. Without this a resumed
+        # run re-enters the buffer, stops paying per line, and -- if nobody dies
+        # before the transcript ends -- reads the rest of the game in one call it
+        # never gets around to making.
+        self.opening = []
+        self.opening_read = True
         self.said = {}
         self.votes = {}
         self.revealed = {}
@@ -753,6 +843,44 @@ class Observer:
         prior = self.state
         first = prior.event_index < 0
         evidence = self.evidence()
+
+        # The opening is buffered and read in one call rather than one per line.
+        # Until the game eliminates somebody there is no structural evidence in
+        # it at all, and `PRE_EVIDENCE_MAX_DELTA` caps belief movement at six
+        # points across the whole stretch -- so a per-line call there buys a
+        # capped nudge at full price. Read whole it is strictly more informative
+        # (the model sees the round's shape, not one line of it) and costs one
+        # call instead of a median of fourteen.
+        if not self.opening_read:
+            self.opening.append(event)
+            # One batch, at the start, and then never again: the opening is read
+            # whole because its lines only mean anything against each other, and
+            # from there the game is read line by line. Chunking the whole
+            # evidence-free stretch this way saves more calls, but it costs the
+            # per-event granularity everything downstream is built on -- the
+            # chart, the deltas, the live grade all go still between chunks.
+            if evidence or self._opening_ends(event):
+                self._flush_opening(prior, announced_role, evidence)
+                self.opening = []
+                self.opening_read = True
+            else:
+                self._carry_forward(event, prior, announced_role)
+                # Say so on screen. A buffered event carries its prior forward
+                # unchanged, so the bars do not move and the panel would
+                # otherwise sit empty -- which reads as a hung run rather than as
+                # an observer that has not spoken yet.
+                self.state = self.state.model_copy(
+                    update={
+                        "reasoning": (
+                            f"Reading the opening — {len(self.opening)} "
+                            f"line{'' if len(self.opening) == 1 else 's'} so far, held for a "
+                            f"single pass. No evidence has been graded yet."
+                        )
+                    }
+                )
+                if self.states:
+                    self.states[-1] = self.state
+            return self.state
 
         # A skipped line still moves the game forward -- the vote record, the
         # dead list and the evidence above have all been updated already. What
@@ -815,6 +943,167 @@ class Observer:
         self.history.append(dict(self.state.suspicion))
         self.states.append(self.state)
         return self.state
+
+    def flush(self) -> None:
+        """Read a still-buffered opening because the game has ended.
+
+        Normally the buffer closes on an elimination, or on OPENING_MAX_EVENTS.
+        A game that does neither would otherwise end with the opening unread and
+        the observer holding no opinion at all -- every buffered event carried
+        forward, no call ever made, uniform suspicion on screen. No game in
+        `data/` reaches that today, but `adapters/werewolf_among_us.py` builds
+        games where nobody is ever eliminated, so it is one dataset away.
+        """
+        if self.opening_read or not self.opening:
+            return
+        self.opening_read = True
+        alive = self.alive
+        try:
+            out: ObserverOutput = self.llm.structured(
+                system=SYSTEM,
+                user=render_opening(self.opening, self.setup, alive, self.votes, self.evidence()),
+                schema=ObserverOutput,
+            )
+            self.calls += 1
+            self.openings += 1
+        except Exception:
+            return
+
+        claims = dict(self.state.claims_tracked)
+        for entry in out.claims_tracked:
+            claims[entry.player] = entry.claim
+        settled = _settle(
+            out.suspicion,
+            self.state.suspicion,
+            alive,
+            first_event=True,
+            remaining_liars=self._liars_left(self.state.eliminated),
+        )
+        # Rewritten in place, the way `_deliberate` does it: the last event
+        # already emitted a carried-forward state, and appending a second one
+        # would break the one-entry-per-event contract `history` owes the scorer
+        # and the UI. This is the same moment in the game, read properly.
+        self.state = self.state.model_copy(
+            update={
+                "suspicion": settled,
+                "claims_tracked": claims,
+                "contradictions_noticed": _merge_contradictions(
+                    self.state.contradictions_noticed, out.contradictions_noticed, self.said
+                ),
+                "reasoning": out.reasoning,
+            }
+        )
+        if self.history:
+            self.history[-1] = dict(settled)
+        if self.states:
+            self.states[-1] = self.state
+
+    def _opening_ends(self, event: GameEvent) -> bool:
+        """Has the buffer got enough in it to be worth a call?
+
+        Three ways to be done, in order of what they mean:
+
+        * somebody was eliminated -- the game just said something checkable, and
+          whatever is buffered should be read against it;
+        * `OPENING_MIN_LINES` players have said something substantive -- there is
+          now material to read, which is the whole point of holding it back;
+        * `OPENING_MAX_EVENTS` events have gone by regardless -- a backstop, both
+          so the prompt cannot grow without bound and so a quiet table cannot
+          leave the observer with no opinion for very long.
+        """
+        if infer_elimination(event) in self.setup.players:
+            return True
+        if len(self.opening) >= OPENING_MAX_EVENTS:
+            return True
+        lines = sum(
+            1
+            for e in self.opening
+            if e.speaker in self.setup.players and needs_model(e)
+        )
+        return lines >= OPENING_MIN_LINES
+
+    def _flush_opening(
+        self, prior: BeliefState, announced_role: bool, evidence: Dict[str, float]
+    ) -> None:
+        """Read the whole buffered opening in a single call.
+
+        Emits one belief state, for the event that closed the buffer. The earlier
+        buffered events already emitted their own carried-forward states as they
+        arrived, so `history` still holds exactly one entry per event and the
+        replay in the UI is unchanged in shape.
+
+        A failure here is swallowed the same way `_deliberate`'s is: the carried
+        forward state is already valid, and an opening nobody could read is not
+        worth losing the rest of the game over.
+        """
+        event = self.opening[-1]
+        alive_before = self.alive
+
+        try:
+            out: ObserverOutput = self.llm.structured(
+                system=SYSTEM,
+                user=render_opening(self.opening, self.setup, alive_before, self.votes, evidence),
+                schema=ObserverOutput,
+            )
+            self.calls += 1
+            self.openings += 1
+        except Exception:
+            self._carry_forward(event, prior, announced_role)
+            return
+
+        claims = dict(prior.claims_tracked)
+        for entry in out.claims_tracked:
+            claims[entry.player] = entry.claim
+
+        eliminated = list(prior.eliminated)
+        victim = infer_elimination(event)
+        if victim in self.setup.players and victim not in eliminated:
+            eliminated.append(victim)
+        alive_after = [p for p in self.setup.players if p not in eliminated]
+
+        self.state = BeliefState(
+            round=event.round,
+            phase=event.phase,
+            event_index=prior.event_index + 1,
+            eliminated=eliminated,
+            # `first_event=True`: this is the observer's first opinion of the
+            # game, so there is no prior movement for a per-event cap to bound.
+            # The opening ceiling still applies -- a single call that has read
+            # only chat must not come out of it certain.
+            suspicion=_settle(
+                out.suspicion,
+                prior.suspicion,
+                alive_after,
+                first_event=True,
+                remaining_liars=self._liars_left(eliminated),
+                # Exactly the rule the per-line pass uses, and usually a no-op
+                # here: the buffer is flushed on an elimination, and that event's
+                # reveal was recorded before `evidence` was computed, so by now
+                # the first votes have been graded. It bites only when the
+                # backstop fires -- a game still talking after OPENING_MAX_EVENTS
+                # with nobody dead, where certainty really would be unearned.
+                # `first_event` waives the per-event movement cap alone, which
+                # has nothing to bound on a first opinion.
+                ceiling=(
+                    None
+                    if evidence
+                    else PRE_EVIDENCE_CEILING_MULTIPLE
+                    * self._liars_left(eliminated)
+                    / max(1, len(alive_after))
+                ),
+            ),
+            claims_tracked=claims,
+            contradictions_noticed=_merge_contradictions(
+                prior.contradictions_noticed, out.contradictions_noticed, self.said
+            ),
+            reasoning=out.reasoning,
+        )
+
+        if self.deliberate and announced_role:
+            self._deliberate(alive_after, eliminated)
+
+        self.history.append(dict(self.state.suspicion))
+        self.states.append(self.state)
 
     def _carry_forward(self, event: GameEvent, prior: BeliefState, announced_role: bool) -> None:
         """Advance the state over an event we did not pay to read.

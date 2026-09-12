@@ -29,6 +29,7 @@ from typing import List, Optional, Tuple
 
 import httpx
 
+from backend.observer import infer_elimination
 from backend.schema import BeliefState, GameEvent, GameSetup, Transcript
 from backend.state import Turn
 
@@ -123,6 +124,64 @@ def _pace(started: float, interval: float) -> float:
     return 0.0
 
 
+class _Tempo:
+    """Fast through the opening, normal once the game has said something.
+
+    The first role announcement lands a median 43% of the way into a transcript,
+    and until it does there is no structural evidence in the game at all --
+    `observer.PRE_EVIDENCE_MAX_DELTA` caps belief movement at six points through
+    that entire stretch. Playing it at full speed is 40% of a demo spent watching
+    bars deliberately not move.
+
+    So the opening is fast-forwarded rather than skipped. Nothing is hidden: the
+    transcript still fills, the observer still reads every line, and the flat
+    belief through the opening stays on screen -- which is the point. It is not
+    dead air, it is the observer refusing to invent a suspect before there is
+    anything to go on, and at speed that reads as discipline rather than a stall.
+
+    The opening ends at whichever comes first: anyone being eliminated, or
+    `max_fraction` of the transcript going by. Mafia announces a role with every
+    elimination, so the first of those is the arrival of structural evidence --
+    but it is written as "eliminated" rather than "role revealed" deliberately,
+    because Werewolf announces deaths without roles ("P5 is found dead") and
+    waiting for a reveal there waits forever. That is not hypothetical: keyed on
+    reveals alone, the shipped 27-event demo recording -- which names no role
+    until its final line -- fast-forwarded end to end and played in 9 seconds
+    instead of 40. The fraction is the backstop for a game that does neither.
+    """
+
+    def __init__(
+        self,
+        interval: float,
+        warmup: float,
+        players: set,
+        total: int = 0,
+        max_fraction: float = 0.45,
+    ):
+        # A warmup slower than the real interval would be a strange thing to ask
+        # for, so it is treated as "no warmup" instead of silently slowing down.
+        self.interval = interval
+        self.warmup = min(warmup, interval)
+        self.players = players
+        self.limit = int(total * max_fraction) if total else 0
+        self.seen = 0
+        self.opening = True
+
+    def interval_for(self, event: GameEvent) -> float:
+        return self.warmup if self.opening else self.interval
+
+    def note(self, event: GameEvent) -> bool:
+        """Record this event. Returns True on the line that ends the opening."""
+        self.seen += 1
+        if not self.opening:
+            return False
+        gone = infer_elimination(event) in self.players
+        if gone or (self.limit and self.seen >= self.limit):
+            self.opening = False
+            return True
+        return False
+
+
 def _report(durations: List[float], total: float, expected: int) -> None:
     done = len(durations)
     print()
@@ -144,7 +203,7 @@ def _report(durations: List[float], total: float, expected: int) -> None:
         print(f"inside the {DEMO_BUDGET_SECONDS:.0f}s demo budget, {DEMO_BUDGET_SECONDS - total:.1f}s to spare.")
 
 
-def feed_live(client: httpx.Client, transcript: Transcript, interval: float) -> int:
+def feed_live(client: httpx.Client, transcript: Transcript, interval: float, warmup: float = 0.0) -> int:
     start = client.post("/game/start", json={"transcript": transcript.model_dump(), "live": True})
     if start.status_code != 200:
         print(f"couldn't start a live run: {start.status_code} {start.text[:400]}")
@@ -158,6 +217,7 @@ def feed_live(client: httpx.Client, transcript: Transcript, interval: float) -> 
     durations: List[float] = []
     run_started = time.perf_counter()
     failed = False
+    tempo = _Tempo(interval, warmup, set(transcript.setup.players), total)
 
     for i, event in enumerate(transcript.events, 1):
         turn_started = time.perf_counter()
@@ -181,7 +241,11 @@ def feed_live(client: httpx.Client, transcript: Transcript, interval: float) -> 
             print(f"\n[{i:>2}/{total}] observer committed -- stopping early")
             break
 
-        slept = _pace(turn_started, interval)
+        # Noted before the interval is read, so the revealing line itself is held
+        # at full speed -- it is the beat the whole opening was waiting for.
+        if tempo.note(event):
+            print("           -> first role revealed: evidence exists, back to full speed")
+        slept = _pace(turn_started, tempo.interval_for(event))
         durations.append(call + slept)
 
     elapsed = time.perf_counter() - run_started
@@ -198,6 +262,7 @@ def feed_replay(
     turns: List[Turn],
     interval: float,
     expected: int,
+    warmup: float = 0.0,
 ) -> int:
     client.post(
         "/game/start",
@@ -209,6 +274,7 @@ def feed_replay(
 
     run_started = time.perf_counter()
     durations: List[float] = []
+    tempo = _Tempo(interval, warmup, set(transcript.setup.players), total)
 
     for i, turn in enumerate(turns, 1):
         turn_started = time.perf_counter()
@@ -220,7 +286,9 @@ def feed_replay(
             print(f"\n[{i:>2}/{total}] observer committed -- stopping early")
             durations.append(time.perf_counter() - turn_started)
             break
-        _pace(turn_started, interval)
+        if tempo.note(event):
+            print("           -> first role revealed: evidence exists, back to full speed")
+        _pace(turn_started, tempo.interval_for(event))
         durations.append(time.perf_counter() - turn_started)
 
     elapsed = time.perf_counter() - run_started
@@ -239,6 +307,16 @@ def main() -> int:
     )
     parser.add_argument("--replay", type=Path, help="Replay this recorded run instead of making model calls.")
     parser.add_argument("--interval", type=float, default=3.0, help="Seconds per turn (a floor, not a cap).")
+    parser.add_argument(
+        "--warmup-interval",
+        type=float,
+        default=0.35,
+        help=(
+            "Seconds per turn before the first role is revealed, when the game holds "
+            "no structural evidence yet and belief is capped almost flat. Defaults to "
+            "0.35; pass the same value as --interval to play the opening at full speed."
+        ),
+    )
     parser.add_argument("--api", default=DEFAULT_API, help=f"API base URL (default {DEFAULT_API}).")
     args = parser.parse_args()
 
@@ -253,8 +331,12 @@ def main() -> int:
         try:
             if args.replay:
                 transcript, turns, expected = load_recording(args.replay, args.transcript)
-                return feed_replay(client, transcript, turns, args.interval, expected)
-            return feed_live(client, load_transcript(args.transcript), args.interval)
+                return feed_replay(
+                    client, transcript, turns, args.interval, expected, args.warmup_interval
+                )
+            return feed_live(
+                client, load_transcript(args.transcript), args.interval, args.warmup_interval
+            )
         except KeyboardInterrupt:
             print("\ninterrupted -- closing the run so the recording is kept.")
             client.post("/game/end")

@@ -121,6 +121,11 @@ def main() -> int:
         help="Score evidence.py alone. No model, no API key, no cost.",
     )
     parser.add_argument("--no-deliberate", action="store_true", help="Per-event calls only.")
+    parser.add_argument(
+        "--no-batch-opening",
+        action="store_true",
+        help="Read the opening one line at a time instead of in a single call.",
+    )
     parser.add_argument("--json", dest="out", help="Write per-game rows here.")
     args = parser.parse_args()
 
@@ -147,9 +152,15 @@ def main() -> int:
                 scores = evidence_only(transcript)
                 observer = None
             else:
-                observer = Observer(transcript.setup, deliberate=not args.no_deliberate)
+                observer = Observer(
+                    transcript.setup,
+                    deliberate=not args.no_deliberate,
+                    batch_opening=not args.no_batch_opening,
+                )
                 for event in transcript.events:
                     observer.observe(event)
+                # A game that never eliminated anyone leaves the opening unread.
+                observer.flush()
                 scores = observer.state.suspicion
         except (Exception, KeyboardInterrupt) as exc:
             print(f"  {path.name}: stopped -- {type(exc).__name__}: {str(exc)[:120]}")

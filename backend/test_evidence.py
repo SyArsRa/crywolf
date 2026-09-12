@@ -217,7 +217,9 @@ def test_deliberation_fires_only_on_a_role_reveal() -> None:
     ]
 
     llm = TwoTierLLM()
-    observer = Observer(setup, llm=llm, deliberate=True, skip_trivial=False)
+    # batch_opening off: this case is about the two tiers, and batching would
+    # fold these four events into one call and measure something else.
+    observer = Observer(setup, llm=llm, deliberate=True, skip_trivial=False, batch_opening=False)
     for event in events:
         observer.observe(event)
 
@@ -344,12 +346,14 @@ def test_skipping_cheap_lines_keeps_the_downstream_contract() -> None:
             )
 
     lean_llm = Counter()
-    lean = Observer(transcript.setup, llm=lean_llm, deliberate=False, skip_trivial=True)
+    # batch_opening off on both: this case isolates what `skip_trivial` alone
+    # is worth, and batching would cut calls from both sides of the comparison.
+    lean = Observer(transcript.setup, llm=lean_llm, deliberate=False, skip_trivial=True, batch_opening=False)
     for event in transcript.events:
         lean.observe(event)
 
     full_llm = Counter()
-    full = Observer(transcript.setup, llm=full_llm, deliberate=False, skip_trivial=False)
+    full = Observer(transcript.setup, llm=full_llm, deliberate=False, skip_trivial=False, batch_opening=False)
     for event in transcript.events:
         full.observe(event)
 
@@ -401,7 +405,10 @@ def test_evidence_reaches_the_prompt_on_a_real_game() -> None:
             )
 
     rec = Recorder()
-    observer = Observer(transcript.setup, llm=rec, deliberate=True)
+    # batch_opening off: this checks what the *per-line* prompt says during the
+    # evidence-free stretch. Batched, that stretch produces no per-line prompts
+    # at all -- `render_opening` carries the same warning instead, asserted below.
+    observer = Observer(transcript.setup, llm=rec, deliberate=True, batch_opening=False)
     for event in transcript.events:
         observer.observe(event)
 
@@ -460,6 +467,119 @@ def test_resume_rebuilds_the_announced_roles() -> None:
     check("so the evidence survives the restart", resumed.evidence() == first.evidence())
 
 
+def test_the_opening_is_read_once_not_line_by_line() -> None:
+    """The opening costs one call, and costs the run nothing else.
+
+    Everything downstream assumes one history entry per event and a verbatim
+    record of who said what -- the first for the chart and the scorer, the second
+    for the contradiction attribution check. Buffering the opening must not
+    disturb either, and the failure would be silent in both cases.
+    """
+    print("the opening is read in one call")
+
+    transcript = Transcript.model_validate_json(
+        Path("data/mafia/llmafia-0002.json").read_text(encoding="utf-8")
+    )
+
+    class Counter:
+        def __init__(self) -> None:
+            self.calls = 0
+            self.prompts: list[str] = []
+
+        def structured(self, system: str, user: str, schema):
+            if schema is Deliberation:
+                return Deliberation(suspicion=[], revised="", reasoning="deep")
+            self.calls += 1
+            self.prompts.append(user)
+            return ObserverOutput(
+                suspicion=[], claims_tracked=[], contradictions_noticed=[], reasoning="shallow"
+            )
+
+    per_line = Counter()
+    a = Observer(transcript.setup, llm=per_line, deliberate=False, batch_opening=False)
+    for event in transcript.events:
+        a.observe(event)
+
+    batched = Counter()
+    b = Observer(transcript.setup, llm=batched, deliberate=False, batch_opening=True)
+    for event in transcript.events:
+        b.observe(event)
+
+    n = len(transcript.events)
+    # Not "strictly fewer": `skip_trivial` already drops most opening lines
+    # (greetings, anything under four words), so on a game whose first five
+    # events are "hi" the two paths cost the same. Batching the opening is a
+    # change to how those lines are read, not a saving.
+    check("batching never costs more calls", batched.calls <= per_line.calls)
+    check("the opening was read exactly once", b.openings == 1)
+    check("history is still one entry per event", len(b.history) == n)
+    check("states are still one per event", len(b.states) == n)
+    check("the said-record is untouched by buffering", a.said == b.said)
+    check("so is the vote record", a.votes == b.votes)
+    check("and the announced roles", a.revealed == b.revealed)
+
+    opening = batched.prompts[0]
+    check("the opening prompt carries the whole buffer, in order", "[1] " in opening and "[2] " in opening)
+    check(
+        "and still warns against inventing a suspect",
+        "do not" in opening.lower() and "manufacture" in opening.lower(),
+    )
+
+
+def test_an_unread_opening_is_flushed_when_the_game_ends() -> None:
+    """A game that never eliminates anybody must still get an opinion.
+
+    `adapters/werewolf_among_us.py` builds exactly that -- no night kills, nobody
+    out mid-game -- so an opening that only closes on a death would leave the
+    observer holding uniform suspicion and never making a call at all.
+    """
+    print("an unread opening is flushed at the end")
+
+    setup = GameSetup(players=["A", "B", "C", "D"], deceiver_role="werewolf", deceiver_count=1)
+    events = [
+        GameEvent(round=1, phase="day", speaker=p, statement=f"{p} says something substantive here")
+        for p in ["A", "B", "C", "D"]
+    ]
+
+    class Stub:
+        def __init__(self) -> None:
+            self.calls = 0
+
+        def structured(self, system: str, user: str, schema):
+            self.calls += 1
+            return ObserverOutput(
+                suspicion=[SuspicionEntry(player="A", score=0.7)],
+                claims_tracked=[ClaimEntry(player="A", claim="pushed hard early")],
+                contradictions_noticed=[],
+                reasoning="read the opening whole",
+            )
+
+    stub = Stub()
+    observer = Observer(setup, llm=stub, deliberate=False, batch_opening=True)
+    for event in events:
+        observer.observe(event)
+
+    check("nobody died, so nothing was read yet", stub.calls == 0)
+    check(
+        "and the panel says so rather than sitting blank",
+        "Reading the opening" in observer.state.reasoning,
+    )
+    check(
+        "belief has not moved off uniform",
+        all(abs(v - 0.25) < 1e-9 for v in observer.state.suspicion.values()),
+    )
+
+    observer.flush()
+
+    check("the flush reads it", stub.calls == 1 and observer.openings == 1)
+    check("the opinion lands", observer.state.reasoning == "read the opening whole")
+    check("the claims ledger lands with it", "A" in observer.state.claims_tracked)
+    check("A is now the leading suspect", observer.state.top_suspect == "A")
+    check("history is still one entry per event", len(observer.history) == len(events))
+    check("and the last entry is the one that was rewritten", observer.history[-1]["A"] > 0.25)
+    check("flushing twice is a no-op", (observer.flush(), stub.calls)[1] == 1)
+
+
 if __name__ == "__main__":
     for fn in [
         test_evidence_is_silent_until_a_role_is_announced,
@@ -473,6 +593,8 @@ if __name__ == "__main__":
         test_skipping_cheap_lines_keeps_the_downstream_contract,
         test_evidence_reaches_the_prompt_on_a_real_game,
         test_resume_rebuilds_the_announced_roles,
+        test_the_opening_is_read_once_not_line_by_line,
+        test_an_unread_opening_is_flushed_when_the_game_ends,
     ]:
         fn()
     print("")

@@ -183,9 +183,12 @@ def test_full_loop_with_stub_model() -> None:
             )
 
     stub = StubLLM()
-    # skip_trivial off: this test is about the loop's bookkeeping, and it
-    # counts calls, so it wants the one-call-per-event shape on purpose.
-    observer = Observer(transcript.setup, llm=stub, skip_trivial=False)
+    # skip_trivial and batch_opening both off: this test is about the loop's
+    # bookkeeping, and it counts calls, so it wants the one-call-per-event
+    # shape on purpose.
+    observer = Observer(
+        transcript.setup, llm=stub, skip_trivial=False, batch_opening=False
+    )
     for event in transcript.events:
         observer.observe(event)
 
@@ -262,13 +265,15 @@ def test_resume_continues_instead_of_restarting() -> None:
                 reasoning="stub",
             )
 
-    first = Observer(transcript.setup, llm=CountingLLM(), skip_trivial=False)
+    # batch_opening off: resume is about paying only for events after the
+    # restart, and a batched opening would fold the first six into one call.
+    first = Observer(transcript.setup, llm=CountingLLM(), skip_trivial=False, batch_opening=False)
     for event in transcript.events[:6]:
         first.observe(event)
     saved_state, saved_history = first.state, first.history
 
     second_llm = CountingLLM()
-    second = Observer(transcript.setup, llm=second_llm, skip_trivial=False)
+    second = Observer(transcript.setup, llm=second_llm, skip_trivial=False, batch_opening=False)
     second.restore(
         BeliefState.model_validate(saved_state.model_dump()),
         saved_history,
@@ -315,7 +320,9 @@ def test_recording_round_trips_into_the_replay_shape() -> None:
                 reasoning="P4 moved without explaining why.",
             )
 
-    observer = Observer(transcript.setup, llm=StubLLM())
+    # batch_opening off: this pins the shape of a *per-event* recording, and
+    # eight buffered events would be carried forward without a call at all.
+    observer = Observer(transcript.setup, llm=StubLLM(), batch_opening=False)
     for event in transcript.events[:8]:
         observer.observe(event)
 
