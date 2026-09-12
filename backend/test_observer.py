@@ -11,6 +11,8 @@ from pathlib import Path
 from backend.observer import (
     MAX_DELTA_PER_EVENT,
     Observer,
+    format_votes,
+    infer_vote,
     _merge_contradictions,
     _settle,
     infer_elimination,
@@ -521,6 +523,58 @@ def test_resume_keeps_the_attribution_record() -> None:
     check("with them the contradiction survives", len(restored.state.contradictions_noticed) == 1)
 
 
+def test_vote_record() -> None:
+    """The vote graph is the one measurably strong signal: across the 33 real
+    games, under 4% of a liar's votes land on their own partner."""
+    print("vote record")
+    check(
+        "the narrator's announcement is a vote",
+        infer_vote(
+            GameEvent(round=1, phase="vote", speaker="Game-Manager", statement="Kai voted for Sutton")
+        ) == ("Kai", "Sutton"),
+    )
+    check(
+        "a player typing the same thing is not",
+        infer_vote(
+            GameEvent(round=2, phase="day", speaker="Eden", statement="noah voted for bystander")
+        ) is None,
+    )
+
+    votes = {1: {"A": "C", "B": "C", "C": "A"}, 2: {"A": "D", "B": "D"}}
+    rendered = format_votes(votes, ["A", "B", "C", "D"])
+    check("every round is shown", "round 1:" in rendered and "round 2:" in rendered)
+    check("the never-voted pair is surfaced", "A/B" in rendered)
+    check("a pair who did vote at each other is not", "A/C" not in rendered)
+    check("nothing to show before any vote", format_votes({}, ["A"]) == "(nobody has voted yet)")
+
+    # End to end: the record reaches the prompt, and survives a resume.
+    transcript = Transcript.model_validate_json(
+        Path("data/fallback_transcript.json").read_text(encoding="utf-8")
+    )
+
+    class Stub:
+        def __init__(self) -> None:
+            self.last = ""
+
+        def structured(self, system, user, schema):
+            self.last = user
+            return ObserverOutput(
+                suspicion=[SuspicionEntry(player=p, score=0.2) for p in transcript.setup.players],
+                claims_tracked=[], contradictions_noticed=[], reasoning="x",
+            )
+
+    stub = Stub()
+    observer = Observer(transcript.setup, llm=stub)
+    for event in transcript.events[:14]:
+        observer.observe(event)
+    check("votes are tracked from the transcript", observer.votes.get(1, {}).get("P1") == "P4")
+    check("the record reaches the prompt", "THE VOTE RECORD" in stub.last)
+
+    resumed = Observer(transcript.setup, llm=Stub())
+    resumed.restore(BeliefState(), [], [], transcript.events[:14])
+    check("and is rebuilt on resume", resumed.votes == observer.votes)
+
+
 def test_belief_state_defaults() -> None:
     print("BeliefState")
     check("empty state has no top suspect", BeliefState().top_suspect is None)
@@ -543,6 +597,7 @@ if __name__ == "__main__":
         test_mentions_needs_a_real_name_not_a_substring,
         test_contradictions_must_be_the_accused_players_own_words,
         test_resume_keeps_the_attribution_record,
+        test_vote_record,
         test_belief_state_defaults,
     ]:
         fn()
